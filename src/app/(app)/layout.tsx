@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { isAdminEmail } from "@/lib/supabase/admin";
 import { logout } from "./actions";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
@@ -10,6 +11,8 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   } = await supabase.auth.getUser();
 
   if (!user) redirect("/login");
+
+  const isAdmin = isAdminEmail(user.email);
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -28,6 +31,11 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             <Link href="/perfil" className="hover:text-neutral-900">
               Perfil
             </Link>
+            {isAdmin && (
+              <Link href="/admin" className="hover:text-neutral-900">
+                Admin
+              </Link>
+            )}
             <form action={logout}>
               <button type="submit" className="hover:text-neutral-900">
                 Sair
