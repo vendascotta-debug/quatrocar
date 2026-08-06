@@ -84,33 +84,53 @@ const steps = [
 const planos = [
   {
     nome: "Gratuito",
+    publico: "Quem quer conhecer a plataforma",
     preco: "R$ 0",
     periodo: "para sempre",
     destaque: false,
-    itens: ["1 veículo", "Histórico completo", "Alertas de manutenção"],
+    itens: [
+      "1 veículo",
+      "Histórico básico",
+      "Lembretes de manutenção",
+      "Controle de abastecimento",
+      "Dashboard simples",
+    ],
   },
   {
     nome: "Premium",
-    preco: "Em breve",
-    periodo: "",
+    publico: "Proprietários de veículos",
+    preco: "R$ 19,90",
+    periodo: "por mês",
     destaque: true,
     itens: [
       "Veículos ilimitados",
-      "Alertas por WhatsApp",
+      "Inteligência Artificial",
+      "Histórico completo",
+      "Upload de notas fiscais",
+      "Fotos e documentos",
+      "Backup em nuvem",
       "Relatórios em PDF",
-      "Backup automático na nuvem",
+      "Índice de saúde do veículo",
+      "Alertas inteligentes",
+      "Controle financeiro completo",
+      "Planejamento das próximas manutenções",
+      "Compartilhamento com familiares",
     ],
   },
   {
     nome: "Empresas",
-    preco: "Sob consulta",
-    periodo: "",
+    publico: "Pequenas frotas, locadoras, representantes comerciais, empresas de manutenção e oficinas",
+    preco: "A partir de R$ 79,90",
+    periodo: "por mês",
     destaque: false,
     itens: [
+      "Vários usuários",
       "Gestão de frotas",
+      "Relatórios consolidados",
+      "Painel administrativo",
       "Controle por motorista",
-      "Custos consolidados",
       "Aprovação de manutenções",
+      "API e integrações (em breve)",
     ],
   },
 ];
@@ -351,12 +371,20 @@ export default function Home() {
               </p>
             </Reveal>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-3">
+            <Reveal delay={80}>
+              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-center text-sm text-neutral-700">
+                Uma troca de óleo esquecida pode custar centenas de reais. O QuatroCar Premium
+                custa menos de <strong className="text-neutral-900">R$ 0,70 por dia</strong> para
+                ajudar a evitar gastos inesperados e manter o histórico do veículo organizado.
+              </div>
+            </Reveal>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {planos.map((p, i) => (
                 <Reveal key={p.nome} delay={i * 100}>
                   <div
                     className={
-                      "relative h-full rounded-2xl border p-6 " +
+                      "relative flex h-full flex-col rounded-2xl border p-6 " +
                       (p.destaque
                         ? "border-amber-400 bg-neutral-950 text-white shadow-xl shadow-amber-500/10"
                         : "border-neutral-200 bg-white text-neutral-900")
@@ -368,7 +396,10 @@ export default function Home() {
                       </span>
                     )}
                     <h3 className="font-semibold">{p.nome}</h3>
-                    <p className={"mt-2 text-2xl font-bold " + (p.destaque ? "text-amber-400" : "")}>
+                    <p className={"mt-1 text-xs " + (p.destaque ? "text-neutral-400" : "text-neutral-500")}>
+                      {p.publico}
+                    </p>
+                    <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-amber-400" : "")}>
                       {p.preco}
                     </p>
                     {p.periodo && (
@@ -376,7 +407,7 @@ export default function Home() {
                         {p.periodo}
                       </p>
                     )}
-                    <ul className="mt-5 space-y-2 text-sm">
+                    <ul className="mt-5 flex-1 space-y-2 text-sm">
                       {p.itens.map((item) => (
                         <li key={item} className="flex items-start gap-2">
                           <span aria-hidden="true" className={p.destaque ? "text-amber-400" : "text-neutral-900"}>
@@ -386,10 +417,36 @@ export default function Home() {
                         </li>
                       ))}
                     </ul>
+                    <Link
+                      href="/cadastro"
+                      className={
+                        "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
+                        (p.destaque
+                          ? "bg-amber-400 text-neutral-950 hover:bg-amber-300"
+                          : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
+                      }
+                    >
+                      {p.nome === "Gratuito" ? "Criar conta grátis" : "Quero esse plano"}
+                    </Link>
                   </div>
                 </Reveal>
               ))}
             </div>
+
+            <Reveal delay={200}>
+              <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-neutral-900 bg-neutral-950 p-6 text-center text-white">
+                <span className="rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+                  Oferta de lançamento
+                </span>
+                <p className="mt-3 text-lg font-semibold">
+                  14 dias grátis · R$ 19,90/mês para os primeiros 1.000 assinantes
+                </p>
+                <p className="mt-2 text-sm text-neutral-300">
+                  Depois desse período, novos clientes pagam R$ 29,90/mês. Quem entrar na fase
+                  inicial mantém o preço de R$ 19,90 enquanto permanecer assinante.
+                </p>
+              </div>
+            </Reveal>
           </section>
 
           {/* FAQ */}
