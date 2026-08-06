@@ -5,6 +5,7 @@ import { LandingHeader } from "@/components/landing/header";
 import { Reveal } from "@/components/landing/reveal";
 import { RoadPattern } from "@/components/landing/road-pattern";
 import { CarIcon } from "@/components/landing/car-icon";
+import { ExitIntentPopup } from "@/components/landing/exit-intent";
 
 export const metadata: Metadata = {
   title: "QuatroCar — O prontuário digital do seu veículo",
@@ -185,6 +186,7 @@ export default function Home() {
           Pular para o conteúdo
         </a>
         <LandingHeader />
+        <ExitIntentPopup />
 
         <main id="conteudo">
           {/* HERO */}
