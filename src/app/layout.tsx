@@ -13,8 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "QuatroCar — Prontuário digital do seu veículo",
-  description: "Gestão completa da vida útil do seu veículo: manutenção, abastecimento, documentos e IA.",
+  metadataBase: new URL("https://quatrocar.com.br"),
+  title: {
+    default: "QuatroCar — Prontuário digital do seu veículo",
+    template: "%s · QuatroCar",
+  },
+  description: "Gestão completa da vida útil do seu veículo: manutenção, abastecimento, documentos e alertas por peça.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
