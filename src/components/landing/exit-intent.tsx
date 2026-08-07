@@ -52,7 +52,7 @@ export function ExitIntentPopup() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md rounded-2xl border border-amber-400/30 bg-neutral-950 p-6 text-center text-white shadow-2xl sm:p-8"
+        className="relative w-full max-w-md rounded-2xl border border-sky-400/30 bg-neutral-950 p-6 text-center text-white shadow-2xl sm:p-8"
       >
         <button
           type="button"
@@ -63,7 +63,7 @@ export function ExitIntentPopup() {
           ✕
         </button>
 
-        <span className="inline-block rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+        <span className="inline-block rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
           Oferta de lançamento
         </span>
 
@@ -71,8 +71,8 @@ export function ExitIntentPopup() {
           Espera! Não perca essa condição
         </h2>
         <p className="mt-3 text-sm text-neutral-300">
-          <strong className="text-amber-400">14 dias grátis</strong> e{" "}
-          <strong className="text-amber-400">R$ 19,90/mês</strong> para os primeiros 1.000
+          <strong className="text-sky-400">14 dias grátis</strong> e{" "}
+          <strong className="text-sky-400">R$ 19,90/mês</strong> para os primeiros 1.000
           assinantes do QuatroCar Premium. Depois desse período, o valor sobe para R$ 29,90/mês —
           quem entra agora mantém o preço promocional enquanto for assinante.
         </p>
@@ -80,7 +80,7 @@ export function ExitIntentPopup() {
         <Link
           href="/cadastro"
           onClick={() => setOpen(false)}
-          className="mt-6 block rounded-lg bg-amber-400 px-6 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors hover:bg-amber-300"
+          className="mt-6 block rounded-lg bg-sky-400 px-6 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
         >
           Garantir minha vaga com desconto
         </Link>

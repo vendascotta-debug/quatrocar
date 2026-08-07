@@ -193,7 +193,7 @@ export default function Home() {
           <section className="relative overflow-hidden bg-neutral-950 text-white">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.amber.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.amber.400/0.14),transparent_45%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.sky.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.sky.400/0.14),transparent_45%)]"
             />
             <div
               aria-hidden="true"
@@ -202,13 +202,13 @@ export default function Home() {
 
             <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-2 md:gap-16 md:py-28">
               <div className="text-center md:text-left">
-                <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-3 py-1 text-xs font-medium text-amber-300">
-                  <CarIcon className="h-4 w-6 text-amber-300" />
+                <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
+                  <CarIcon className="h-4 w-6 text-sky-300" />
                   O prontuário digital do seu veículo
                 </span>
                 <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
                   Nunca mais perca o controle da{" "}
-                  <span className="text-amber-400">manutenção</span> do seu carro
+                  <span className="text-sky-400">manutenção</span> do seu carro
                 </h1>
                 <p className="mx-auto mt-5 max-w-xl text-base text-neutral-300 sm:text-lg md:mx-0">
                   O QuatroCar guarda todo o histórico do seu veículo e avisa, peça por
@@ -218,7 +218,7 @@ export default function Home() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
                   <Link
                     href="/cadastro"
-                    className="rounded-lg bg-amber-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-amber-300 active:scale-[0.98]"
+                    className="rounded-lg bg-sky-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
                   >
                     Criar conta grátis
                   </Link>
@@ -237,7 +237,7 @@ export default function Home() {
               <div className="relative order-first mx-auto w-full max-w-[320px] md:order-last md:max-w-none">
                 <div
                   aria-hidden="true"
-                  className="absolute -inset-10 -z-10 rounded-full bg-amber-500/20 blur-3xl"
+                  className="absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
                 />
                 <Image
                   src="/images/hero-mao-celular.webp"
@@ -263,7 +263,7 @@ export default function Home() {
                 { n: "R$ 0", l: "Para começar a usar" },
               ].map((s) => (
                 <div key={s.l}>
-                  <p className="text-2xl font-bold text-amber-400 sm:text-3xl">{s.n}</p>
+                  <p className="text-2xl font-bold text-sky-400 sm:text-3xl">{s.n}</p>
                   <p className="mt-1 text-xs text-neutral-400 sm:text-sm">{s.l}</p>
                 </div>
               ))}
@@ -280,7 +280,7 @@ export default function Home() {
 
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   Recursos
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -294,8 +294,8 @@ export default function Home() {
               <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((f, i) => (
                   <Reveal key={f.title} delay={i * 80}>
-                    <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:-translate-y-1 hover:border-amber-400/30 hover:bg-white/10">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-400/15 text-2xl" aria-hidden="true">
+                    <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:-translate-y-1 hover:border-sky-400/30 hover:bg-white/10">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-400/15 text-2xl" aria-hidden="true">
                         {f.icon}
                       </span>
                       <h3 className="mt-4 font-semibold text-white">{f.title}</h3>
@@ -311,7 +311,7 @@ export default function Home() {
           <section id="como-funciona" className="border-y border-neutral-200 bg-neutral-50 py-16 sm:py-24">
             <div className="mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-amber-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
                   Simples assim
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
@@ -322,7 +322,7 @@ export default function Home() {
               <div className="mt-12 grid gap-8 sm:grid-cols-3">
                 {steps.map((s, i) => (
                   <Reveal key={s.n} delay={i * 100} className="text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-950 text-lg font-bold text-amber-400">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-950 text-lg font-bold text-sky-400">
                       {s.n}
                     </div>
                     <h3 className="mt-4 font-semibold text-neutral-900">{s.title}</h3>
@@ -346,7 +346,7 @@ export default function Home() {
                 />
               </Reveal>
               <Reveal delay={100} className="text-center md:text-left">
-                <span className="text-4xl text-amber-500" aria-hidden="true">
+                <span className="text-4xl text-sky-500" aria-hidden="true">
                   &ldquo;
                 </span>
                 <p className="text-xl font-medium leading-snug text-neutral-900 sm:text-2xl">
@@ -362,7 +362,7 @@ export default function Home() {
           {/* PRICING */}
           <section id="planos" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
             <Reveal className="text-center">
-              <span className="text-xs font-semibold uppercase tracking-wider text-amber-600">
+              <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
                 Planos
               </span>
               <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
@@ -374,7 +374,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-amber-200 bg-amber-50 px-5 py-4 text-center text-sm text-neutral-700">
+              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4 text-center text-sm text-neutral-700">
                 Uma troca de óleo esquecida pode custar centenas de reais. O QuatroCar Premium
                 custa menos de <strong className="text-neutral-900">R$ 0,70 por dia</strong> para
                 ajudar a evitar gastos inesperados e manter o histórico do veículo organizado.
@@ -388,12 +388,12 @@ export default function Home() {
                     className={
                       "relative flex h-full flex-col rounded-2xl border p-6 " +
                       (p.destaque
-                        ? "border-amber-400 bg-neutral-950 text-white shadow-xl shadow-amber-500/10"
+                        ? "border-sky-400 bg-neutral-950 text-white shadow-xl shadow-sky-500/10"
                         : "border-neutral-200 bg-white text-neutral-900")
                     }
                   >
                     {p.destaque && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
                         Mais popular
                       </span>
                     )}
@@ -401,7 +401,7 @@ export default function Home() {
                     <p className={"mt-1 text-xs " + (p.destaque ? "text-neutral-400" : "text-neutral-500")}>
                       {p.publico}
                     </p>
-                    <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-amber-400" : "")}>
+                    <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-sky-400" : "")}>
                       {p.preco}
                     </p>
                     {p.periodo && (
@@ -412,7 +412,7 @@ export default function Home() {
                     <ul className="mt-5 flex-1 space-y-2 text-sm">
                       {p.itens.map((item) => (
                         <li key={item} className="flex items-start gap-2">
-                          <span aria-hidden="true" className={p.destaque ? "text-amber-400" : "text-neutral-900"}>
+                          <span aria-hidden="true" className={p.destaque ? "text-sky-400" : "text-neutral-900"}>
                             ✓
                           </span>
                           <span>{item}</span>
@@ -424,7 +424,7 @@ export default function Home() {
                       className={
                         "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
                         (p.destaque
-                          ? "bg-amber-400 text-neutral-950 hover:bg-amber-300"
+                          ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
                           : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
                       }
                     >
@@ -437,7 +437,7 @@ export default function Home() {
 
             <Reveal delay={200}>
               <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-neutral-900 bg-neutral-950 p-6 text-center text-white">
-                <span className="rounded-full bg-amber-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+                <span className="rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
                   Oferta de lançamento
                 </span>
                 <p className="mt-3 text-lg font-semibold">
@@ -487,7 +487,7 @@ export default function Home() {
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.amber.500/0.2),transparent_60%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.sky.500/0.2),transparent_60%)]"
             />
             <Reveal className="relative mx-auto max-w-3xl px-4 sm:px-6">
               <h2 className="text-2xl font-semibold sm:text-3xl">
@@ -498,7 +498,7 @@ export default function Home() {
               </p>
               <Link
                 href="/cadastro"
-                className="mt-8 inline-block rounded-lg bg-amber-400 px-8 py-3.5 text-base font-semibold text-neutral-950 transition-transform hover:bg-amber-300 active:scale-[0.98]"
+                className="mt-8 inline-block rounded-lg bg-sky-400 px-8 py-3.5 text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
               >
                 Criar conta grátis
               </Link>
@@ -507,7 +507,7 @@ export default function Home() {
         </main>
 
         <footer className="border-t border-neutral-900 bg-neutral-950 py-8 text-center text-xs text-neutral-500">
-          <span className="text-neutral-300">Quatro<span className="text-amber-400">Car</span></span>{" "}
+          <span className="text-neutral-300">Quatro<span className="text-sky-400">Car</span></span>{" "}
           · quatrocar.com.br
         </footer>
       </div>

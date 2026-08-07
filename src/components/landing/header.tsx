@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const navLinks = [
@@ -38,8 +39,15 @@ export function LandingHeader() {
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-1 text-lg font-bold tracking-tight">
-          Quatro<span className="text-amber-400">Car</span>
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo-lockup.webp"
+            alt="QuatroCar"
+            width={600}
+            height={334}
+            priority
+            className="h-9 w-auto sm:h-10"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 text-sm font-medium text-neutral-300 md:flex">
@@ -59,7 +67,7 @@ export function LandingHeader() {
           </Link>
           <Link
             href="/cadastro"
-            className="rounded-lg bg-amber-400 px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-colors hover:bg-amber-300"
+            className="rounded-lg bg-sky-400 px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
           >
             Criar conta grátis
           </Link>
@@ -120,7 +128,7 @@ export function LandingHeader() {
             <Link
               href="/cadastro"
               onClick={() => setOpen(false)}
-              className="rounded-lg bg-amber-400 px-5 py-3 text-center text-base font-semibold text-neutral-950"
+              className="rounded-lg bg-sky-400 px-5 py-3 text-center text-base font-semibold text-neutral-950"
             >
               Criar conta grátis
             </Link>
