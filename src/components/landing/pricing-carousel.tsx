@@ -10,6 +10,7 @@ export type Plano = {
   periodo: string;
   destaque: boolean;
   itens: string[];
+  checkoutUrl?: string;
 };
 
 export function PricingCarousel({ planos }: { planos: Plano[] }) {
@@ -107,17 +108,33 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/cadastro"
-                className={
-                  "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
-                  (p.destaque
-                    ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
-                    : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
-                }
-              >
-                {p.nome === "Gratuito" ? "Criar conta grátis" : "Quero esse plano"}
-              </Link>
+              {p.checkoutUrl ? (
+                <a
+                  href={p.checkoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={
+                    "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
+                    (p.destaque
+                      ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
+                      : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
+                  }
+                >
+                  Quero esse plano
+                </a>
+              ) : (
+                <Link
+                  href="/cadastro"
+                  className={
+                    "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
+                    (p.destaque
+                      ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
+                      : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
+                  }
+                >
+                  Criar conta grátis
+                </Link>
+              )}
             </div>
           </div>
         ))}

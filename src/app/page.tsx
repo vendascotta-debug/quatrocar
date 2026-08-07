@@ -104,6 +104,7 @@ const planos = [
     preco: "R$ 19,90",
     periodo: "por mês",
     destaque: true,
+    checkoutUrl: "https://pay.kiwify.com.br/N7OnqGy",
     itens: [
       "Veículos ilimitados",
       "Inteligência Artificial",
@@ -125,6 +126,7 @@ const planos = [
     preco: "A partir de R$ 79,90",
     periodo: "por mês",
     destaque: false,
+    checkoutUrl: "https://pay.kiwify.com.br/7llAyN6",
     itens: [
       "Vários usuários",
       "Gestão de frotas",
