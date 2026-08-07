@@ -13,6 +13,9 @@ export function ExitIntentPopup() {
     if (sessionStorage.getItem(STORAGE_KEY)) return;
 
     let shown = false;
+    let lastScrollY = window.scrollY;
+    let hasScrolledDown = false;
+
     const show = () => {
       if (shown) return;
       shown = true;
@@ -20,16 +23,30 @@ export function ExitIntentPopup() {
       sessionStorage.setItem(STORAGE_KEY, "1");
     };
 
+    // Desktop: cursor leaves through the top of the viewport (classic exit intent).
     const onMouseOut = (e: MouseEvent) => {
       if (e.clientY <= 0) show();
     };
 
-    const fallbackTimer = window.setTimeout(show, 30000);
+    // Mobile: user scrolled down first (actually engaged with the page), then
+    // scrolls back up quickly near the top — a real "heading back" gesture,
+    // not a blind timer that fires on everyone regardless of behavior.
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y > 400) hasScrolledDown = true;
+
+      const scrollingUpFast = lastScrollY - y > 60;
+      if (hasScrolledDown && scrollingUpFast && y < 200) {
+        show();
+      }
+      lastScrollY = y;
+    };
 
     document.addEventListener("mouseout", onMouseOut);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       document.removeEventListener("mouseout", onMouseOut);
-      window.clearTimeout(fallbackTimer);
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
