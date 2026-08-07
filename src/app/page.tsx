@@ -338,10 +338,10 @@ export default function Home() {
             <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
               <Reveal>
                 <Image
-                  src="/images/cliente-satisfeito.webp"
-                  alt="Motorista satisfeito ao lado do seu carro, com a manutenção sempre em dia"
+                  src="/images/cliente-oficina.webp"
+                  alt="Cliente satisfeito ao lado do seu carro na oficina, com o mecânico realizando a manutenção"
                   width={900}
-                  height={1125}
+                  height={1117}
                   className="mx-auto w-full max-w-xs rounded-2xl object-cover shadow-xl sm:max-w-sm"
                 />
               </Reveal>
