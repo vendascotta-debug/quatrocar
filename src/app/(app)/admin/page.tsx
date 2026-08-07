@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient, isAdminEmail } from "@/lib/supabase/admin";
-import { PlanoSelect } from "./plano-select";
+import { UserRow } from "./user-row";
 
 type Row = {
   id: string;
@@ -88,22 +88,22 @@ export default async function AdminPage() {
               <th className="px-4 py-3 font-medium">Veículos</th>
               <th className="px-4 py-3 font-medium">Cadastro</th>
               <th className="px-4 py-3 font-medium">Plano</th>
+              <th className="px-4 py-3 font-medium">Ações</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-neutral-100">
             {rows.map((r) => (
-              <tr key={r.id}>
-                <td className="px-4 py-3 text-neutral-900">{r.nome || "—"}</td>
-                <td className="px-4 py-3 text-neutral-600">{r.email}</td>
-                <td className="px-4 py-3 text-neutral-600">{r.whatsapp || "—"}</td>
-                <td className="px-4 py-3 text-neutral-600">{r.totalVeiculos}</td>
-                <td className="px-4 py-3 text-neutral-600">
-                  {new Date(r.criado_em).toLocaleDateString("pt-BR")}
-                </td>
-                <td className="px-4 py-3">
-                  <PlanoSelect userId={r.id} plano={r.plano} />
-                </td>
-              </tr>
+              <UserRow
+                key={r.id}
+                userId={r.id}
+                email={r.email}
+                nome={r.nome}
+                whatsapp={r.whatsapp}
+                plano={r.plano}
+                totalVeiculos={r.totalVeiculos}
+                criadoEm={r.criado_em}
+                isSelf={r.email.toLowerCase() === user?.email?.toLowerCase()}
+              />
             ))}
           </tbody>
         </table>

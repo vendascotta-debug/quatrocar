@@ -13,6 +13,14 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   if (!user) redirect("/login");
 
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("whatsapp")
+    .eq("id", user.id)
+    .single();
+
+  if (!profile?.whatsapp) redirect("/completar-perfil");
+
   const isAdmin = isAdminEmail(user.email);
 
   return (

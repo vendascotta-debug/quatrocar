@@ -35,7 +35,6 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
       });
     }, 4000);
     return () => window.clearInterval(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paused, planos.length]);
 
   useEffect(() => {
