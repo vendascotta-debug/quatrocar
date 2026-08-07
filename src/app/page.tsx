@@ -334,8 +334,16 @@ export default function Home() {
           </section>
 
           {/* TESTIMONIAL */}
-          <section className="bg-white py-16 sm:py-24">
-            <div className="mx-auto grid max-w-5xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
+          <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white py-16 sm:py-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-sky-300/30 blur-3xl"
+            />
+            <div className="relative mx-auto grid max-w-5xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
               <Reveal>
                 <Image
                   src="/images/cliente-oficina.webp"
@@ -360,7 +368,12 @@ export default function Home() {
           </section>
 
           {/* PRICING */}
-          <section id="planos" className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+          <section id="planos" className="relative overflow-hidden bg-neutral-50 py-16 sm:py-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.sky.100),transparent_70%)]"
+            />
+            <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
             <Reveal className="text-center">
               <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
                 Planos
@@ -449,6 +462,7 @@ export default function Home() {
                 </p>
               </div>
             </Reveal>
+            </div>
           </section>
 
           {/* FAQ */}
