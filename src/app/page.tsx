@@ -6,6 +6,7 @@ import { Reveal } from "@/components/landing/reveal";
 import { RoadPattern } from "@/components/landing/road-pattern";
 import { CarIcon } from "@/components/landing/car-icon";
 import { ExitIntentPopup } from "@/components/landing/exit-intent";
+import { PricingCarousel } from "@/components/landing/pricing-carousel";
 
 export const metadata: Metadata = {
   title: "QuatroCar — O prontuário digital do seu veículo",
@@ -394,58 +395,8 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="mt-10 grid gap-6 sm:grid-cols-3">
-              {planos.map((p, i) => (
-                <Reveal key={p.nome} delay={i * 100}>
-                  <div
-                    className={
-                      "relative flex h-full flex-col rounded-2xl border p-6 " +
-                      (p.destaque
-                        ? "border-sky-400 bg-neutral-950 text-white shadow-xl shadow-sky-500/10"
-                        : "border-neutral-200 bg-white text-neutral-900")
-                    }
-                  >
-                    {p.destaque && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
-                        Mais popular
-                      </span>
-                    )}
-                    <h3 className="font-semibold">{p.nome}</h3>
-                    <p className={"mt-1 text-xs " + (p.destaque ? "text-neutral-400" : "text-neutral-500")}>
-                      {p.publico}
-                    </p>
-                    <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-sky-400" : "")}>
-                      {p.preco}
-                    </p>
-                    {p.periodo && (
-                      <p className={"text-xs " + (p.destaque ? "text-neutral-400" : "text-neutral-500")}>
-                        {p.periodo}
-                      </p>
-                    )}
-                    <ul className="mt-5 flex-1 space-y-2 text-sm">
-                      {p.itens.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span aria-hidden="true" className={p.destaque ? "text-sky-400" : "text-neutral-900"}>
-                            ✓
-                          </span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      href="/cadastro"
-                      className={
-                        "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
-                        (p.destaque
-                          ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
-                          : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
-                      }
-                    >
-                      {p.nome === "Gratuito" ? "Criar conta grátis" : "Quero esse plano"}
-                    </Link>
-                  </div>
-                </Reveal>
-              ))}
+            <div className="mt-10">
+              <PricingCarousel planos={planos} />
             </div>
 
             <Reveal delay={200}>
