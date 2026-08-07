@@ -1,4 +1,5 @@
 {
+  "id": "/dashboard",
   "name": "QuatroCar — Prontuário digital do seu veículo",
   "short_name": "QuatroCar",
   "description": "Gestão completa da vida útil do seu veículo: manutenção, abastecimento, documentos e alertas por peça.",
@@ -9,6 +10,8 @@
   "theme_color": "#0a0a0a",
   "orientation": "portrait-primary",
   "lang": "pt-BR",
+  "categories": ["productivity", "utilities", "lifestyle"],
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "/icons/icon-192.png",
@@ -23,7 +26,7 @@
       "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "/icons/icon-512-maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
