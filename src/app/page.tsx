@@ -9,6 +9,7 @@ import { ExitIntentPopup } from "@/components/landing/exit-intent";
 import { ScrollToTop } from "@/components/landing/scroll-to-top";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
 import { TestimonialCarousel } from "@/components/landing/testimonial-carousel";
+import { BrandMarquee } from "@/components/landing/brand-marquee";
 
 export const metadata: Metadata = {
   title: "QuatroCar — O prontuário digital do seu veículo",
@@ -301,6 +302,8 @@ export default function Home() {
 
             <RoadPattern />
           </section>
+
+          <BrandMarquee />
 
           {/* STATS */}
           <section className="bg-neutral-900 py-8 text-white">
