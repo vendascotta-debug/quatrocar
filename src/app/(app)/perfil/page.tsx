@@ -14,9 +14,12 @@ export default async function PerfilPage() {
     .eq("id", user!.id)
     .single<Profile>();
 
-  const planoLabel = { free: "Gratuito", premium: "Premium", empresas: "Empresas" }[
-    profile?.plano ?? "free"
-  ];
+  const planoLabel = {
+    free: "Gratuito",
+    premium: "Premium",
+    empresas: "Empresas",
+    cortesia: "Cortesia",
+  }[profile?.plano ?? "free"];
 
   return (
     <div className="max-w-2xl space-y-6">

@@ -28,7 +28,7 @@ export type Profile = {
   nome: string | null;
   telefone: string | null;
   whatsapp: string | null;
-  plano: "free" | "premium" | "empresas";
+  plano: "free" | "premium" | "empresas" | "cortesia";
   criado_em: string;
 };
 

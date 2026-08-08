@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Vehicle, MaintenanceRecord, FuelRecord } from "@/lib/types";
 import { computeMaintenanceAlerts } from "@/lib/maintenance-alerts";
+import { ExportPdfButton } from "./export-pdf-button";
 
 function formatAno(fabricacao: number | null, modelo: number | null) {
   if (!fabricacao && !modelo) return "";
@@ -53,12 +54,15 @@ export default async function VeiculoDetalhePage({
             {vehicle.placa || "sem placa"} · {vehicle.km_atual.toLocaleString("pt-BR")} km
           </p>
         </div>
-        <Link
-          href={`/veiculos/${id}/editar`}
-          className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
-        >
-          Editar veículo
-        </Link>
+        <div className="flex shrink-0 gap-2">
+          <ExportPdfButton vehicle={vehicle} maintenance={maintenance ?? []} fuel={fuel ?? []} />
+          <Link
+            href={`/veiculos/${id}/editar`}
+            className="rounded-lg border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100"
+          >
+            Editar veículo
+          </Link>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

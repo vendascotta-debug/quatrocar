@@ -18,7 +18,7 @@ async function requireAdmin() {
 export async function setUserPlano(userId: string, plano: string) {
   await requireAdmin();
 
-  if (!["free", "premium", "empresas"].includes(plano)) return;
+  if (!["free", "premium", "empresas", "cortesia"].includes(plano)) return;
 
   const admin = createAdminClient();
   await admin.from("profiles").update({ plano }).eq("id", userId);

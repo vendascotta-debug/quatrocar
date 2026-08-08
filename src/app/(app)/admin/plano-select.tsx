@@ -16,6 +16,7 @@ export function PlanoSelect({ userId, plano }: { userId: string; plano: string }
       <option value="free">Gratuito</option>
       <option value="premium">Premium</option>
       <option value="empresas">Empresas</option>
+      <option value="cortesia">Cortesia</option>
     </select>
   );
 }
