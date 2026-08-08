@@ -8,6 +8,7 @@ import { CarIcon } from "@/components/landing/car-icon";
 import { ExitIntentPopup } from "@/components/landing/exit-intent";
 import { ScrollToTop } from "@/components/landing/scroll-to-top";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
+import { TestimonialCarousel } from "@/components/landing/testimonial-carousel";
 
 export const metadata: Metadata = {
   title: "QuatroCar — O prontuário digital do seu veículo",
@@ -137,6 +138,49 @@ const planos = [
       "Aprovação de manutenções",
       "API e integrações (em breve)",
     ],
+  },
+];
+
+const testimonials = [
+  {
+    imagem: "/images/cliente-oficina.webp",
+    alt: "Cliente satisfeito ao lado do seu carro na oficina, com o mecânico realizando a manutenção",
+    citacao:
+      "Depois que comecei a usar o QuatroCar, nunca mais perdi uma troca de óleo ou esqueci a revisão. Sei exatamente quanto gasto com meu carro todo mês.",
+    nome: "Rafael M.",
+    papel: "Motorista de aplicativo, São Paulo",
+  },
+  {
+    imagem: "/images/testimonial-2.webp",
+    alt: "Motorista de aplicativo sorrindo dentro do carro, segurando o celular com o app aberto",
+    citacao:
+      "Rodando o dia inteiro, eu não tinha tempo de anotar nada. Agora registro o abastecimento em segundos e sei exatamente meu custo por km rodado.",
+    nome: "Carlos E.",
+    papel: "Motorista de aplicativo, Rio de Janeiro",
+  },
+  {
+    imagem: "/images/testimonial-1.webp",
+    alt: "Mulher sorrindo olhando o celular ao lado do carro na garagem de casa",
+    citacao:
+      "Eu sempre esquecia quando tinha feito a última revisão. Agora o app me avisa antes de vencer e eu nem preciso pensar nisso.",
+    nome: "Juliana P.",
+    papel: "Proprietária de veículo, Belo Horizonte",
+  },
+  {
+    imagem: "/images/testimonial-3.webp",
+    alt: "Mulher sorrindo ao lado do carro em uma oficina de estética automotiva",
+    citacao:
+      "Guardo todas as notas fiscais e o histórico de higienização no app. Na hora de vender o carro, vou ter tudo documentado pra provar que cuidei bem dele.",
+    nome: "Fernanda A.",
+    papel: "Proprietária de veículo, Curitiba",
+  },
+  {
+    imagem: "/images/testimonial-4.webp",
+    alt: "Casal sorrindo ao lado do carro da família em frente a casa",
+    citacao:
+      "Como a família toda usa o carro, era uma bagunça saber quem fez o quê. Agora fica tudo registrado num lugar só, e todo mundo vê o mesmo histórico.",
+    nome: "Marcos e Patrícia",
+    papel: "Família, Florianópolis",
   },
 ];
 
@@ -348,26 +392,9 @@ export default function Home() {
               aria-hidden="true"
               className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-sky-300/30 blur-3xl"
             />
-            <div className="relative mx-auto grid max-w-5xl items-center gap-10 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
+            <div className="relative px-4 sm:px-6">
               <Reveal>
-                <Image
-                  src="/images/cliente-oficina.webp"
-                  alt="Cliente satisfeito ao lado do seu carro na oficina, com o mecânico realizando a manutenção"
-                  width={900}
-                  height={1117}
-                  className="mx-auto w-full max-w-xs rounded-2xl object-cover shadow-xl sm:max-w-sm"
-                />
-              </Reveal>
-              <Reveal delay={100} className="text-center md:text-left">
-                <span className="text-4xl text-sky-500" aria-hidden="true">
-                  &ldquo;
-                </span>
-                <p className="text-xl font-medium leading-snug text-neutral-900 sm:text-2xl">
-                  Depois que comecei a usar o QuatroCar, nunca mais perdi uma troca de óleo
-                  ou esqueci a revisão. Sei exatamente quanto gasto com meu carro todo mês.
-                </p>
-                <p className="mt-5 font-semibold text-neutral-900">Rafael M.</p>
-                <p className="text-sm text-neutral-500">Motorista de aplicativo, São Paulo</p>
+                <TestimonialCarousel items={testimonials} />
               </Reveal>
             </div>
           </section>
