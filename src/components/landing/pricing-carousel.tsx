@@ -22,19 +22,40 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
     const track = trackRef.current;
     if (!track) return;
     const card = track.children[index] as HTMLElement | undefined;
-    card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    if (!card) return;
+    // Scroll only the horizontal track itself — never scrollIntoView, which
+    // can also scroll the whole page if this section isn't in view yet.
+    track.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
   };
 
   useEffect(() => {
-    if (paused) return;
+    const track = trackRef.current;
+    if (!track) return;
+
+    let visible = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(track);
+
+    if (paused) return () => observer.disconnect();
+
     const timer = window.setInterval(() => {
+      if (!visible) return;
       setActive((prev) => {
         const next = (prev + 1) % planos.length;
         scrollToIndex(next);
         return next;
       });
     }, 4000);
-    return () => window.clearInterval(timer);
+
+    return () => {
+      window.clearInterval(timer);
+      observer.disconnect();
+    };
   }, [paused, planos.length]);
 
   useEffect(() => {
