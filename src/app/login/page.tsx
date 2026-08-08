@@ -1,11 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { Suspense, useActionState } from "react";
+import { useSearchParams } from "next/navigation";
 import { login, type AuthState } from "./actions";
 import { GoogleButton } from "@/components/auth/google-button";
 
 const initialState: AuthState = {};
+
+function OAuthError() {
+  const searchParams = useSearchParams();
+  const oauthError = searchParams.get("error");
+
+  if (!oauthError) return null;
+
+  return <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{oauthError}</p>;
+}
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, initialState);
@@ -14,6 +24,10 @@ export default function LoginPage() {
     <div className="flex flex-1 items-center justify-center px-6">
       <div className="w-full max-w-sm space-y-4">
         <h1 className="text-2xl font-semibold text-neutral-900">Entrar</h1>
+
+        <Suspense fallback={null}>
+          <OAuthError />
+        </Suspense>
 
         <GoogleButton />
 
