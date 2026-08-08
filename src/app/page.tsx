@@ -6,6 +6,7 @@ import { Reveal } from "@/components/landing/reveal";
 import { RoadPattern } from "@/components/landing/road-pattern";
 import { CarIcon } from "@/components/landing/car-icon";
 import { ExitIntentPopup } from "@/components/landing/exit-intent";
+import { ScrollToTop } from "@/components/landing/scroll-to-top";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
 
 export const metadata: Metadata = {
@@ -188,6 +189,7 @@ export default function Home() {
         >
           Pular para o conteúdo
         </a>
+        <ScrollToTop />
         <LandingHeader />
         <ExitIntentPopup />
 
