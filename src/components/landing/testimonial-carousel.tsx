@@ -11,10 +11,21 @@ export type Testimonial = {
   papel: string;
 };
 
+function wrapDelta(i: number, active: number, length: number) {
+  let d = i - active;
+  if (d > length / 2) d -= length;
+  if (d < -length / 2) d += length;
+  return d;
+}
+
 export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  const goTo = (index: number) => setActive(((index % items.length) + items.length) % items.length);
+  const next = () => goTo(active + 1);
+  const prev = () => goTo(active - 1);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -34,7 +45,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
     const timer = window.setInterval(() => {
       if (!visible) return;
       setActive((prev) => (prev + 1) % items.length);
-    }, 5000);
+    }, 6000);
 
     return () => {
       window.clearInterval(timer);
@@ -51,20 +62,56 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
       onMouseLeave={() => setPaused(false)}
       className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16"
     >
-      <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden rounded-2xl shadow-xl sm:max-w-sm">
-        {items.map((item, i) => (
-          <Image
-            key={item.imagem}
-            src={item.imagem}
-            alt={item.alt}
-            fill
-            sizes="(min-width: 640px) 24rem, 20rem"
-            className={
-              "object-cover transition-opacity duration-500 " +
-              (i === active ? "opacity-100" : "opacity-0")
-            }
-          />
-        ))}
+      <div className="relative mx-auto h-[22rem] w-full max-w-xs sm:h-[26rem] sm:max-w-sm">
+        {items.map((item, i) => {
+          const delta = wrapDelta(i, active, items.length);
+          if (Math.abs(delta) > 1) return null;
+          const isActive = delta === 0;
+
+          return (
+            <button
+              key={item.imagem}
+              type="button"
+              aria-label={isActive ? undefined : `Ver depoimento de ${item.nome}`}
+              tabIndex={isActive ? -1 : 0}
+              onClick={() => !isActive && goTo(i)}
+              style={{
+                transform: `translateX(${delta * 62}%) scale(${isActive ? 1 : 0.82})`,
+                zIndex: isActive ? 20 : 10,
+                opacity: isActive ? 1 : 0.55,
+              }}
+              className={
+                "absolute inset-0 overflow-hidden rounded-2xl shadow-xl transition-all duration-500 ease-out " +
+                (isActive ? "cursor-default" : "cursor-pointer")
+              }
+            >
+              <Image
+                src={item.imagem}
+                alt={item.alt}
+                fill
+                sizes="(min-width: 640px) 24rem, 20rem"
+                className="object-cover"
+              />
+            </button>
+          );
+        })}
+
+        <button
+          type="button"
+          aria-label="Depoimento anterior"
+          onClick={prev}
+          className="absolute left-1 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-lg transition-transform hover:scale-110 hover:bg-white"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          aria-label="Próximo depoimento"
+          onClick={next}
+          className="absolute right-1 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-lg transition-transform hover:scale-110 hover:bg-white"
+        >
+          ›
+        </button>
       </div>
 
       <div className="text-center md:text-left">
@@ -83,7 +130,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
               key={item.imagem}
               type="button"
               aria-label={`Ver depoimento de ${item.nome}`}
-              onClick={() => setActive(i)}
+              onClick={() => goTo(i)}
               className={
                 "h-2 rounded-full transition-all " +
                 (i === active ? "w-6 bg-sky-500" : "w-2 bg-neutral-300")
