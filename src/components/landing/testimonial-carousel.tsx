@@ -62,6 +62,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
       onMouseLeave={() => setPaused(false)}
       className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-2 md:gap-16"
     >
+      <div className="relative w-full overflow-hidden py-2">
       <div className="relative mx-auto h-[22rem] w-full max-w-xs sm:h-[26rem] sm:max-w-sm">
         {items.map((item, i) => {
           const delta = wrapDelta(i, active, items.length);
@@ -112,6 +113,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
         >
           ›
         </button>
+      </div>
       </div>
 
       <div className="text-center md:text-left">
