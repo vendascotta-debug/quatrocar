@@ -76,14 +76,18 @@ export function ManutencaoForm({
       </div>
 
       <div className="space-y-1">
-        <label className={labelClass} htmlFor="subtipo">Descrição / subtipo</label>
+        <label className={labelClass} htmlFor="subtipo">Descrição / peça trocada</label>
         <input
           id="subtipo"
           name="subtipo"
           defaultValue={record?.subtipo ?? ""}
           className={inputClass}
-          placeholder="Ex: troca completa"
+          placeholder="Ex: rolamento da roda dianteira, coxim do motor, etc."
         />
+        <p className="text-xs text-neutral-500">
+          Não achou a peça na lista de categorias? Escolha &ldquo;Outra peça / serviço&rdquo; acima
+          e descreva aqui exatamente o que foi feito.
+        </p>
       </div>
 
       <div className="space-y-1">
