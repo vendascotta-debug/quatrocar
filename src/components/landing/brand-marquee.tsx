@@ -20,16 +20,16 @@ export function BrandMarquee() {
   const items = [...marcas, ...marcas];
 
   return (
-    <section className="overflow-hidden border-y border-neutral-900 bg-neutral-950 py-6">
-      <p className="mb-4 text-center text-xs font-medium uppercase tracking-wider text-neutral-500">
+    <section className="overflow-hidden border-y border-neutral-200 bg-white py-8">
+      <p className="mb-5 text-center text-xs font-semibold uppercase tracking-wider text-neutral-500">
         Funciona com qualquer marca e modelo de veículo
       </p>
       <div className="[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex w-max animate-marquee items-center gap-12 motion-reduce:animate-none">
+        <div className="flex w-max animate-marquee items-center gap-4 motion-reduce:animate-none">
           {items.map((marca, i) => (
             <span
               key={`${marca}-${i}`}
-              className="shrink-0 text-lg font-semibold tracking-wide text-neutral-400"
+              className="flex shrink-0 items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-5 py-2.5 text-sm font-bold tracking-wide text-neutral-700"
             >
               {marca}
             </span>

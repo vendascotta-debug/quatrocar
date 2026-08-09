@@ -303,8 +303,6 @@ export default function Home() {
             <RoadPattern />
           </section>
 
-          <BrandMarquee />
-
           {/* STATS */}
           <section className="bg-neutral-900 py-8 text-white">
             <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-4 text-center sm:px-6 md:grid-cols-4">
@@ -401,6 +399,8 @@ export default function Home() {
               </Reveal>
             </div>
           </section>
+
+          <BrandMarquee />
 
           {/* PRICING */}
           <section id="planos" className="relative overflow-hidden bg-neutral-50 py-16 sm:py-24">
