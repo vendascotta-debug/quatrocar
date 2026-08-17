@@ -32,10 +32,8 @@ export function LandingHeader() {
   return (
     <header
       className={
-        "sticky top-0 z-50 w-full text-white transition-all duration-300 " +
-        (scrolled
-          ? "bg-neutral-950/95 shadow-lg shadow-black/20 backdrop-blur"
-          : "bg-transparent")
+        "sticky top-0 z-50 w-full border-b border-neutral-900 bg-neutral-950/95 text-white backdrop-blur transition-shadow duration-300 " +
+        (scrolled ? "shadow-lg shadow-black/20" : "")
       }
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
