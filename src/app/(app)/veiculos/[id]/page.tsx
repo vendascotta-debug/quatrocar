@@ -3,7 +3,12 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Vehicle, MaintenanceRecord, FuelRecord } from "@/lib/types";
 import { computeMaintenanceAlerts } from "@/lib/maintenance-alerts";
+import { groupByMonth } from "@/lib/group-by-month";
 import { ExportPdfButton } from "./export-pdf-button";
+
+function currency(n: number) {
+  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+}
 
 function formatAno(fabricacao: number | null, modelo: number | null) {
   if (!fabricacao && !modelo) return "";
@@ -40,6 +45,8 @@ export default async function VeiculoDetalhePage({
   const totalManutencao = (maintenance ?? []).reduce((s, m) => s + Number(m.valor_total), 0);
   const totalCombustivel = (fuel ?? []).reduce((s, f) => s + Number(f.valor), 0);
   const alerts = computeMaintenanceAlerts(vehicle, maintenance ?? []);
+  const manutencaoPorMes = groupByMonth(maintenance ?? [], (m) => m.data);
+  const abastecimentoPorMes = groupByMonth(fuel ?? [], (f) => f.data);
 
   return (
     <div className="space-y-8">
@@ -139,29 +146,42 @@ export default async function VeiculoDetalhePage({
         {!maintenance?.length ? (
           <p className="text-sm text-neutral-500">Nenhum registro ainda.</p>
         ) : (
-          <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
-            {maintenance.map((m) => (
-              <Link
-                key={m.id}
-                href={`/veiculos/${id}/manutencao/${m.id}`}
-                className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
-              >
-                <div>
-                  <p className="font-medium text-neutral-900">
-                    {m.maintenance_categories?.nome || m.subtipo || "Manutenção"}
-                  </p>
-                  <p className="text-sm text-neutral-500">
-                    {new Date(m.data).toLocaleDateString("pt-BR")} · {m.km.toLocaleString("pt-BR")} km
-                  </p>
+          <div className="space-y-5">
+            {manutencaoPorMes.map((grupo) => {
+              const subtotal = grupo.items.reduce((s, m) => s + Number(m.valor_total), 0);
+              return (
+                <div key={grupo.key}>
+                  <div className="mb-2 flex items-center justify-between px-1">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                      {grupo.label}
+                    </p>
+                    <p className="text-xs font-medium text-neutral-500">{currency(subtotal)}</p>
+                  </div>
+                  <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
+                    {grupo.items.map((m) => (
+                      <Link
+                        key={m.id}
+                        href={`/veiculos/${id}/manutencao/${m.id}`}
+                        className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
+                      >
+                        <div>
+                          <p className="font-medium text-neutral-900">
+                            {m.maintenance_categories?.nome || m.subtipo || "Manutenção"}
+                          </p>
+                          <p className="text-sm text-neutral-500">
+                            {new Date(m.data).toLocaleDateString("pt-BR")} ·{" "}
+                            {m.km.toLocaleString("pt-BR")} km
+                          </p>
+                        </div>
+                        <p className="font-medium text-neutral-900">
+                          {currency(Number(m.valor_total))}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <p className="font-medium text-neutral-900">
-                  {Number(m.valor_total).toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  })}
-                </p>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>
@@ -179,27 +199,40 @@ export default async function VeiculoDetalhePage({
         {!fuel?.length ? (
           <p className="text-sm text-neutral-500">Nenhum registro ainda.</p>
         ) : (
-          <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
-            {fuel.map((f) => (
-              <Link
-                key={f.id}
-                href={`/veiculos/${id}/abastecimento/${f.id}`}
-                className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
-              >
-                <div>
-                  <p className="font-medium text-neutral-900">
-                    {f.combustivel} · {f.litros}L
-                  </p>
-                  <p className="text-sm text-neutral-500">
-                    {new Date(f.data).toLocaleDateString("pt-BR")} · {f.posto || "posto não informado"} ·{" "}
-                    {f.km.toLocaleString("pt-BR")} km
-                  </p>
+          <div className="space-y-5">
+            {abastecimentoPorMes.map((grupo) => {
+              const subtotal = grupo.items.reduce((s, f) => s + Number(f.valor), 0);
+              return (
+                <div key={grupo.key}>
+                  <div className="mb-2 flex items-center justify-between px-1">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
+                      {grupo.label}
+                    </p>
+                    <p className="text-xs font-medium text-neutral-500">{currency(subtotal)}</p>
+                  </div>
+                  <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
+                    {grupo.items.map((f) => (
+                      <Link
+                        key={f.id}
+                        href={`/veiculos/${id}/abastecimento/${f.id}`}
+                        className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
+                      >
+                        <div>
+                          <p className="font-medium text-neutral-900">
+                            {f.combustivel} · {f.litros}L
+                          </p>
+                          <p className="text-sm text-neutral-500">
+                            {new Date(f.data).toLocaleDateString("pt-BR")} ·{" "}
+                            {f.posto || "posto não informado"} · {f.km.toLocaleString("pt-BR")} km
+                          </p>
+                        </div>
+                        <p className="font-medium text-neutral-900">{currency(Number(f.valor))}</p>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-                <p className="font-medium text-neutral-900">
-                  {Number(f.valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-                </p>
-              </Link>
-            ))}
+              );
+            })}
           </div>
         )}
       </section>
