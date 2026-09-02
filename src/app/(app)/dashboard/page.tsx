@@ -2,10 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { Vehicle, MaintenanceRecord, FuelRecord } from "@/lib/types";
 import { computeMaintenanceAlerts } from "@/lib/maintenance-alerts";
-
-function currency(n: number) {
-  return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-}
+import { DashboardSummary } from "./summary";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -37,21 +34,19 @@ export default async function DashboardPage() {
       : Promise.resolve({ data: [] as FuelRecord[] }),
   ]);
 
-  const now = new Date();
-  const isSameMonth = (d: string) => {
-    const date = new Date(d);
-    return date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth();
-  };
-  const isSameYear = (d: string) => new Date(d).getFullYear() === now.getFullYear();
-
-  const allRecords = [
-    ...(maintenance ?? []).map((m) => ({ data: m.data, valor: Number(m.valor_total) })),
-    ...(fuel ?? []).map((f) => ({ data: f.data, valor: Number(f.valor) })),
+  const registros = [
+    ...(maintenance ?? []).map((m) => ({
+      data: m.data,
+      valor: Number(m.valor_total),
+      tipo: "manutencao" as const,
+      categoria: m.maintenance_categories?.grupo ?? null,
+    })),
+    ...(fuel ?? []).map((f) => ({
+      data: f.data,
+      valor: Number(f.valor),
+      tipo: "combustivel" as const,
+    })),
   ];
-
-  const gastosMes = allRecords.filter((r) => isSameMonth(r.data)).reduce((s, r) => s + r.valor, 0);
-  const gastosAno = allRecords.filter((r) => isSameYear(r.data)).reduce((s, r) => s + r.valor, 0);
-  const totalInvestido = allRecords.reduce((s, r) => s + r.valor, 0);
 
   const nome = (user?.user_metadata?.nome as string) || user?.email;
 
@@ -72,20 +67,7 @@ export default async function DashboardPage() {
         <p className="text-neutral-600">Visão geral da sua frota.</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-neutral-200 bg-white p-4">
-          <p className="text-sm text-neutral-500">Gastos do mês</p>
-          <p className="text-2xl font-semibold text-neutral-900">{currency(gastosMes)}</p>
-        </div>
-        <div className="rounded-xl border border-neutral-200 bg-white p-4">
-          <p className="text-sm text-neutral-500">Gastos do ano</p>
-          <p className="text-2xl font-semibold text-neutral-900">{currency(gastosAno)}</p>
-        </div>
-        <div className="rounded-xl border border-neutral-200 bg-white p-4">
-          <p className="text-sm text-neutral-500">Total investido</p>
-          <p className="text-2xl font-semibold text-neutral-900">{currency(totalInvestido)}</p>
-        </div>
-      </div>
+      <DashboardSummary registros={registros} />
 
       {alertsByVehicle.length > 0 && (
         <section className="space-y-3">
