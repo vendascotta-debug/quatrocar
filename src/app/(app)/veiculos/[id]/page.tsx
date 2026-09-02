@@ -150,14 +150,20 @@ export default async function VeiculoDetalhePage({
             {manutencaoPorMes.map((grupo) => {
               const subtotal = grupo.items.reduce((s, m) => s + Number(m.valor_total), 0);
               return (
-                <div key={grupo.key}>
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
-                      {grupo.label}
-                    </p>
-                    <p className="text-xs font-medium text-neutral-500">{currency(subtotal)}</p>
-                  </div>
-                  <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
+                <details key={grupo.key} className="group rounded-xl border border-neutral-200 bg-white">
+                  <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">
+                    <span className="flex items-center gap-2">
+                      <span className="text-neutral-400 transition-transform group-open:rotate-90">›</span>
+                      <span className="text-xs font-semibold uppercase tracking-wide text-neutral-600">
+                        {grupo.label}
+                      </span>
+                      <span className="text-xs text-neutral-400">
+                        ({grupo.items.length} {grupo.items.length === 1 ? "registro" : "registros"})
+                      </span>
+                    </span>
+                    <span className="text-sm font-medium text-neutral-700">{currency(subtotal)}</span>
+                  </summary>
+                  <div className="divide-y divide-neutral-200 border-t border-neutral-200">
                     {grupo.items.map((m) => (
                       <Link
                         key={m.id}
@@ -179,7 +185,7 @@ export default async function VeiculoDetalhePage({
                       </Link>
                     ))}
                   </div>
-                </div>
+                </details>
               );
             })}
           </div>
@@ -203,14 +209,20 @@ export default async function VeiculoDetalhePage({
             {abastecimentoPorMes.map((grupo) => {
               const subtotal = grupo.items.reduce((s, f) => s + Number(f.valor), 0);
               return (
-                <div key={grupo.key}>
-                  <div className="mb-2 flex items-center justify-between px-1">
-                    <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
-                      {grupo.label}
-                    </p>
-                    <p className="text-xs font-medium text-neutral-500">{currency(subtotal)}</p>
-                  </div>
-                  <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
+                <details key={grupo.key} className="group rounded-xl border border-neutral-200 bg-white">
+                  <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">
+                    <span className="flex items-center gap-2">
+                      <span className="text-neutral-400 transition-transform group-open:rotate-90">›</span>
+                      <span className="text-xs font-semibold uppercase tracking-wide text-neutral-600">
+                        {grupo.label}
+                      </span>
+                      <span className="text-xs text-neutral-400">
+                        ({grupo.items.length} {grupo.items.length === 1 ? "abastecimento" : "abastecimentos"})
+                      </span>
+                    </span>
+                    <span className="text-sm font-medium text-neutral-700">{currency(subtotal)}</span>
+                  </summary>
+                  <div className="divide-y divide-neutral-200 border-t border-neutral-200">
                     {grupo.items.map((f) => (
                       <Link
                         key={f.id}
@@ -230,7 +242,7 @@ export default async function VeiculoDetalhePage({
                       </Link>
                     ))}
                   </div>
-                </div>
+                </details>
               );
             })}
           </div>
