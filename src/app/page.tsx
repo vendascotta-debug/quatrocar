@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { LandingHeader } from "@/components/landing/header";
 import { Reveal } from "@/components/landing/reveal";
+import { HeroHeadline } from "@/components/landing/hero-headline";
 import { RoadPattern } from "@/components/landing/road-pattern";
 import { CarIcon } from "@/components/landing/car-icon";
 import { ExitIntentPopup } from "@/components/landing/exit-intent";
@@ -304,27 +305,27 @@ export default function Home() {
               className="pointer-events-none absolute inset-0 bg-[linear-gradient(theme(colors.white/0.04)_1px,transparent_1px),linear-gradient(90deg,theme(colors.white/0.04)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)]"
             />
 
-            <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-2 md:gap-16 md:py-28">
-              <div className="text-center md:text-left">
+            <div
+              aria-hidden="true"
+              className="animate-hero-sweep pointer-events-none absolute inset-y-0 left-0 z-10 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+            />
+
+            <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-[1.15fr_0.95fr] md:gap-0 md:py-28">
+              <div className="relative z-20 text-center md:text-left md:pr-6 lg:mr-[-4rem] xl:mr-[-6rem]">
                 <Reveal>
                   <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
                     <CarIcon className="h-4 w-6 text-sky-300" />
                     Seu carro também precisa de memória
                   </span>
                 </Reveal>
-                <Reveal delay={120}>
-                  <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-                    Seu carro tem uma história.{" "}
-                    <span className="text-sky-400">O QuatroCar guarda cada capítulo.</span>
-                  </h1>
-                </Reveal>
-                <Reveal delay={240}>
+                <HeroHeadline />
+                <Reveal delay={520}>
                   <p className="mx-auto mt-5 max-w-xl text-base text-neutral-300 sm:text-lg md:mx-0">
                     Registre as manutenções, acompanhe o histórico do seu veículo e receba
                     lembretes para não deixar os próximos cuidados para depois.
                   </p>
                 </Reveal>
-                <Reveal delay={360}>
+                <Reveal delay={620}>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
                     <Link
                       href="/cadastro"
@@ -345,11 +346,15 @@ export default function Home() {
                 </Reveal>
               </div>
 
-              <Reveal delay={200} className="order-first md:order-last">
+              <Reveal delay={200} className="relative z-10 order-first md:order-last md:-ml-8 lg:-ml-16 xl:-ml-24">
                 <div className="relative mx-auto w-full max-w-[320px] md:max-w-none">
                   <div
                     aria-hidden="true"
-                    className="absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
+                    className="animate-glow-pulse absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-2/5 bg-gradient-to-r from-neutral-950 via-neutral-950/60 to-transparent md:block"
                   />
                   <Image
                     src="/images/hero-mao-celular.webp"
@@ -357,7 +362,7 @@ export default function Home() {
                     width={928}
                     height={1152}
                     priority
-                    className="mx-auto w-full max-w-sm rounded-2xl shadow-2xl shadow-black/50"
+                    className="animate-float mx-auto w-full max-w-sm rounded-2xl shadow-2xl shadow-black/50"
                   />
                 </div>
               </Reveal>
