@@ -310,8 +310,8 @@ export default function Home() {
               className="animate-hero-sweep pointer-events-none absolute inset-y-0 left-0 z-10 w-1/3 bg-gradient-to-r from-transparent via-white/10 to-transparent"
             />
 
-            <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-[1.15fr_0.95fr] md:gap-0 md:py-28">
-              <div className="relative z-20 text-center md:text-left md:pr-6 lg:mr-[-4rem] xl:mr-[-6rem]">
+            <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-2 md:gap-16 md:py-28">
+              <div className="relative z-20 text-center md:text-left">
                 <Reveal>
                   <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
                     <CarIcon className="h-4 w-6 text-sky-300" />
@@ -346,15 +346,11 @@ export default function Home() {
                 </Reveal>
               </div>
 
-              <Reveal delay={200} className="relative z-10 order-first md:order-last md:-ml-8 lg:-ml-16 xl:-ml-24">
+              <Reveal delay={200} className="order-first md:order-last">
                 <div className="relative mx-auto w-full max-w-[320px] md:max-w-none">
                   <div
                     aria-hidden="true"
                     className="animate-glow-pulse absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
-                  />
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 left-0 z-10 hidden w-2/5 bg-gradient-to-r from-neutral-950 via-neutral-950/60 to-transparent md:block"
                   />
                   <Image
                     src="/images/hero-mao-celular.webp"
