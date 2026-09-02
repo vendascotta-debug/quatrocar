@@ -10,6 +10,14 @@ import { ScrollToTop } from "@/components/landing/scroll-to-top";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
 import { TestimonialCarousel } from "@/components/landing/testimonial-carousel";
 import { BrandMarquee } from "@/components/landing/brand-marquee";
+import {
+  IconHistorico,
+  IconAlerta,
+  IconAbastecimento,
+  IconVeiculos,
+  IconDashboard,
+  IconBrasil,
+} from "@/components/landing/feature-icons";
 
 export const metadata: Metadata = {
   title: "QuatroCar — O prontuário digital do seu veículo",
@@ -39,32 +47,32 @@ const features = [
   {
     title: "Histórico completo",
     desc: "Manutenção, revisões, peças, garantias e notas fiscais — tudo num só lugar, para sempre.",
-    icon: "📋",
+    Icon: IconHistorico,
   },
   {
     title: "Alertas por peça",
     desc: "Cada peça tem seu próprio intervalo de troca. O QuatroCar avisa quando cada uma está vencendo.",
-    icon: "🔔",
+    Icon: IconAlerta,
   },
   {
     title: "Controle de abastecimento",
     desc: "Registre cada abastecimento e acompanhe consumo, custo por km e gasto mensal automaticamente.",
-    icon: "⛽",
+    Icon: IconAbastecimento,
   },
   {
     title: "Múltiplos veículos",
     desc: "Gerencie o carro da família, o carro do trabalho ou toda uma frota, tudo na mesma conta.",
-    icon: "🚗",
+    Icon: IconVeiculos,
   },
   {
     title: "Dashboard financeiro",
     desc: "Veja quanto você gastou no mês, no ano e desde que comprou o carro — sem precisar somar nada na mão.",
-    icon: "📊",
+    Icon: IconDashboard,
   },
   {
     title: "Feito para o Brasil",
     desc: "Pensado para motoristas de app, taxistas, frotas e donos de carro comum — do jeito que a manutenção acontece aqui.",
-    icon: "🇧🇷",
+    Icon: IconBrasil,
   },
 ];
 
@@ -304,18 +312,22 @@ export default function Home() {
           </section>
 
           {/* STATS */}
-          <section className="bg-neutral-900 py-8 text-white">
-            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-4 text-center sm:px-6 md:grid-cols-4">
+          <section
+            className="relative overflow-hidden bg-neutral-900 bg-cover bg-center py-8 text-white"
+            style={{ backgroundImage: "url(/images/textura-abstrata.webp)" }}
+          >
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-neutral-900/70" />
+            <div className="relative mx-auto grid max-w-5xl grid-cols-2 gap-6 px-4 text-center sm:px-6 md:grid-cols-4">
               {[
                 { n: "100%", l: "Histórico digital" },
                 { n: "1 min", l: "Para registrar manutenção" },
                 { n: "0", l: "Manutenções esquecidas" },
                 { n: "R$ 0", l: "Para começar a usar" },
-              ].map((s) => (
-                <div key={s.l}>
+              ].map((s, i) => (
+                <Reveal key={s.l} delay={i * 80}>
                   <p className="text-2xl font-bold text-sky-400 sm:text-3xl">{s.n}</p>
                   <p className="mt-1 text-xs text-neutral-400 sm:text-sm">{s.l}</p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </section>
@@ -344,9 +356,9 @@ export default function Home() {
               <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {features.map((f, i) => (
                   <Reveal key={f.title} delay={i * 80}>
-                    <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:-translate-y-1 hover:border-sky-400/30 hover:bg-white/10">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-400/15 text-2xl" aria-hidden="true">
-                        {f.icon}
+                    <div className="group h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-white/10 hover:shadow-[0_8px_30px_-8px_theme(colors.sky.500/0.35)]">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-400/15 text-sky-300 transition-colors duration-300 group-hover:bg-sky-400/25">
+                        <f.Icon className="h-5 w-5" />
                       </span>
                       <h3 className="mt-4 font-semibold text-white">{f.title}</h3>
                       <p className="mt-2 text-sm text-neutral-300">{f.desc}</p>

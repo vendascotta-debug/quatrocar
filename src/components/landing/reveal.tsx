@@ -40,12 +40,16 @@ export function Reveal({
     <div
       ref={ref}
       className={
-        "transition-all duration-700 ease-out motion-reduce:transition-none " +
-        (visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6") +
+        "transition-[opacity,transform,filter] duration-700 motion-reduce:transition-none motion-reduce:transform-none motion-reduce:blur-none " +
+        (visible ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-6 blur-[3px]") +
         " " +
         className
       }
-      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
+      style={{
+        transitionDelay: visible ? `${delay}ms` : "0ms",
+        // Expo-out: fast start, long soft deceleration — reads as premium, never overshoots (no bounce).
+        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
+      }}
     >
       {children}
     </div>
