@@ -33,6 +33,8 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith("/cadastro");
   const isPublicRoute =
     request.nextUrl.pathname === "/" ||
+    request.nextUrl.pathname === "/robots.txt" ||
+    request.nextUrl.pathname === "/sitemap.xml" ||
     isAuthRoute ||
     request.nextUrl.pathname.startsWith("/auth/");
 
