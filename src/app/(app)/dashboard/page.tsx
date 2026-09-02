@@ -130,14 +130,19 @@ export default async function DashboardPage() {
               <Link
                 key={v.id}
                 href={`/veiculos/${v.id}`}
-                className="rounded-xl border border-neutral-200 bg-white p-5 hover:border-neutral-400"
+                className="flex items-center gap-4 rounded-xl border border-sky-100 bg-sky-50 p-5 transition-colors hover:border-sky-300 hover:bg-sky-100/60"
               >
-                <h3 className="text-lg font-semibold text-neutral-900">
-                  {v.marca} {v.modelo}
-                </h3>
-                <p className="text-sm text-neutral-600">
-                  {v.placa || "sem placa"} · {v.km_atual.toLocaleString("pt-BR")} km
-                </p>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sky-500 text-lg text-white">
+                  🚗
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold text-neutral-900">
+                    {v.marca} {v.modelo}
+                  </h3>
+                  <p className="text-sm text-sky-700">
+                    {v.placa || "sem placa"} · {v.km_atual.toLocaleString("pt-BR")} km
+                  </p>
+                </div>
               </Link>
             ))}
           </div>
