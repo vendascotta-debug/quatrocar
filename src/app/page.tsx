@@ -260,52 +260,62 @@ export default function Home() {
 
             <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-2 md:gap-16 md:py-28">
               <div className="text-center md:text-left">
-                <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
-                  <CarIcon className="h-4 w-6 text-sky-300" />
-                  O prontuário digital do seu veículo
-                </span>
-                <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-                  Nunca mais perca o controle da{" "}
-                  <span className="text-sky-400">manutenção</span> do seu carro
-                </h1>
-                <p className="mx-auto mt-5 max-w-xl text-base text-neutral-300 sm:text-lg md:mx-0">
-                  O QuatroCar guarda todo o histórico do seu veículo e avisa, peça por
-                  peça, exatamente quando cada manutenção vence — óleo, pastilha,
-                  correia, tudo com o intervalo certo.
-                </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
-                  <Link
-                    href="/cadastro"
-                    className="rounded-lg bg-sky-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
-                  >
-                    Criar conta grátis
-                  </Link>
-                  <Link
-                    href="/login"
-                    className="rounded-lg border border-white/20 px-8 py-3.5 text-center text-base font-medium text-white transition-colors hover:bg-white/10"
-                  >
-                    Já tenho conta
-                  </Link>
-                </div>
-                <p className="mt-4 text-xs text-neutral-400">
-                  Grátis para 1 veículo. Sem cartão de crédito.
-                </p>
+                <Reveal>
+                  <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
+                    <CarIcon className="h-4 w-6 text-sky-300" />
+                    O prontuário digital do seu veículo
+                  </span>
+                </Reveal>
+                <Reveal delay={120}>
+                  <h1 className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                    Nunca mais perca o controle da{" "}
+                    <span className="text-sky-400">manutenção</span> do seu carro
+                  </h1>
+                </Reveal>
+                <Reveal delay={240}>
+                  <p className="mx-auto mt-5 max-w-xl text-base text-neutral-300 sm:text-lg md:mx-0">
+                    O QuatroCar guarda todo o histórico do seu veículo e avisa, peça por
+                    peça, exatamente quando cada manutenção vence — óleo, pastilha,
+                    correia, tudo com o intervalo certo.
+                  </p>
+                </Reveal>
+                <Reveal delay={360}>
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
+                    <Link
+                      href="/cadastro"
+                      className="rounded-lg bg-sky-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
+                    >
+                      Criar conta grátis
+                    </Link>
+                    <Link
+                      href="/login"
+                      className="rounded-lg border border-white/20 px-8 py-3.5 text-center text-base font-medium text-white transition-colors hover:bg-white/10"
+                    >
+                      Já tenho conta
+                    </Link>
+                  </div>
+                  <p className="mt-4 text-xs text-neutral-400">
+                    Grátis para 1 veículo. Sem cartão de crédito.
+                  </p>
+                </Reveal>
               </div>
 
-              <div className="relative order-first mx-auto w-full max-w-[320px] md:order-last md:max-w-none">
-                <div
-                  aria-hidden="true"
-                  className="absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
-                />
-                <Image
-                  src="/images/hero-mao-celular.webp"
-                  alt="Mão segurando um celular com o painel do QuatroCar mostrando alertas de manutenção do veículo"
-                  width={928}
-                  height={1152}
-                  priority
-                  className="mx-auto w-full max-w-sm rounded-2xl shadow-2xl shadow-black/50"
-                />
-              </div>
+              <Reveal delay={200} className="order-first md:order-last">
+                <div className="relative mx-auto w-full max-w-[320px] md:max-w-none">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
+                  />
+                  <Image
+                    src="/images/hero-mao-celular.webp"
+                    alt="Mão segurando um celular com o painel do QuatroCar mostrando alertas de manutenção do veículo"
+                    width={928}
+                    height={1152}
+                    priority
+                    className="mx-auto w-full max-w-sm rounded-2xl shadow-2xl shadow-black/50"
+                  />
+                </div>
+              </Reveal>
             </div>
 
             <RoadPattern />
