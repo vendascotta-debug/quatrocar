@@ -73,26 +73,41 @@ export default async function VeiculoDetalhePage({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="rounded-xl border border-neutral-200 bg-white p-4">
-          <p className="text-sm text-neutral-500">Total em manutenção</p>
-          <p className="text-xl font-semibold text-neutral-900">
-            {totalManutencao.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-          </p>
+        <div className="flex items-center gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white">
+            🔧
+          </span>
+          <div>
+            <p className="text-sm text-neutral-500">Total em manutenção</p>
+            <p className="text-xl font-semibold text-sky-700">
+              {totalManutencao.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            </p>
+          </div>
         </div>
-        <div className="rounded-xl border border-neutral-200 bg-white p-4">
-          <p className="text-sm text-neutral-500">Total em combustível</p>
-          <p className="text-xl font-semibold text-neutral-900">
-            {totalCombustivel.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
-          </p>
+        <div className="flex items-center gap-3 rounded-xl border border-amber-100 bg-amber-50 p-4">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500 text-white">
+            ⛽
+          </span>
+          <div>
+            <p className="text-sm text-neutral-500">Total em combustível</p>
+            <p className="text-xl font-semibold text-amber-700">
+              {totalCombustivel.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            </p>
+          </div>
         </div>
-        <div className="rounded-xl border border-neutral-200 bg-white p-4">
-          <p className="text-sm text-neutral-500">Total investido</p>
-          <p className="text-xl font-semibold text-neutral-900">
-            {(totalManutencao + totalCombustivel).toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
-            })}
-          </p>
+        <div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">
+            💰
+          </span>
+          <div>
+            <p className="text-sm text-neutral-500">Total investido</p>
+            <p className="text-xl font-semibold text-neutral-900">
+              {(totalManutencao + totalCombustivel).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              })}
+            </p>
+          </div>
         </div>
       </div>
 

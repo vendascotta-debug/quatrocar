@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { parseLocalDate } from "@/lib/local-date";
 
 type Registro = {
   data: string;
@@ -102,7 +103,7 @@ export function DashboardSummary({ registros }: { registros: Registro[] }) {
     const porCategoria = new Map<string, number>();
 
     for (const r of registros) {
-      const d = new Date(r.data);
+      const d = parseLocalDate(r.data);
       if (d < start || d > end) continue;
 
       if (r.tipo === "manutencao") {

@@ -1,4 +1,5 @@
 import type { MaintenanceRecord, Vehicle } from "@/lib/types";
+import { parseLocalDate } from "@/lib/local-date";
 
 export type MaintenanceAlert = {
   nome: string;
@@ -15,9 +16,12 @@ const KM_AVISO_ANTECIPADO = 1000;
 const DIAS_AVISO_ANTECIPADO = 30;
 
 function addMonths(dateStr: string, months: number) {
-  const d = new Date(dateStr);
+  const d = parseLocalDate(dateStr);
   d.setMonth(d.getMonth() + months);
-  return d.toISOString().slice(0, 10);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
 }
 
 export function computeMaintenanceAlerts(
@@ -30,7 +34,7 @@ export function computeMaintenanceAlerts(
   for (const r of comIntervalo) {
     const chave = r.categoria_id ?? r.subtipo ?? r.id;
     const atual = porChave.get(chave);
-    if (!atual || new Date(r.data) > new Date(atual.data)) {
+    if (!atual || parseLocalDate(r.data) > parseLocalDate(atual.data)) {
       porChave.set(chave, r);
     }
   }
@@ -45,7 +49,7 @@ export function computeMaintenanceAlerts(
     const kmRestante = proximoKm !== null ? proximoKm - vehicle.km_atual : null;
     const diasRestantes =
       proximaData !== null
-        ? Math.ceil((new Date(proximaData).getTime() - hoje.getTime()) / (1000 * 60 * 60 * 24))
+        ? Math.ceil((parseLocalDate(proximaData).getTime() - hoje.getTime()) / (1000 * 60 * 60 * 24))
         : null;
 
     let status: MaintenanceAlert["status"] = "ok";
