@@ -20,6 +20,12 @@ export type Vehicle = {
   categoria: string | null;
   foto_url: string | null;
   foto_painel_url: string | null;
+  valor_fipe: number | null;
+  valor_fipe_atualizado_em: string | null;
+  fipe_marca_codigo: string | null;
+  fipe_modelo_codigo: string | null;
+  fipe_ano_codigo: string | null;
+  fipe_codigo: string | null;
   criado_em: string;
 };
 

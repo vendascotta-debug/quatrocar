@@ -5,6 +5,7 @@ import type { Vehicle, MaintenanceRecord, FuelRecord } from "@/lib/types";
 import { computeMaintenanceAlerts } from "@/lib/maintenance-alerts";
 import { groupByMonth } from "@/lib/group-by-month";
 import { ExportPdfButton } from "./export-pdf-button";
+import { FipeCard } from "./fipe-card";
 
 function currency(n: number) {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -72,7 +73,7 @@ export default async function VeiculoDetalhePage({
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex items-center gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white">
             🔧
@@ -109,6 +110,11 @@ export default async function VeiculoDetalhePage({
             </p>
           </div>
         </div>
+        <FipeCard
+          vehicleId={id}
+          valorFipe={vehicle.valor_fipe}
+          atualizadoEm={vehicle.valor_fipe_atualizado_em}
+        />
       </div>
 
       {alerts.length > 0 && (
