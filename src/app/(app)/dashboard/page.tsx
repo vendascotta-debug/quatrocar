@@ -71,7 +71,7 @@ export default async function DashboardPage() {
 
       {alertsByVehicle.length > 0 && (
         <section className="space-y-3">
-          <h2 className="text-lg font-semibold text-neutral-900">Manutenções pendentes</h2>
+          <h2 className="text-lg font-semibold text-neutral-900">Vencimentos pendentes</h2>
           <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
             {alertsByVehicle.flatMap(({ vehicle, alerts }) =>
               alerts.map((a) => (
@@ -88,7 +88,7 @@ export default async function DashboardPage() {
                       {a.proximoKm !== null && `Próxima aos ${a.proximoKm.toLocaleString("pt-BR")} km`}
                       {a.proximoKm !== null && a.proximaData !== null && " · "}
                       {a.proximaData !== null &&
-                        `até ${new Date(a.proximaData).toLocaleDateString("pt-BR")}`}
+                        `vence em ${new Date(a.proximaData).toLocaleDateString("pt-BR")}`}
                     </p>
                   </div>
                   <span
