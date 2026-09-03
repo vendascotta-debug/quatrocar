@@ -169,7 +169,7 @@ export default async function VeiculoDetalhePage({
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <div className="flex items-start gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white">
             🔧
