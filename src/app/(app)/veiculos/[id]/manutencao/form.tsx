@@ -16,21 +16,30 @@ export function ManutencaoForm({
   record,
   onDelete,
   defaultKm,
+  variante = "manutencao",
 }: {
   action: (prev: MaintenanceFormState, formData: FormData) => Promise<MaintenanceFormState>;
   categorias: MaintenanceCategory[];
   record?: MaintenanceRecord;
   onDelete?: () => Promise<void>;
   defaultKm?: number;
+  variante?: "manutencao" | "documentacao" | "seguro";
 }) {
   const [state, formAction, pending] = useActionState(action, initialState);
 
   const grupos = Array.from(new Set(categorias.map((c) => c.grupo)));
+  const kmResolvido = record?.km ?? defaultKm;
+  const ehDocOuSeguro = variante !== "manutencao";
+  const tituloVencimento = ehDocOuSeguro ? "Quando vence?" : "Quando é a próxima troca desta peça/serviço?";
+  const rotuloDescricao = ehDocOuSeguro ? "Detalhes (opcional)" : "Descrição / peça trocada";
+  const placeholderDescricao = ehDocOuSeguro
+    ? "Ex: número da apólice, órgão emissor, etc."
+    : "Ex: rolamento da roda dianteira, coxim do motor, etc.";
 
   return (
     <div className="space-y-4">
       <form action={formAction} id="maintenance-form" className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
+      <div className={ehDocOuSeguro ? "space-y-1" : "grid grid-cols-2 gap-4"}>
         <div className="space-y-1">
           <label className={labelClass} htmlFor="data">Data</label>
           <input
@@ -41,17 +50,21 @@ export function ManutencaoForm({
             className={inputClass}
           />
         </div>
-        <div className="space-y-1">
-          <label className={labelClass} htmlFor="km">Quilometragem *</label>
-          <input
-            id="km"
-            name="km"
-            type="number"
-            required
-            defaultValue={record?.km ?? defaultKm}
-            className={inputClass}
-          />
-        </div>
+        {ehDocOuSeguro ? (
+          <input type="hidden" name="km" value={kmResolvido ?? 0} />
+        ) : (
+          <div className="space-y-1">
+            <label className={labelClass} htmlFor="km">Quilometragem *</label>
+            <input
+              id="km"
+              name="km"
+              type="number"
+              required
+              defaultValue={kmResolvido}
+              className={inputClass}
+            />
+          </div>
+        )}
       </div>
 
       <div className="space-y-1">
@@ -78,39 +91,32 @@ export function ManutencaoForm({
       </div>
 
       <div className="space-y-1">
-        <label className={labelClass} htmlFor="subtipo">Descrição / peça trocada</label>
+        <label className={labelClass} htmlFor="subtipo">{rotuloDescricao}</label>
         <input
           id="subtipo"
           name="subtipo"
           defaultValue={record?.subtipo ?? ""}
           className={inputClass}
-          placeholder="Ex: rolamento da roda dianteira, coxim do motor, etc."
+          placeholder={placeholderDescricao}
         />
-        <p className="text-xs text-neutral-500">
-          Não achou a peça na lista de categorias? Escolha &ldquo;Outra peça / serviço&rdquo; acima
-          e descreva aqui exatamente o que foi feito.
-        </p>
+        {!ehDocOuSeguro && (
+          <p className="text-xs text-neutral-500">
+            Não achou a peça na lista de categorias? Escolha &ldquo;Outra peça / serviço&rdquo; acima
+            e descreva aqui exatamente o que foi feito.
+          </p>
+        )}
       </div>
 
-      <div className="space-y-1">
-        <label className={labelClass} htmlFor="mecanico">Oficina / mecânico</label>
-        <input id="mecanico" name="mecanico" defaultValue={record?.mecanico ?? ""} className={inputClass} />
-      </div>
-
-      <div className="grid grid-cols-2 gap-4">
+      {!ehDocOuSeguro && (
         <div className="space-y-1">
-          <label className={labelClass} htmlFor="valor_mao_obra">Valor mão de obra (R$)</label>
-          <input
-            id="valor_mao_obra"
-            name="valor_mao_obra"
-            type="number"
-            step="0.01"
-            defaultValue={record?.valor_mao_obra}
-            className={inputClass}
-          />
+          <label className={labelClass} htmlFor="mecanico">Oficina / mecânico</label>
+          <input id="mecanico" name="mecanico" defaultValue={record?.mecanico ?? ""} className={inputClass} />
         </div>
+      )}
+
+      {ehDocOuSeguro ? (
         <div className="space-y-1">
-          <label className={labelClass} htmlFor="valor_pecas">Valor peças (R$)</label>
+          <label className={labelClass} htmlFor="valor_pecas">Valor (R$)</label>
           <input
             id="valor_pecas"
             name="valor_pecas"
@@ -120,37 +126,66 @@ export function ManutencaoForm({
             className={inputClass}
           />
         </div>
-      </div>
-
-      <div className="space-y-1">
-        <label className={labelClass} htmlFor="garantia_meses">Garantia (meses)</label>
-        <input
-          id="garantia_meses"
-          name="garantia_meses"
-          type="number"
-          defaultValue={record?.garantia_meses ?? ""}
-          className={inputClass}
-        />
-      </div>
-
-      <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-3 space-y-3">
-        <p className="text-sm font-medium text-neutral-700">
-          Quando é a próxima troca desta peça/serviço?
-        </p>
+      ) : (
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className={labelClass} htmlFor="intervalo_km">A cada quantos km</label>
+            <label className={labelClass} htmlFor="valor_mao_obra">Valor mão de obra (R$)</label>
             <input
-              id="intervalo_km"
-              name="intervalo_km"
+              id="valor_mao_obra"
+              name="valor_mao_obra"
               type="number"
-              placeholder="Ex: 10000"
-              defaultValue={record?.intervalo_km ?? ""}
+              step="0.01"
+              defaultValue={record?.valor_mao_obra}
               className={inputClass}
             />
           </div>
           <div className="space-y-1">
-            <label className={labelClass} htmlFor="intervalo_meses">Ou a cada quantos meses</label>
+            <label className={labelClass} htmlFor="valor_pecas">Valor peças (R$)</label>
+            <input
+              id="valor_pecas"
+              name="valor_pecas"
+              type="number"
+              step="0.01"
+              defaultValue={record?.valor_pecas}
+              className={inputClass}
+            />
+          </div>
+        </div>
+      )}
+
+      {!ehDocOuSeguro && (
+        <div className="space-y-1">
+          <label className={labelClass} htmlFor="garantia_meses">Garantia (meses)</label>
+          <input
+            id="garantia_meses"
+            name="garantia_meses"
+            type="number"
+            defaultValue={record?.garantia_meses ?? ""}
+            className={inputClass}
+          />
+        </div>
+      )}
+
+      <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-3 space-y-3">
+        <p className="text-sm font-medium text-neutral-700">{tituloVencimento}</p>
+        <div className={ehDocOuSeguro ? "" : "grid grid-cols-2 gap-4"}>
+          {!ehDocOuSeguro && (
+            <div className="space-y-1">
+              <label className={labelClass} htmlFor="intervalo_km">A cada quantos km</label>
+              <input
+                id="intervalo_km"
+                name="intervalo_km"
+                type="number"
+                placeholder="Ex: 10000"
+                defaultValue={record?.intervalo_km ?? ""}
+                className={inputClass}
+              />
+            </div>
+          )}
+          <div className="space-y-1">
+            <label className={labelClass} htmlFor="intervalo_meses">
+              {ehDocOuSeguro ? "Vence a cada quantos meses" : "Ou a cada quantos meses"}
+            </label>
             <input
               id="intervalo_meses"
               name="intervalo_meses"
@@ -162,7 +197,9 @@ export function ManutencaoForm({
           </div>
         </div>
         <p className="text-xs text-neutral-500">
-          O QuatroCar vai calcular sozinho quando essa manutenção vence de novo e te avisar.
+          {ehDocOuSeguro
+            ? "Ex: 12 para um IPVA ou seguro que renova todo ano. O QuatroCar avisa quando estiver perto de vencer."
+            : "O QuatroCar vai calcular sozinho quando essa manutenção vence de novo e te avisar."}
         </p>
       </div>
 

@@ -31,15 +31,13 @@ export default async function EditarManutencaoPage({
   if (!record) notFound();
 
   const grupoAtual = record.maintenance_categories?.grupo;
+  const variante: "manutencao" | "documentacao" | "seguro" =
+    grupoAtual === GRUPO_DOCUMENTACAO ? "documentacao" : grupoAtual === GRUPO_SEGURO ? "seguro" : "manutencao";
   const titulo =
-    grupoAtual === GRUPO_DOCUMENTACAO
-      ? "Editar Documento"
-      : grupoAtual === GRUPO_SEGURO
-        ? "Editar Seguro"
-        : "Editar Manutenção";
+    variante === "documentacao" ? "Editar Documento" : variante === "seguro" ? "Editar Seguro" : "Editar Manutenção";
 
   const categorias =
-    grupoAtual === GRUPO_DOCUMENTACAO || grupoAtual === GRUPO_SEGURO
+    variante !== "manutencao"
       ? (categoriasTodas ?? []).filter((c) => c.grupo === grupoAtual)
       : (categoriasTodas ?? []).filter(
           (c) => c.grupo !== GRUPO_DOCUMENTACAO && c.grupo !== GRUPO_SEGURO
@@ -51,7 +49,13 @@ export default async function EditarManutencaoPage({
   return (
     <div className="max-w-2xl">
       <h1 className="mb-6 text-2xl font-semibold text-neutral-900">{titulo}</h1>
-      <ManutencaoForm action={action} categorias={categorias} record={record} onDelete={onDelete} />
+      <ManutencaoForm
+        action={action}
+        categorias={categorias}
+        record={record}
+        onDelete={onDelete}
+        variante={variante}
+      />
     </div>
   );
 }

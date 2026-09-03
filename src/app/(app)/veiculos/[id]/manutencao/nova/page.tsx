@@ -21,7 +21,9 @@ export default async function NovaManutencaoPage({
 }) {
   const { id } = await params;
   const { tipo } = await searchParams;
-  const contexto = (tipo && CONTEXTO[tipo]) || CONTEXTO.manutencao;
+  const variante: "manutencao" | "documentacao" | "seguro" =
+    tipo === "documentacao" || tipo === "seguro" ? tipo : "manutencao";
+  const contexto = CONTEXTO[variante];
 
   const supabase = await createClient();
   const [{ data: categoriasTodas }, { data: vehicle }] = await Promise.all([
@@ -44,7 +46,12 @@ export default async function NovaManutencaoPage({
   return (
     <div className="max-w-2xl">
       <h1 className="mb-6 text-2xl font-semibold text-neutral-900">{contexto.titulo}</h1>
-      <ManutencaoForm action={action} categorias={categorias} defaultKm={vehicle?.km_atual} />
+      <ManutencaoForm
+        action={action}
+        categorias={categorias}
+        defaultKm={vehicle?.km_atual}
+        variante={variante}
+      />
     </div>
   );
 }
