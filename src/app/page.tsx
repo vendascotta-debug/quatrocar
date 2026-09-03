@@ -62,7 +62,7 @@ const beneficios = [
   },
   {
     title: "Não deixe manutenções passarem",
-    desc: "Cada peça tem seu próprio intervalo de troca. O QuatroCar avisa antes de vencer.",
+    desc: "Cada peça tem seu próprio intervalo de troca. O QuatroCar avisa antes de vencer — no painel e por WhatsApp.",
     Icon: IconAlerta,
   },
   {
@@ -106,7 +106,7 @@ const steps = [
   {
     n: "4",
     title: "Receba os lembretes",
-    desc: "Quando uma peça estiver perto do vencimento, você vê na hora no seu painel.",
+    desc: "Quando algo estiver perto do vencimento, você vê no painel e recebe um aviso direto no WhatsApp.",
   },
 ];
 
@@ -244,7 +244,7 @@ const faq = [
   },
   {
     q: "Como recebo os lembretes de manutenção?",
-    a: "Quando você registra uma manutenção, informa o intervalo daquela peça (em km ou meses). O QuatroCar calcula a próxima troca sozinho e mostra o alerta no seu painel assim que estiver próxima ou atrasada.",
+    a: "Quando você registra uma manutenção, documento ou seguro, informa o intervalo (em km ou meses). O QuatroCar calcula sozinho a próxima data e avisa de duas formas: no seu painel e por WhatsApp, se você cadastrar seu número no perfil.",
   },
   {
     q: "Posso consultar meu histórico quando quiser?",
