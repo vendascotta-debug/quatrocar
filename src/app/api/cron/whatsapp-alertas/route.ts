@@ -40,11 +40,16 @@ export async function GET(request: NextRequest) {
   const userIds = Array.from(new Set(vehicles.map((v) => v.user_id)));
   const { data: profiles } = await admin
     .from("profiles")
-    .select("id, nome, whatsapp")
+    .select("id, nome, whatsapp, ultimo_resumo_whatsapp_em")
     .in("id", userIds);
 
   const whatsappPorUsuario = new Map(
-    (profiles ?? []).filter((p) => p.whatsapp).map((p) => [p.id, { nome: p.nome, whatsapp: p.whatsapp as string }])
+    (profiles ?? [])
+      .filter((p) => p.whatsapp)
+      .map((p) => [
+        p.id,
+        { nome: p.nome, whatsapp: p.whatsapp as string, ultimoResumo: p.ultimo_resumo_whatsapp_em as string | null },
+      ])
   );
 
   const ontem = dataDeOntem();
@@ -137,12 +142,14 @@ export async function GET(request: NextRequest) {
   for (const [userId, linhas] of resumoPorUsuario) {
     const contato = whatsappPorUsuario.get(userId);
     if (!contato || linhas.length === 0) continue;
+    if (contato.ultimoResumo === ontem) continue;
 
     const mensagem = `📋 *Resumo de ontem (${ontemFormatado})*\n\n${linhas.join("\n")}`;
 
     try {
       await enviarWhatsapp(contato.whatsapp, mensagem);
       resumos += 1;
+      await admin.from("profiles").update({ ultimo_resumo_whatsapp_em: ontem }).eq("id", userId);
     } catch (err) {
       erros.push(`resumo/${userId}: ${err instanceof Error ? err.message : String(err)}`);
     }

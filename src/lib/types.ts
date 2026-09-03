@@ -34,6 +34,7 @@ export type Profile = {
   nome: string | null;
   telefone: string | null;
   whatsapp: string | null;
+  ultimo_resumo_whatsapp_em: string | null;
   plano: "free" | "premium" | "empresas" | "cortesia";
   criado_em: string;
 };
