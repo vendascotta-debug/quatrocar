@@ -36,7 +36,8 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname === "/robots.txt" ||
     request.nextUrl.pathname === "/sitemap.xml" ||
     isAuthRoute ||
-    request.nextUrl.pathname.startsWith("/auth/");
+    request.nextUrl.pathname.startsWith("/auth/") ||
+    request.nextUrl.pathname.startsWith("/api/");
 
   if (!user && !isPublicRoute) {
     const url = request.nextUrl.clone();

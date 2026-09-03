@@ -60,6 +60,8 @@ export type MaintenanceRecord = {
   intervalo_km: number | null;
   intervalo_meses: number | null;
   data_vencimento: string | null;
+  whatsapp_avisado_proximo: boolean;
+  whatsapp_avisado_atrasado: boolean;
   observacoes: string | null;
   nota_fiscal_url: string | null;
   ordem_servico_url: string | null;
