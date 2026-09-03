@@ -18,9 +18,83 @@ function formatAno(fabricacao: number | null, modelo: number | null) {
   return `${fabricacao ?? modelo} · `;
 }
 
-const DOC_SEGURO_GRUPOS = new Set(["Documentação e Obrigações", "Seguro e Proteção"]);
-const ehDocOuSeguro = (m: MaintenanceRecord) =>
-  DOC_SEGURO_GRUPOS.has(m.maintenance_categories?.grupo ?? "");
+const GRUPO_DOCUMENTACAO = "Documentação e Obrigações";
+const GRUPO_SEGURO = "Seguro e Proteção";
+const ehGrupo = (m: MaintenanceRecord, grupo: string) => m.maintenance_categories?.grupo === grupo;
+
+function MaintenanceSection({
+  vehicleId,
+  titulo,
+  itens,
+  vazio,
+  fallbackNome,
+}: {
+  vehicleId: string;
+  titulo: string;
+  itens: MaintenanceRecord[];
+  vazio: string;
+  fallbackNome: string;
+}) {
+  const porMes = groupByMonth(itens, (m) => m.data);
+  return (
+    <section className="space-y-3">
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-semibold text-neutral-900">{titulo}</h2>
+        <Link
+          href={`/veiculos/${vehicleId}/manutencao/nova`}
+          className="rounded-lg bg-neutral-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-neutral-700"
+        >
+          + Registrar
+        </Link>
+      </div>
+      {!itens.length ? (
+        <p className="text-sm text-neutral-500">{vazio}</p>
+      ) : (
+        <div className="space-y-5">
+          {porMes.map((grupo) => {
+            const subtotal = grupo.items.reduce((s, m) => s + Number(m.valor_total), 0);
+            return (
+              <details key={grupo.key} className="group rounded-xl border border-neutral-200 bg-white">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">
+                  <span className="flex items-center gap-2">
+                    <span className="text-neutral-400 transition-transform group-open:rotate-90">›</span>
+                    <span className="text-xs font-semibold uppercase tracking-wide text-neutral-600">
+                      {grupo.label}
+                    </span>
+                    <span className="text-xs text-neutral-400">
+                      ({grupo.items.length} {grupo.items.length === 1 ? "registro" : "registros"})
+                    </span>
+                  </span>
+                  <span className="text-sm font-medium text-neutral-700">{currency(subtotal)}</span>
+                </summary>
+                <div className="divide-y divide-neutral-200 border-t border-neutral-200">
+                  {grupo.items.map((m) => (
+                    <Link
+                      key={m.id}
+                      href={`/veiculos/${vehicleId}/manutencao/${m.id}`}
+                      className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
+                    >
+                      <div>
+                        <p className="font-medium text-neutral-900">
+                          {m.maintenance_categories?.nome || m.subtipo || fallbackNome}
+                        </p>
+                        <p className="text-sm text-neutral-500">
+                          {new Date(m.data).toLocaleDateString("pt-BR")} ·{" "}
+                          {m.km.toLocaleString("pt-BR")} km
+                        </p>
+                      </div>
+                      <p className="font-medium text-neutral-900">{currency(Number(m.valor_total))}</p>
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}
 
 export default async function VeiculoDetalhePage({
   params,
@@ -48,11 +122,15 @@ export default async function VeiculoDetalhePage({
 
   if (!vehicle) notFound();
 
-  const manutencaoMecanica = (maintenance ?? []).filter((m) => !ehDocOuSeguro(m));
-  const documentosSeguros = (maintenance ?? []).filter(ehDocOuSeguro);
+  const manutencaoMecanica = (maintenance ?? []).filter(
+    (m) => !ehGrupo(m, GRUPO_DOCUMENTACAO) && !ehGrupo(m, GRUPO_SEGURO)
+  );
+  const documentacao = (maintenance ?? []).filter((m) => ehGrupo(m, GRUPO_DOCUMENTACAO));
+  const seguros = (maintenance ?? []).filter((m) => ehGrupo(m, GRUPO_SEGURO));
 
   const totalManutencao = manutencaoMecanica.reduce((s, m) => s + Number(m.valor_total), 0);
-  const totalDocumentosSeguros = documentosSeguros.reduce((s, m) => s + Number(m.valor_total), 0);
+  const totalDocumentacao = documentacao.reduce((s, m) => s + Number(m.valor_total), 0);
+  const totalSeguros = seguros.reduce((s, m) => s + Number(m.valor_total), 0);
   const totalCombustivel = (fuel ?? []).reduce((s, f) => s + Number(f.valor), 0);
   const registrosPorCategoria = [
     ...(maintenance ?? []).map((m) => ({
@@ -63,8 +141,6 @@ export default async function VeiculoDetalhePage({
     ...(fuel ?? []).map((f) => ({ valor: Number(f.valor), tipo: "combustivel" as const })),
   ];
   const alerts = computeMaintenanceAlerts(vehicle, maintenance ?? []);
-  const manutencaoPorMes = groupByMonth(manutencaoMecanica, (m) => m.data);
-  const documentosPorMes = groupByMonth(documentosSeguros, (m) => m.data);
   const abastecimentoPorMes = groupByMonth(fuel ?? [], (f) => f.data);
 
   return (
@@ -91,7 +167,7 @@ export default async function VeiculoDetalhePage({
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <div className="flex items-start gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white">
             🔧
@@ -108,9 +184,20 @@ export default async function VeiculoDetalhePage({
             📄
           </span>
           <div>
-            <p className="text-sm text-neutral-500">Documentação e seguro</p>
+            <p className="text-sm text-neutral-500">Documentação</p>
             <p className="text-xl font-semibold text-violet-700">
-              {totalDocumentosSeguros.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+              {totalDocumentacao.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-start gap-3 rounded-xl border border-indigo-100 bg-indigo-50 p-4">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-600 text-white">
+            🛡️
+          </span>
+          <div>
+            <p className="text-sm text-neutral-500">Seguro e proteção</p>
+            <p className="text-xl font-semibold text-indigo-700">
+              {totalSeguros.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
             </p>
           </div>
         </div>
@@ -132,10 +219,10 @@ export default async function VeiculoDetalhePage({
           <div>
             <p className="text-sm text-neutral-500">Total investido</p>
             <p className="text-xl font-semibold text-neutral-900">
-              {(totalManutencao + totalDocumentosSeguros + totalCombustivel).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL",
-              })}
+              {(totalManutencao + totalDocumentacao + totalSeguros + totalCombustivel).toLocaleString(
+                "pt-BR",
+                { style: "currency", currency: "BRL" }
+              )}
             </p>
           </div>
         </div>
@@ -189,126 +276,29 @@ export default async function VeiculoDetalhePage({
         </section>
       )}
 
-      <section className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-neutral-900">Manutenção</h2>
-          <Link
-            href={`/veiculos/${id}/manutencao/nova`}
-            className="rounded-lg bg-neutral-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-neutral-700"
-          >
-            + Registrar manutenção
-          </Link>
-        </div>
-        {!manutencaoMecanica.length ? (
-          <p className="text-sm text-neutral-500">Nenhum registro ainda.</p>
-        ) : (
-          <div className="space-y-5">
-            {manutencaoPorMes.map((grupo) => {
-              const subtotal = grupo.items.reduce((s, m) => s + Number(m.valor_total), 0);
-              return (
-                <details key={grupo.key} className="group rounded-xl border border-neutral-200 bg-white">
-                  <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">
-                    <span className="flex items-center gap-2">
-                      <span className="text-neutral-400 transition-transform group-open:rotate-90">›</span>
-                      <span className="text-xs font-semibold uppercase tracking-wide text-neutral-600">
-                        {grupo.label}
-                      </span>
-                      <span className="text-xs text-neutral-400">
-                        ({grupo.items.length} {grupo.items.length === 1 ? "registro" : "registros"})
-                      </span>
-                    </span>
-                    <span className="text-sm font-medium text-neutral-700">{currency(subtotal)}</span>
-                  </summary>
-                  <div className="divide-y divide-neutral-200 border-t border-neutral-200">
-                    {grupo.items.map((m) => (
-                      <Link
-                        key={m.id}
-                        href={`/veiculos/${id}/manutencao/${m.id}`}
-                        className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
-                      >
-                        <div>
-                          <p className="font-medium text-neutral-900">
-                            {m.maintenance_categories?.nome || m.subtipo || "Manutenção"}
-                          </p>
-                          <p className="text-sm text-neutral-500">
-                            {new Date(m.data).toLocaleDateString("pt-BR")} ·{" "}
-                            {m.km.toLocaleString("pt-BR")} km
-                          </p>
-                        </div>
-                        <p className="font-medium text-neutral-900">
-                          {currency(Number(m.valor_total))}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              );
-            })}
-          </div>
-        )}
-      </section>
+      <MaintenanceSection
+        vehicleId={id}
+        titulo="Manutenção"
+        itens={manutencaoMecanica}
+        vazio="Nenhum registro ainda."
+        fallbackNome="Manutenção"
+      />
 
-      <section className="space-y-3">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-neutral-900">Documentação e Seguro</h2>
-          <Link
-            href={`/veiculos/${id}/manutencao/nova`}
-            className="rounded-lg bg-neutral-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-neutral-700"
-          >
-            + Registrar
-          </Link>
-        </div>
-        {!documentosSeguros.length ? (
-          <p className="text-sm text-neutral-500">
-            Nenhum registro ainda. Cadastre IPVA, licenciamento, multas, seguro e afins aqui — o
-            QuatroCar avisa quando estiver perto do vencimento, do mesmo jeito que faz com as
-            manutenções.
-          </p>
-        ) : (
-          <div className="space-y-5">
-            {documentosPorMes.map((grupo) => {
-              const subtotal = grupo.items.reduce((s, m) => s + Number(m.valor_total), 0);
-              return (
-                <details key={grupo.key} className="group rounded-xl border border-neutral-200 bg-white">
-                  <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">
-                    <span className="flex items-center gap-2">
-                      <span className="text-neutral-400 transition-transform group-open:rotate-90">›</span>
-                      <span className="text-xs font-semibold uppercase tracking-wide text-neutral-600">
-                        {grupo.label}
-                      </span>
-                      <span className="text-xs text-neutral-400">
-                        ({grupo.items.length} {grupo.items.length === 1 ? "registro" : "registros"})
-                      </span>
-                    </span>
-                    <span className="text-sm font-medium text-neutral-700">{currency(subtotal)}</span>
-                  </summary>
-                  <div className="divide-y divide-neutral-200 border-t border-neutral-200">
-                    {grupo.items.map((m) => (
-                      <Link
-                        key={m.id}
-                        href={`/veiculos/${id}/manutencao/${m.id}`}
-                        className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
-                      >
-                        <div>
-                          <p className="font-medium text-neutral-900">
-                            {m.maintenance_categories?.nome || m.subtipo || "Documentação"}
-                          </p>
-                          <p className="text-sm text-neutral-500">
-                            {new Date(m.data).toLocaleDateString("pt-BR")}
-                          </p>
-                        </div>
-                        <p className="font-medium text-neutral-900">
-                          {currency(Number(m.valor_total))}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              );
-            })}
-          </div>
-        )}
-      </section>
+      <MaintenanceSection
+        vehicleId={id}
+        titulo="Documentação e Obrigações"
+        itens={documentacao}
+        vazio="Nenhum registro ainda. Cadastre IPVA, licenciamento, multas, vistoria e afins aqui — o QuatroCar avisa quando estiver perto do vencimento."
+        fallbackNome="Documentação"
+      />
+
+      <MaintenanceSection
+        vehicleId={id}
+        titulo="Seguro e Proteção"
+        itens={seguros}
+        vazio="Nenhum registro ainda. Cadastre seguro, rastreador, proteção veicular e assistência aqui — o QuatroCar avisa quando estiver perto do vencimento."
+        fallbackNome="Seguro"
+      />
 
       <section className="space-y-3">
         <div className="flex items-center justify-between">
