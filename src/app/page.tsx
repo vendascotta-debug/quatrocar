@@ -521,6 +521,41 @@ export default function Home() {
             </div>
           </section>
 
+          {/* AVISO POR WHATSAPP */}
+          <section className="border-y border-neutral-200 bg-neutral-50 py-16 sm:py-24">
+            <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
+              <Reveal delay={150} className="order-first md:order-last">
+                <Image
+                  src="/images/whatsapp-aviso.webp"
+                  alt="Mão segurando um celular com uma mensagem do QuatroCar no WhatsApp avisando sobre a troca de óleo vencendo"
+                  width={1000}
+                  height={1339}
+                  className="mx-auto w-full max-w-sm rounded-2xl shadow-xl"
+                />
+              </Reveal>
+
+              <Reveal>
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                  Sem precisar abrir o app
+                </span>
+                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                  O aviso chega direto no seu WhatsApp
+                </h2>
+                <p className="mt-4 text-neutral-600">
+                  Quando uma manutenção, documento ou seguro estiver perto de vencer — ou já
+                  tiver vencido — o QuatroCar manda uma mensagem no seu WhatsApp, com um link
+                  direto para os detalhes. Sem precisar lembrar de abrir o app.
+                </p>
+                <Link
+                  href="/cadastro"
+                  className="mt-6 inline-block rounded-lg bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
+                >
+                  Quero receber os avisos
+                </Link>
+              </Reveal>
+            </div>
+          </section>
+
           {/* VALOR DO HISTÓRICO */}
           <section
             id="recursos"
