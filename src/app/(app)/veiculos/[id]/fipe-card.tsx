@@ -37,7 +37,7 @@ export function FipeCard({
   }
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
+    <div className="flex items-start gap-3 rounded-xl border border-emerald-100 bg-emerald-50 p-4">
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
         📊
       </span>

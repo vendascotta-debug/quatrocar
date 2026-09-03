@@ -92,7 +92,7 @@ export default async function VeiculoDetalhePage({
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <div className="flex items-center gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4">
+        <div className="flex items-start gap-3 rounded-xl border border-sky-100 bg-sky-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-sky-500 text-white">
             🔧
           </span>
@@ -103,7 +103,7 @@ export default async function VeiculoDetalhePage({
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-violet-100 bg-violet-50 p-4">
+        <div className="flex items-start gap-3 rounded-xl border border-violet-100 bg-violet-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-violet-600 text-white">
             📄
           </span>
@@ -114,7 +114,7 @@ export default async function VeiculoDetalhePage({
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-amber-100 bg-amber-50 p-4">
+        <div className="flex items-start gap-3 rounded-xl border border-amber-100 bg-amber-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-500 text-white">
             ⛽
           </span>
@@ -125,7 +125,7 @@ export default async function VeiculoDetalhePage({
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+        <div className="flex items-start gap-3 rounded-xl border border-neutral-200 bg-neutral-50 p-4">
           <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">
             💰
           </span>
