@@ -59,6 +59,7 @@ export type MaintenanceRecord = {
   garantia_meses: number | null;
   intervalo_km: number | null;
   intervalo_meses: number | null;
+  data_vencimento: string | null;
   observacoes: string | null;
   nota_fiscal_url: string | null;
   ordem_servico_url: string | null;

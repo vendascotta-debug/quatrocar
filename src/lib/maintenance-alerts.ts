@@ -29,7 +29,9 @@ export function computeMaintenanceAlerts(
   vehicle: Vehicle,
   records: MaintenanceRecord[]
 ): MaintenanceAlert[] {
-  const comIntervalo = records.filter((r) => r.intervalo_km || r.intervalo_meses);
+  const comIntervalo = records.filter(
+    (r) => r.intervalo_km || r.intervalo_meses || r.data_vencimento
+  );
 
   const porChave = new Map<string, MaintenanceRecord>();
   for (const r of comIntervalo) {
@@ -45,7 +47,8 @@ export function computeMaintenanceAlerts(
 
   for (const r of porChave.values()) {
     const proximoKm = r.intervalo_km ? r.km + r.intervalo_km : null;
-    const proximaData = r.intervalo_meses ? addMonths(r.data, r.intervalo_meses) : null;
+    const proximaData =
+      r.data_vencimento || (r.intervalo_meses ? addMonths(r.data, r.intervalo_meses) : null);
 
     const kmRestante = proximoKm !== null ? proximoKm - vehicle.km_atual : null;
     const diasRestantes =

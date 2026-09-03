@@ -168,6 +168,23 @@ export function ManutencaoForm({
 
       <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-3 space-y-3">
         <p className="text-sm font-medium text-neutral-700">{tituloVencimento}</p>
+
+        {ehDocOuSeguro && (
+          <div className="space-y-1">
+            <label className={labelClass} htmlFor="data_vencimento">Data de vencimento</label>
+            <input
+              id="data_vencimento"
+              name="data_vencimento"
+              type="date"
+              defaultValue={record?.data_vencimento ?? ""}
+              className={inputClass}
+            />
+            <p className="text-xs text-neutral-500">
+              Use isto para prazos com data certa, como uma multa ou vistoria.
+            </p>
+          </div>
+        )}
+
         <div className={ehDocOuSeguro ? "" : "grid grid-cols-2 gap-4"}>
           {!ehDocOuSeguro && (
             <div className="space-y-1">
@@ -184,7 +201,7 @@ export function ManutencaoForm({
           )}
           <div className="space-y-1">
             <label className={labelClass} htmlFor="intervalo_meses">
-              {ehDocOuSeguro ? "Vence a cada quantos meses" : "Ou a cada quantos meses"}
+              {ehDocOuSeguro ? "Ou renova a cada quantos meses" : "Ou a cada quantos meses"}
             </label>
             <input
               id="intervalo_meses"
@@ -198,7 +215,7 @@ export function ManutencaoForm({
         </div>
         <p className="text-xs text-neutral-500">
           {ehDocOuSeguro
-            ? "Ex: 12 para um IPVA ou seguro que renova todo ano. O QuatroCar avisa quando estiver perto de vencer."
+            ? "Use \"renova a cada X meses\" para IPVA ou seguro que se repete todo ano. Preencha só um dos dois campos."
             : "O QuatroCar vai calcular sozinho quando essa manutenção vence de novo e te avisar."}
         </p>
       </div>

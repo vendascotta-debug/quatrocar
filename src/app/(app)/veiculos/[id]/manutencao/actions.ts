@@ -37,6 +37,7 @@ export async function createMaintenanceRecord(
     intervalo_meses: formData.get("intervalo_meses")
       ? Number(formData.get("intervalo_meses"))
       : null,
+    data_vencimento: (formData.get("data_vencimento") as string) || null,
     observacoes: (formData.get("observacoes") as string) || null,
   });
 
@@ -87,6 +88,7 @@ export async function updateMaintenanceRecord(
       intervalo_meses: formData.get("intervalo_meses")
         ? Number(formData.get("intervalo_meses"))
         : null,
+      data_vencimento: (formData.get("data_vencimento") as string) || null,
       observacoes: (formData.get("observacoes") as string) || null,
     })
     .eq("id", recordId);
