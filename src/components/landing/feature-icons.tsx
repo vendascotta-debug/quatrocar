@@ -61,6 +61,16 @@ export function IconDashboard({ className }: IconProps) {
   );
 }
 
+export function IconDocumento({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} {...shared}>
+      <path d="M7 3.5h7l4 4V19a1.5 1.5 0 0 1-1.5 1.5H7A1.5 1.5 0 0 1 5.5 19V5A1.5 1.5 0 0 1 7 3.5Z" />
+      <path d="M14 3.5V8h4.3" />
+      <path d="m9 14.2 1.8 1.8L15.3 12" />
+    </svg>
+  );
+}
+
 export function IconBrasil({ className }: IconProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} {...shared}>

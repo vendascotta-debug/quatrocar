@@ -14,9 +14,9 @@ import { BrandMarquee } from "@/components/landing/brand-marquee";
 import {
   IconHistorico,
   IconAlerta,
-  IconAbastecimento,
   IconVeiculos,
   IconDashboard,
+  IconDocumento,
   IconBrasil,
 } from "@/components/landing/feature-icons";
 
@@ -51,6 +51,7 @@ const problemas = [
   "Essa peça ainda está na garantia?",
   "Quanto eu já gastei com esse carro esse ano?",
   "Onde guardei aquela nota fiscal?",
+  "Quando vence o IPVA ou o seguro do carro?",
 ];
 
 const beneficios = [
@@ -75,9 +76,9 @@ const beneficios = [
     Icon: IconVeiculos,
   },
   {
-    title: "Tudo documentado e organizado",
-    desc: "Notas fiscais, fotos e relatórios em PDF prontos para consultar quando precisar.",
-    Icon: IconAbastecimento,
+    title: "IPVA, licenciamento e seguro em dia",
+    desc: "Registre documentação e seguro do carro junto com a manutenção, e receba aviso antes de vencer.",
+    Icon: IconDocumento,
   },
   {
     title: "Mais segurança para vender",
@@ -554,6 +555,22 @@ export default function Home() {
                   </Reveal>
                 ))}
               </div>
+
+              <Reveal delay={520}>
+                <div className="mx-auto mt-12 flex max-w-2xl flex-col items-center gap-4 rounded-2xl border border-sky-400/20 bg-sky-400/5 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+                  <p className="text-sm text-neutral-200">
+                    <strong className="text-white">Novidade:</strong> agora dá pra controlar IPVA,
+                    licenciamento, multas e seguro do carro no mesmo lugar, com aviso antes do
+                    vencimento.
+                  </p>
+                  <Link
+                    href="/cadastro"
+                    className="shrink-0 rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+                  >
+                    Quero organizar meus documentos
+                  </Link>
+                </div>
+              </Reveal>
             </div>
           </section>
 
