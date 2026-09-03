@@ -28,12 +28,14 @@ function MaintenanceSection({
   itens,
   vazio,
   fallbackNome,
+  tipo,
 }: {
   vehicleId: string;
   titulo: string;
   itens: MaintenanceRecord[];
   vazio: string;
   fallbackNome: string;
+  tipo: "manutencao" | "documentacao" | "seguro";
 }) {
   const porMes = groupByMonth(itens, (m) => m.data);
   return (
@@ -41,7 +43,7 @@ function MaintenanceSection({
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold text-neutral-900">{titulo}</h2>
         <Link
-          href={`/veiculos/${vehicleId}/manutencao/nova`}
+          href={`/veiculos/${vehicleId}/manutencao/nova?tipo=${tipo}`}
           className="rounded-lg bg-neutral-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-neutral-700"
         >
           + Registrar
@@ -282,6 +284,7 @@ export default async function VeiculoDetalhePage({
         itens={manutencaoMecanica}
         vazio="Nenhum registro ainda."
         fallbackNome="Manutenção"
+        tipo="manutencao"
       />
 
       <MaintenanceSection
@@ -290,6 +293,7 @@ export default async function VeiculoDetalhePage({
         itens={documentacao}
         vazio="Nenhum registro ainda. Cadastre IPVA, licenciamento, multas, vistoria e afins aqui — o QuatroCar avisa quando estiver perto do vencimento."
         fallbackNome="Documentação"
+        tipo="documentacao"
       />
 
       <MaintenanceSection
@@ -298,6 +302,7 @@ export default async function VeiculoDetalhePage({
         itens={seguros}
         vazio="Nenhum registro ainda. Cadastre seguro, rastreador, proteção veicular e assistência aqui — o QuatroCar avisa quando estiver perto do vencimento."
         fallbackNome="Seguro"
+        tipo="seguro"
       />
 
       <section className="space-y-3">

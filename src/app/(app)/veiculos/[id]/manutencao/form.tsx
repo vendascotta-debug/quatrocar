@@ -15,11 +15,13 @@ export function ManutencaoForm({
   categorias,
   record,
   onDelete,
+  defaultKm,
 }: {
   action: (prev: MaintenanceFormState, formData: FormData) => Promise<MaintenanceFormState>;
   categorias: MaintenanceCategory[];
   record?: MaintenanceRecord;
   onDelete?: () => Promise<void>;
+  defaultKm?: number;
 }) {
   const [state, formAction, pending] = useActionState(action, initialState);
 
@@ -46,7 +48,7 @@ export function ManutencaoForm({
             name="km"
             type="number"
             required
-            defaultValue={record?.km}
+            defaultValue={record?.km ?? defaultKm}
             className={inputClass}
           />
         </div>
