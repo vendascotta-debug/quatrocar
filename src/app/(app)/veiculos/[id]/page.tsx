@@ -6,6 +6,7 @@ import { computeMaintenanceAlerts } from "@/lib/maintenance-alerts";
 import { groupByMonth } from "@/lib/group-by-month";
 import { ExportPdfButton } from "./export-pdf-button";
 import { FipeCard } from "./fipe-card";
+import { CategoryPie } from "@/components/category-pie";
 
 function currency(n: number) {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -45,6 +46,14 @@ export default async function VeiculoDetalhePage({
 
   const totalManutencao = (maintenance ?? []).reduce((s, m) => s + Number(m.valor_total), 0);
   const totalCombustivel = (fuel ?? []).reduce((s, f) => s + Number(f.valor), 0);
+  const registrosPorCategoria = [
+    ...(maintenance ?? []).map((m) => ({
+      valor: Number(m.valor_total),
+      tipo: "manutencao" as const,
+      categoria: m.maintenance_categories?.grupo ?? null,
+    })),
+    ...(fuel ?? []).map((f) => ({ valor: Number(f.valor), tipo: "combustivel" as const })),
+  ];
   const alerts = computeMaintenanceAlerts(vehicle, maintenance ?? []);
   const manutencaoPorMes = groupByMonth(maintenance ?? [], (m) => m.data);
   const abastecimentoPorMes = groupByMonth(fuel ?? [], (f) => f.data);
@@ -117,12 +126,18 @@ export default async function VeiculoDetalhePage({
         />
       </div>
 
+      {registrosPorCategoria.length > 0 && <CategoryPie registros={registrosPorCategoria} />}
+
       {alerts.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-lg font-semibold text-neutral-900">Próximas manutenções</h2>
           <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
             {alerts.map((a) => (
-              <div key={a.nome} className="flex items-center justify-between px-4 py-3">
+              <Link
+                key={a.nome}
+                href={`/veiculos/${id}/manutencao/${a.recordId}`}
+                className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
+              >
                 <div>
                   <p className="font-medium text-neutral-900">{a.nome}</p>
                   <p className="text-sm text-neutral-500">
@@ -148,7 +163,7 @@ export default async function VeiculoDetalhePage({
                 >
                   {a.status === "atrasado" ? "Atrasado" : a.status === "proximo" ? "Próximo" : "Em dia"}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

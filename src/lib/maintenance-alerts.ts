@@ -2,6 +2,7 @@ import type { MaintenanceRecord, Vehicle } from "@/lib/types";
 import { parseLocalDate } from "@/lib/local-date";
 
 export type MaintenanceAlert = {
+  recordId: string;
   nome: string;
   ultimaData: string;
   ultimoKm: number;
@@ -62,6 +63,7 @@ export function computeMaintenanceAlerts(
     else if (proximoPorKm || proximoPorData) status = "proximo";
 
     alerts.push({
+      recordId: r.id,
       nome: r.maintenance_categories?.nome || r.subtipo || "Manutenção",
       ultimaData: r.data,
       ultimoKm: r.km,

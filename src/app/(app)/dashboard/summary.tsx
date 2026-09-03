@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { parseLocalDate } from "@/lib/local-date";
+import { CategoryPie } from "@/components/category-pie";
 
 type Registro = {
   data: string;
@@ -11,12 +12,6 @@ type Registro = {
 };
 
 type Periodo = "dia" | "semana" | "mes" | "ano";
-
-// Categorical palette (validated: node scripts/validate_palette.js — 6 slots, light mode).
-// Fixed order, assigned by rank (largest category first), never cycled.
-const CATEGORY_COLORS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300"];
-const SURFACE = "#fcfcfb";
-const MAX_SLICES = 6;
 
 function currency(n: number) {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -96,64 +91,23 @@ export function DashboardSummary({ registros }: { registros: Registro[] }) {
   const [periodo, setPeriodo] = useState<Periodo>("mes");
   const [ref, setRef] = useState(() => new Date());
 
-  const { manutencao, combustivel, total, fatias } = useMemo(() => {
+  const { manutencao, combustivel, total, doPeriodo } = useMemo(() => {
     const { start, end } = getRange(periodo, ref);
     let manutencao = 0;
     let combustivel = 0;
-    const porCategoria = new Map<string, number>();
+    const doPeriodo: Registro[] = [];
 
     for (const r of registros) {
       const d = parseLocalDate(r.data);
       if (d < start || d > end) continue;
 
-      if (r.tipo === "manutencao") {
-        manutencao += r.valor;
-        const label = r.categoria || "Outros";
-        porCategoria.set(label, (porCategoria.get(label) ?? 0) + r.valor);
-      } else {
-        combustivel += r.valor;
-        porCategoria.set("Combustível", (porCategoria.get("Combustível") ?? 0) + r.valor);
-      }
+      doPeriodo.push(r);
+      if (r.tipo === "manutencao") manutencao += r.valor;
+      else combustivel += r.valor;
     }
 
-    const total = manutencao + combustivel;
-
-    let entries = Array.from(porCategoria.entries())
-      .filter(([, valor]) => valor > 0)
-      .sort((a, b) => b[1] - a[1]);
-
-    if (entries.length > MAX_SLICES) {
-      const top = entries.slice(0, MAX_SLICES - 1);
-      const outrosValor = entries.slice(MAX_SLICES - 1).reduce((s, [, v]) => s + v, 0);
-      entries = [...top, ["Outros", outrosValor]];
-    }
-
-    const fatias = entries.map(([label, valor], i) => ({
-      label,
-      valor,
-      pct: total > 0 ? (valor / total) * 100 : 0,
-      color: CATEGORY_COLORS[i % CATEGORY_COLORS.length],
-    }));
-
-    return { manutencao, combustivel, total, fatias };
+    return { manutencao, combustivel, total: manutencao + combustivel, doPeriodo };
   }, [registros, periodo, ref]);
-
-  const stops = useMemo(() => {
-    const gapDeg = fatias.length > 1 ? 1.5 : 0;
-
-    const { segments } = fatias.reduce<{ acc: number; segments: string[] }>(
-      (state, f) => {
-        const startDeg = (state.acc / 100) * 360;
-        const nextAcc = state.acc + f.pct;
-        const endDeg = (nextAcc / 100) * 360;
-        const segment = `${f.color} ${startDeg}deg ${Math.max(startDeg, endDeg - gapDeg)}deg, ${SURFACE} ${Math.max(startDeg, endDeg - gapDeg)}deg ${endDeg}deg`;
-        return { acc: nextAcc, segments: [...state.segments, segment] };
-      },
-      { acc: 0, segments: [] }
-    );
-
-    return segments.join(", ");
-  }, [fatias]);
 
   return (
     <div className="rounded-2xl border border-neutral-200 bg-white p-5">
@@ -226,48 +180,9 @@ export function DashboardSummary({ registros }: { registros: Registro[] }) {
         </div>
       </div>
 
-      {fatias.length > 0 && (
-        <div className="mt-6 border-t border-neutral-100 pt-5">
-          <p className="text-xs font-semibold uppercase tracking-wide text-neutral-500">
-            Despesas por categoria
-          </p>
-
-          <div className="mt-4 flex flex-col items-center gap-5 sm:flex-row sm:items-center">
-            <div
-              role="img"
-              aria-label={`Gráfico de despesas por categoria: ${fatias
-                .map((f) => `${f.label} ${f.pct.toFixed(0)}%`)
-                .join(", ")}`}
-              className="relative h-36 w-36 shrink-0 rounded-full"
-              style={{ background: `conic-gradient(${stops})` }}
-            >
-              <div className="absolute inset-3 flex flex-col items-center justify-center rounded-full bg-white text-center">
-                <span className="text-[10px] uppercase tracking-wide text-neutral-400">Total</span>
-                <span className="text-lg font-bold text-neutral-900">{currency(total)}</span>
-              </div>
-            </div>
-
-            <ul className="w-full flex-1 space-y-2">
-              {fatias.map((f) => (
-                <li key={f.label} className="flex items-center justify-between gap-2 text-sm">
-                  <span className="flex items-center gap-2 text-neutral-700">
-                    <span
-                      aria-hidden="true"
-                      className="h-2.5 w-2.5 shrink-0 rounded-full"
-                      style={{ backgroundColor: f.color }}
-                    />
-                    {f.label}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <span className="text-neutral-500">{currency(f.valor)}</span>
-                    <span className="w-10 text-right font-medium text-neutral-900">
-                      {f.pct.toFixed(0)}%
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {doPeriodo.length > 0 && (
+        <div className="mt-6">
+          <CategoryPie registros={doPeriodo} />
         </div>
       )}
     </div>

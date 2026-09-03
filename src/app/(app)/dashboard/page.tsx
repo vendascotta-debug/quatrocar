@@ -77,7 +77,7 @@ export default async function DashboardPage() {
               alerts.map((a) => (
                 <Link
                   key={`${vehicle.id}-${a.nome}`}
-                  href={`/veiculos/${vehicle.id}`}
+                  href={`/veiculos/${vehicle.id}/manutencao/${a.recordId}`}
                   className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
                 >
                   <div>
