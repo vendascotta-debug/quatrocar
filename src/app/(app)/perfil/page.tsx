@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import type { Profile } from "@/lib/types";
 import { PerfilForm } from "./form";
+import { ChangePasswordForm } from "./change-password-form";
 
 export default async function PerfilPage() {
   const supabase = await createClient();
@@ -34,6 +35,11 @@ export default async function PerfilPage() {
       </div>
 
       <PerfilForm profile={profile ?? undefined} />
+
+      <div className="rounded-xl border border-neutral-200 bg-white p-4">
+        <h2 className="mb-4 text-lg font-semibold text-neutral-900">Trocar senha</h2>
+        <ChangePasswordForm />
+      </div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ export async function signup(_prev: AuthState, formData: FormData): Promise<Auth
   const email = String(formData.get("email") || "");
   const password = String(formData.get("password") || "");
   const whatsapp = String(formData.get("whatsapp") || "").trim();
+  const aceiteTermos = formData.get("aceite_termos") === "on";
 
   if (password.length < 6) {
     return { error: "A senha deve ter pelo menos 6 caracteres." };
@@ -17,6 +18,10 @@ export async function signup(_prev: AuthState, formData: FormData): Promise<Auth
 
   if (!whatsapp) {
     return { error: "Informe seu número de WhatsApp." };
+  }
+
+  if (!aceiteTermos) {
+    return { error: "É preciso aceitar os Termos de Uso e a Política de Privacidade." };
   }
 
   const supabase = await createClient();

@@ -149,7 +149,7 @@ export default function PrivacidadePage() {
 
       <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
         <span className="text-neutral-700">Quatro<span className="text-sky-600">Car</span></span>{" "}
-        · quatrocar.com.br · © 2026 QuatroCar. Todos os direitos reservados.
+        · quatrocar.com.br · © 2026 QuatroCar — Cottag Brasil Negócios e Representações Ltda · CNPJ 04.967.880/0001-20. Todos os direitos reservados.
       </footer>
     </div>
   );

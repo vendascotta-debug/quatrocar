@@ -37,6 +37,8 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname === "/sitemap.xml" ||
     request.nextUrl.pathname === "/termos" ||
     request.nextUrl.pathname === "/privacidade" ||
+    request.nextUrl.pathname === "/esqueci-senha" ||
+    request.nextUrl.pathname === "/redefinir-senha" ||
     isAuthRoute ||
     request.nextUrl.pathname.startsWith("/auth/") ||
     request.nextUrl.pathname.startsWith("/api/");

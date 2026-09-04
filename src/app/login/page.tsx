@@ -66,6 +66,12 @@ export default function LoginPage() {
 
           {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
 
+          <p className="text-right text-sm">
+            <Link href="/esqueci-senha" className="text-neutral-600 underline hover:text-neutral-900">
+              Esqueci minha senha
+            </Link>
+          </p>
+
           <button
             type="submit"
             disabled={pending}

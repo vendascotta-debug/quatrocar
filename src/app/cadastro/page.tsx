@@ -16,6 +16,17 @@ export default function CadastroPage() {
         <h1 className="text-2xl font-semibold text-neutral-900">Criar conta</h1>
 
         <GoogleButton />
+        <p className="text-center text-xs text-neutral-500">
+          Ao continuar, você concorda com nossos{" "}
+          <Link href="/termos" target="_blank" className="underline">
+            Termos de Uso
+          </Link>{" "}
+          e{" "}
+          <Link href="/privacidade" target="_blank" className="underline">
+            Privacidade
+          </Link>
+          .
+        </p>
 
         <div className="flex items-center gap-3 text-xs text-neutral-400">
           <div className="h-px flex-1 bg-neutral-200" />
@@ -78,6 +89,26 @@ export default function CadastroPage() {
               className="w-full rounded-lg border border-neutral-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
             />
           </div>
+
+          <label className="flex items-start gap-2 text-sm text-neutral-600">
+            <input
+              type="checkbox"
+              name="aceite_termos"
+              required
+              className="mt-0.5 h-4 w-4 rounded border-neutral-300"
+            />
+            <span>
+              Li e concordo com os{" "}
+              <Link href="/termos" target="_blank" className="underline">
+                Termos de Uso
+              </Link>{" "}
+              e a{" "}
+              <Link href="/privacidade" target="_blank" className="underline">
+                Política de Privacidade
+              </Link>
+              .
+            </span>
+          </label>
 
           {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
 

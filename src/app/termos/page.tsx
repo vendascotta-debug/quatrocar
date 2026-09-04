@@ -19,10 +19,12 @@ export default function TermosPage() {
           <section>
             <h2 className="text-base font-semibold text-neutral-900">1. Sobre o QuatroCar</h2>
             <p className="mt-2">
-              O QuatroCar (quatrocar.com.br) é um serviço para donos de veículos registrarem o
-              histórico de manutenção, abastecimento, documentação (IPVA, licenciamento, multas
-              e afins) e seguro do carro, com lembretes automáticos de vencimento pelo painel e,
-              opcionalmente, por WhatsApp. Ao criar uma conta, você concorda com estes Termos.
+              O QuatroCar (quatrocar.com.br) é um serviço operado por{" "}
+              <strong>Cottag Brasil Negócios e Representações Ltda</strong>, CNPJ{" "}
+              04.967.880/0001-20, para donos de veículos registrarem o histórico de manutenção,
+              abastecimento, documentação (IPVA, licenciamento, multas e afins) e seguro do carro,
+              com lembretes automáticos de vencimento pelo painel e, opcionalmente, por WhatsApp.
+              Ao criar uma conta, você concorda com estes Termos.
             </p>
           </section>
 
@@ -38,8 +40,8 @@ export default function TermosPage() {
           <section>
             <h2 className="text-base font-semibold text-neutral-900">3. Planos e cobrança</h2>
             <p className="mt-2">
-              O QuatroCar oferece um plano Gratuito (1 veículo, sem custo) e planos pagos
-              (Premium e Empresas), com os valores e recursos exibidos na página de planos no
+              O QuatroCar oferece um plano Gratuito (1 veículo, sem custo) e um plano pago
+              (Premium), com os valores e recursos exibidos na página de planos no
               momento da assinatura. Os pagamentos das assinaturas são processados por um
               parceiro de pagamentos terceiro (atualmente a Kiwify) — o QuatroCar não armazena
               dados de cartão de crédito.
@@ -121,7 +123,7 @@ export default function TermosPage() {
 
       <footer className="border-t border-neutral-200 bg-white py-8 text-center text-xs text-neutral-500">
         <span className="text-neutral-700">Quatro<span className="text-sky-600">Car</span></span>{" "}
-        · quatrocar.com.br · © 2026 QuatroCar. Todos os direitos reservados.
+        · quatrocar.com.br · © 2026 QuatroCar — Cottag Brasil Negócios e Representações Ltda · CNPJ 04.967.880/0001-20. Todos os direitos reservados.
       </footer>
     </div>
   );

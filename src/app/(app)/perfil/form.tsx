@@ -33,8 +33,8 @@ export function PerfilForm({ profile }: { profile?: Profile }) {
           className={inputClass}
         />
         <p className="text-xs text-neutral-500">
-          O envio automático de alertas por WhatsApp ainda não está ativo — assim que estiver,
-          usaremos este número.
+          Usamos este número pra avisar quando uma manutenção, documento ou seguro estiver
+          vencendo, e pra mandar um resumo diário dos seus gastos.
         </p>
       </div>
 

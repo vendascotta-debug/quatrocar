@@ -852,7 +852,10 @@ export default function Home() {
               Privacidade
             </Link>
           </div>
-          <p className="mt-2">© 2026 QuatroCar. Todos os direitos reservados.</p>
+          <p className="mt-2">
+            © 2026 QuatroCar — Cottag Brasil Negócios e Representações Ltda · CNPJ
+            04.967.880/0001-20. Todos os direitos reservados.
+          </p>
         </footer>
       </div>
     </>
