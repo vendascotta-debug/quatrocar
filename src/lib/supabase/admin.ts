@@ -10,5 +10,10 @@ export function createAdminClient() {
 }
 
 export function isAdminEmail(email: string | null | undefined) {
-  return !!email && email.toLowerCase() === process.env.ADMIN_EMAIL?.toLowerCase();
+  if (!email) return false;
+  const admins = (process.env.ADMIN_EMAIL ?? "")
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+  return admins.includes(email.toLowerCase());
 }
