@@ -35,6 +35,7 @@ export type Profile = {
   telefone: string | null;
   whatsapp: string | null;
   ultimo_resumo_whatsapp_em: string | null;
+  kiwify_sale_id: string | null;
   plano: "free" | "premium" | "empresas" | "cortesia";
   criado_em: string;
 };

@@ -1,7 +1,11 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 
-export async function upgradeUserByEmail(email: string, plano: "premium" | "empresas" | "free") {
+export async function upgradeUserByEmail(
+  email: string,
+  plano: "premium" | "empresas" | "free",
+  kiwifySaleId?: string
+) {
   const admin = createAdminClient();
 
   const { data } = await admin.auth.admin.listUsers({ perPage: 1000 });
@@ -11,6 +15,9 @@ export async function upgradeUserByEmail(email: string, plano: "premium" | "empr
     return { found: false as const };
   }
 
-  await admin.from("profiles").update({ plano }).eq("id", user.id);
+  const update: { plano: string; kiwify_sale_id?: string } = { plano };
+  if (kiwifySaleId) update.kiwify_sale_id = kiwifySaleId;
+
+  await admin.from("profiles").update(update).eq("id", user.id);
   return { found: true as const, userId: user.id };
 }

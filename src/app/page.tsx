@@ -8,6 +8,7 @@ import { RoadPattern } from "@/components/landing/road-pattern";
 import { CarIcon } from "@/components/landing/car-icon";
 import { ExitIntentPopup } from "@/components/landing/exit-intent";
 import { ScrollToTop } from "@/components/landing/scroll-to-top";
+import { SupportWidget } from "@/components/landing/support-widget";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
 import { TestimonialCarousel } from "@/components/landing/testimonial-carousel";
 import { BrandMarquee } from "@/components/landing/brand-marquee";
@@ -293,6 +294,7 @@ export default function Home() {
         <ScrollToTop />
         <LandingHeader />
         <ExitIntentPopup />
+        <SupportWidget />
 
         <main id="conteudo">
           {/* HERO */}
@@ -864,6 +866,15 @@ export default function Home() {
         <footer className="border-t border-neutral-900 bg-neutral-950 py-8 text-center text-xs text-neutral-500">
           <span className="text-neutral-300">Quatro<span className="text-sky-400">Car</span></span>{" "}
           · quatrocar.com.br
+          <div className="mt-2 flex items-center justify-center gap-4">
+            <Link href="/termos" className="hover:text-neutral-300">
+              Termos de Uso
+            </Link>
+            <Link href="/privacidade" className="hover:text-neutral-300">
+              Privacidade
+            </Link>
+          </div>
+          <p className="mt-2">© 2026 QuatroCar. Todos os direitos reservados.</p>
         </footer>
       </div>
     </>
