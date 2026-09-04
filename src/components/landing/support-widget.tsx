@@ -122,7 +122,7 @@ export function SupportWidget() {
 
             {tela.tipo === "upgrade" && (
               <div className="space-y-3">
-                <p className="text-sm text-neutral-300">Escolha o plano:</p>
+                <p className="text-sm text-neutral-300">Assine o plano Premium:</p>
                 <a
                   href="https://pay.kiwify.com.br/N7OnqGy"
                   target="_blank"
@@ -130,14 +130,6 @@ export function SupportWidget() {
                   className="block rounded-lg bg-sky-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 hover:bg-sky-300"
                 >
                   Premium — R$ 19,90/mês
-                </a>
-                <a
-                  href="https://pay.kiwify.com.br/7llAyN6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block rounded-lg border border-white/15 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-white/10"
-                >
-                  Empresas — a partir de R$ 79,90/mês
                 </a>
                 <Link
                   href="/#planos"
