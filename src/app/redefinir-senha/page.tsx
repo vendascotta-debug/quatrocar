@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { PasswordInput } from "@/components/auth/password-input";
 
 export default function RedefinirSenhaPage() {
   const router = useRouter();
@@ -73,9 +74,8 @@ export default function RedefinirSenhaPage() {
               <label htmlFor="senha" className="text-sm font-medium text-neutral-700">
                 Nova senha
               </label>
-              <input
+              <PasswordInput
                 id="senha"
-                type="password"
                 required
                 minLength={6}
                 value={senha}
@@ -87,9 +87,8 @@ export default function RedefinirSenhaPage() {
               <label htmlFor="confirmacao" className="text-sm font-medium text-neutral-700">
                 Confirme a nova senha
               </label>
-              <input
+              <PasswordInput
                 id="confirmacao"
-                type="password"
                 required
                 minLength={6}
                 value={confirmacao}
