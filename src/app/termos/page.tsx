@@ -38,24 +38,20 @@ export default function TermosPage() {
           </section>
 
           <section>
-            <h2 className="text-base font-semibold text-neutral-900">3. Planos e cobrança</h2>
+            <h2 className="text-base font-semibold text-neutral-900">3. Pagamento e acesso</h2>
             <p className="mt-2">
-              O QuatroCar oferece um plano Gratuito (1 veículo, sem custo) e um plano pago
-              (Premium), com os valores e recursos exibidos na página de planos no
-              momento da assinatura. Os pagamentos das assinaturas são processados por um
-              parceiro de pagamentos terceiro (atualmente a Kiwify) — o QuatroCar não armazena
-              dados de cartão de crédito.
+              O acesso ao QuatroCar é vendido mediante um pagamento único (à vista ou parcelado
+              no cartão de crédito), com o valor exibido na página de planos no momento da
+              compra. Não há mensalidade nem cobrança recorrente. O pagamento é processado por
+              um parceiro de pagamentos terceiro (atualmente a Kiwify) — o QuatroCar não
+              armazena dados de cartão de crédito.
             </p>
             <p className="mt-2">
-              A assinatura é mensal e não tem fidelidade: você pode cancelar quando quiser,
-              diretamente pelo painel do parceiro de pagamentos ou entrando em contato com nosso
-              suporte. O cancelamento interrompe as cobranças futuras; o acesso aos recursos pagos
-              continua até o fim do período já pago.
-            </p>
-            <p className="mt-2">
-              Conforme o Art. 49 do Código de Defesa do Consumidor, você tem direito ao
-              arrependimento e reembolso integral em até 7 dias corridos após a contratação, desde
-              que solicitado dentro desse prazo.
+              Você tem <strong>14 dias corridos</strong> a partir da compra para solicitar
+              reembolso integral do valor pago, sem necessidade de justificativa — um prazo
+              maior que o mínimo de 7 dias já garantido pelo Art. 49 do Código de Defesa do
+              Consumidor para compras feitas fora do estabelecimento comercial. Após esse prazo,
+              o valor não é reembolsável, mas o acesso ao QuatroCar permanece vitalício.
             </p>
           </section>
 

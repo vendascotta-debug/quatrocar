@@ -12,6 +12,7 @@ import { SupportWidget } from "@/components/landing/support-widget";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
 import { TestimonialCarousel } from "@/components/landing/testimonial-carousel";
 import { BrandMarquee } from "@/components/landing/brand-marquee";
+import { KIWIFY_CHECKOUT_URL } from "@/lib/constants";
 import {
   IconHistorico,
   IconAlerta,
@@ -24,7 +25,7 @@ import {
 export const metadata: Metadata = {
   title: "QuatroCar — A memória do seu carro, sempre organizada",
   description:
-    "Registre as manutenções, acompanhe o histórico do seu veículo e receba lembretes automáticos de manutenção. Controle de gastos, quilometragem e documentos em um só lugar. Grátis para começar.",
+    "Registre as manutenções, acompanhe o histórico do seu veículo e receba lembretes automáticos de manutenção. Controle de gastos, quilometragem e documentos em um só lugar. Assine com 14 dias de garantia.",
   openGraph: {
     title: "QuatroCar — A memória do seu carro, sempre organizada",
     description:
@@ -129,27 +130,14 @@ const comQuatroCar = [
 
 const planos = [
   {
-    nome: "Gratuito",
-    publico: "Quem quer conhecer a plataforma",
-    preco: "R$ 0",
-    periodo: "para sempre",
-    destaque: false,
-    itens: [
-      "1 veículo",
-      "Histórico básico",
-      "Lembretes de manutenção (painel e WhatsApp)",
-      "Controle de abastecimento",
-      "Dashboard simples",
-    ],
-  },
-  {
     nome: "Premium",
     publico: "Proprietários de veículos",
-    preco: "R$ 19,90",
-    periodo: "por mês",
+    preco: "R$ 97",
+    periodo: "pagamento único · ou 12x no cartão",
     destaque: true,
-    checkoutUrl: "https://pay.kiwify.com.br/N7OnqGy",
+    checkoutUrl: KIWIFY_CHECKOUT_URL,
     itens: [
+      "Acesso vitalício, sem mensalidade",
       "Veículos ilimitados",
       "Histórico completo",
       "Relatórios em PDF",
@@ -211,7 +199,7 @@ const faq = [
   },
   {
     q: "Preciso pagar para usar?",
-    a: "Não. O plano gratuito permite cadastrar 1 veículo com histórico e alertas de manutenção, sem custo e sem cartão de crédito. Planos pagos liberam veículos ilimitados e recursos extras.",
+    a: "Sim. O acesso ao QuatroCar é um pagamento único de R$ 97 (à vista ou parcelado em até 12x no cartão), sem mensalidade. Se não gostar, você tem 14 dias de garantia com devolução integral do valor.",
   },
   {
     q: "Posso cadastrar mais de um veículo?",
@@ -234,8 +222,8 @@ const faq = [
     a: "Sim. Cada usuário só tem acesso aos próprios dados, protegidos por autenticação e regras de segurança no banco de dados.",
   },
   {
-    q: "Como funciona a assinatura?",
-    a: "A assinatura é mensal, processada com segurança pela Kiwify, e pode ser cancelada quando você quiser — sem fidelidade.",
+    q: "Como funciona o pagamento?",
+    a: "É um pagamento único de R$ 97, processado com segurança pela Kiwify — à vista ou parcelado em até 12x no cartão. Depois de pago, o acesso ao QuatroCar é vitalício, sem mensalidade.",
   },
 ];
 
@@ -308,12 +296,14 @@ export default function Home() {
                 </Reveal>
                 <Reveal delay={620}>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center md:justify-start">
-                    <Link
-                      href="/cadastro"
+                    <a
+                      href={KIWIFY_CHECKOUT_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="rounded-lg bg-sky-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
                     >
                       Começar agora
-                    </Link>
+                    </a>
                     <Link
                       href="#como-funciona"
                       className="rounded-lg border border-white/20 px-8 py-3.5 text-center text-base font-medium text-white transition-colors hover:bg-white/10"
@@ -322,7 +312,7 @@ export default function Home() {
                     </Link>
                   </div>
                   <p className="mt-4 text-xs text-neutral-400">
-                    Grátis para 1 veículo. Sem cartão de crédito.
+                    Garantia de 14 dias — não gostou, devolvemos 100% do valor.
                   </p>
                 </Reveal>
               </div>
@@ -424,12 +414,14 @@ export default function Home() {
                   organizados automaticamente conforme você registra. Sem planilha, sem
                   papel, sem depender da memória.
                 </p>
-                <Link
-                  href="/cadastro"
+                <a
+                  href={KIWIFY_CHECKOUT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-6 inline-block rounded-lg bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
                 >
                   Quero organizar meu carro
-                </Link>
+                </a>
               </Reveal>
 
               <Reveal delay={150}>
@@ -526,12 +518,14 @@ export default function Home() {
                   tiver vencido — o QuatroCar manda uma mensagem no seu WhatsApp, com um link
                   direto para os detalhes. Sem precisar lembrar de abrir o app.
                 </p>
-                <Link
-                  href="/cadastro"
+                <a
+                  href={KIWIFY_CHECKOUT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-6 inline-block rounded-lg bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
                 >
                   Quero receber os avisos
-                </Link>
+                </a>
               </Reveal>
             </div>
           </section>
@@ -578,12 +572,14 @@ export default function Home() {
                     licenciamento, multas e seguro do carro no mesmo lugar, com aviso antes do
                     vencimento.
                   </p>
-                  <Link
-                    href="/cadastro"
+                  <a
+                    href={KIWIFY_CHECKOUT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="shrink-0 rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
                   >
                     Quero organizar meus documentos
-                  </Link>
+                  </a>
                 </div>
               </Reveal>
             </div>
@@ -734,21 +730,22 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
             <Reveal className="text-center">
               <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
-                Assinatura
+                Acesso vitalício
               </span>
               <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
                 Você já viu o que o QuatroCar faz. Agora veja quanto custa.
               </h2>
               <p className="mt-3 text-neutral-600">
-                Comece de graça. Evolua quando precisar de mais.
+                Um pagamento único. Sem mensalidade, sem preocupação com cobrança recorrente.
               </p>
             </Reveal>
 
             <Reveal delay={80}>
               <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4 text-center text-sm text-neutral-700">
-                Uma troca de óleo esquecida pode custar centenas de reais. O QuatroCar Premium
-                custa menos de <strong className="text-neutral-900">R$ 0,70 por dia</strong> para
-                ajudar a evitar gastos inesperados e manter o histórico do veículo organizado.
+                Uma troca de óleo esquecida pode custar centenas de reais. Por{" "}
+                <strong className="text-neutral-900">R$ 97 (ou 12x no cartão)</strong>, você
+                garante acesso vitalício ao QuatroCar pra nunca mais perder o controle do seu
+                carro.
               </div>
             </Reveal>
 
@@ -758,29 +755,30 @@ export default function Home() {
 
             <Reveal delay={150}>
               <p className="mx-auto mt-6 max-w-xl text-center text-xs text-neutral-500">
-                Pagamento processado com segurança pela Kiwify. Assinatura mensal, sem
-                fidelidade — cancele quando quiser.
+                Pagamento processado com segurança pela Kiwify, à vista ou parcelado em até 12x
+                no cartão. Acesso vitalício, sem mensalidade.
               </p>
             </Reveal>
 
             <Reveal delay={200}>
               <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-neutral-900 bg-neutral-950 p-6 text-center text-white">
                 <span className="rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
-                  Oferta de lançamento
+                  Garantia de 14 dias
                 </span>
                 <p className="mt-3 text-lg font-semibold">
-                  14 dias grátis · R$ 19,90/mês para os primeiros 1.000 assinantes
+                  R$ 97 pagamento único · acesso vitalício ao QuatroCar
                 </p>
                 <p className="mt-2 text-sm text-neutral-300">
-                  Depois desse período, novos clientes pagam R$ 29,90/mês. Quem entrar na fase
-                  inicial mantém o preço de R$ 19,90 enquanto permanecer assinante.
+                  Não gostou nos primeiros 14 dias? Devolvemos 100% do valor, sem burocracia.
                 </p>
-                <Link
-                  href="/cadastro"
+                <a
+                  href={KIWIFY_CHECKOUT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-6 inline-block rounded-lg bg-sky-400 px-8 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
                 >
                   Assinar o QuatroCar
-                </Link>
+                </a>
               </div>
             </Reveal>
             </div>
@@ -829,14 +827,17 @@ export default function Home() {
                 Seu carro também precisa de memória
               </h2>
               <p className="mt-3 text-neutral-300">
-                Leva menos de 2 minutos para cadastrar seu primeiro veículo.
+                Assine com garantia de 14 dias e cadastre seu primeiro veículo em menos de 2
+                minutos.
               </p>
-              <Link
-                href="/cadastro"
+              <a
+                href={KIWIFY_CHECKOUT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-8 inline-block rounded-lg bg-sky-400 px-8 py-3.5 text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
               >
                 Começar agora
-              </Link>
+              </a>
             </Reveal>
           </section>
         </main>

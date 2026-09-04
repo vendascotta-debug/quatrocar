@@ -89,7 +89,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
     >
       <div
         ref={trackRef}
-        className="mx-auto flex max-w-3xl snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-2 pt-4 sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-0 sm:pt-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        className="mx-auto flex max-w-md snap-x snap-mandatory justify-center gap-6 overflow-x-auto scroll-smooth px-4 pb-2 pt-4 sm:overflow-visible sm:snap-none sm:px-0 sm:pt-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         {planos.map((p) => (
           <div key={p.nome} className="w-[85%] shrink-0 snap-center sm:w-auto">
@@ -160,6 +160,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
         ))}
       </div>
 
+      {planos.length > 1 && (
       <div className="mt-5 flex justify-center gap-2 sm:hidden">
         {planos.map((p, i) => (
           <button
@@ -177,6 +178,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
           />
         ))}
       </div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import { KIWIFY_CHECKOUT_URL } from "@/lib/constants";
 
 const STORAGE_KEY = "quatrocar_exit_offer_seen";
 
@@ -81,26 +81,28 @@ export function ExitIntentPopup() {
         </button>
 
         <span className="inline-block rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
-          Oferta de lançamento
+          Garantia de 14 dias
         </span>
 
         <h2 id="exit-offer-title" className="mt-4 text-xl font-bold sm:text-2xl">
           Espera! Não perca essa condição
         </h2>
         <p className="mt-3 text-sm text-neutral-300">
-          <strong className="text-sky-400">14 dias grátis</strong> e{" "}
-          <strong className="text-sky-400">R$ 19,90/mês</strong> para os primeiros 1.000
-          assinantes do QuatroCar Premium. Depois desse período, o valor sobe para R$ 29,90/mês —
-          quem entra agora mantém o preço promocional enquanto for assinante.
+          Acesso vitalício ao QuatroCar por{" "}
+          <strong className="text-sky-400">R$ 97</strong> (à vista ou 12x no cartão). Não gostou
+          nos primeiros <strong className="text-sky-400">14 dias</strong>? Devolvemos 100% do
+          valor.
         </p>
 
-        <Link
-          href="/cadastro"
+        <a
+          href={KIWIFY_CHECKOUT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={() => setOpen(false)}
           className="mt-6 block rounded-lg bg-sky-400 px-6 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
         >
-          Garantir minha vaga com desconto
-        </Link>
+          Garantir meu acesso agora
+        </a>
         <button
           type="button"
           onClick={() => setOpen(false)}

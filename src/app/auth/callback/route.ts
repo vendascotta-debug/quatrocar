@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { aplicarUpgradePendente } from "@/lib/webhook-helpers";
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
@@ -20,6 +21,10 @@ export async function GET(request: Request) {
     }
 
     if (data.user) {
+      if (data.user.email) {
+        await aplicarUpgradePendente(data.user.email, data.user.id);
+      }
+
       const { data: profile } = await supabase
         .from("profiles")
         .select("whatsapp")

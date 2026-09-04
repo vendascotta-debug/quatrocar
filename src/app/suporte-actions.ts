@@ -29,17 +29,17 @@ export async function solicitarReembolso(email: string): Promise<SuporteResultad
   }
 
   if (perfil.plano === "free") {
-    return { ok: false, mensagem: "Esse e-mail está no plano gratuito, sem nenhuma cobrança pra reembolsar." };
+    return { ok: false, mensagem: "Não encontramos nenhuma compra aprovada pra esse e-mail." };
   }
 
   if (!perfil.kiwify_sale_id) {
     await enviarEmailSuporte(
       "QuatroCar — Pedido de reembolso (sem ID de venda salvo)",
-      `E-mail do cliente: ${email}\nPlano atual: ${perfil.plano}\n\nNão encontramos o ID da venda na Kiwify pra esse usuário (provavelmente assinou antes do webhook automático existir). Processe o reembolso manualmente no painel da Kiwify.`
+      `E-mail do cliente: ${email}\nPlano atual: ${perfil.plano}\n\nNão encontramos o ID da venda na Kiwify pra esse usuário (provavelmente comprou antes do webhook automático existir). Processe o reembolso manualmente no painel da Kiwify.`
     );
     return {
       ok: true,
-      mensagem: "Recebemos seu pedido. Como sua assinatura é de antes da nossa automação, vamos processar manualmente e te retornamos em breve.",
+      mensagem: "Recebemos seu pedido. Como sua compra é de antes da nossa automação, vamos processar manualmente e te retornamos em breve.",
     };
   }
 
@@ -61,14 +61,13 @@ export async function solicitarReembolso(email: string): Promise<SuporteResultad
 }
 
 const ASSUNTOS: Record<string, string> = {
-  cancelar: "QuatroCar — Pedido de cancelamento de assinatura",
   problema: "QuatroCar — Problema reportado",
   duvida: "QuatroCar — Dúvida do cliente",
   suporte: "QuatroCar — Falar com suporte",
 };
 
 export async function encaminharSuporte(
-  tipo: "cancelar" | "problema" | "duvida" | "suporte",
+  tipo: "problema" | "duvida" | "suporte",
   email: string,
   mensagem: string
 ): Promise<SuporteResultado> {
@@ -79,10 +78,7 @@ export async function encaminharSuporte(
     );
     return {
       ok: true,
-      mensagem:
-        tipo === "cancelar"
-          ? "Recebemos seu pedido de cancelamento. Vamos processar e confirmar por e-mail em breve."
-          : "Recebemos sua mensagem! Nosso time vai te responder por e-mail em breve.",
+      mensagem: "Recebemos sua mensagem! Nosso time vai te responder por e-mail em breve.",
     };
   } catch {
     return { ok: false, mensagem: "Não conseguimos enviar sua mensagem agora. Tenta de novo em alguns minutos." };

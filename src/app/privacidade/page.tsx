@@ -42,7 +42,7 @@ export default function PrivacidadePage() {
                 Analytics, para entendermos como melhorar o QuatroCar.
               </li>
               <li>
-                Dados de pagamento da assinatura: processados diretamente pelo parceiro de
+                Dados de pagamento da compra: processados diretamente pelo parceiro de
                 pagamentos (Kiwify) — o QuatroCar não tem acesso a números de cartão de crédito.
               </li>
             </ul>

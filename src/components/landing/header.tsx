@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { KIWIFY_CHECKOUT_URL } from "@/lib/constants";
 
 const navLinks = [
   { href: "#recursos", label: "Recursos" },
@@ -63,12 +64,14 @@ export function LandingHeader() {
           >
             Entrar
           </Link>
-          <Link
-            href="/cadastro"
+          <a
+            href={KIWIFY_CHECKOUT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-lg bg-sky-400 px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
           >
-            Criar conta grátis
-          </Link>
+            Começar agora
+          </a>
         </div>
 
         <button
@@ -123,13 +126,15 @@ export function LandingHeader() {
             >
               Entrar
             </Link>
-            <Link
-              href="/cadastro"
+            <a
+              href={KIWIFY_CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="rounded-lg bg-sky-400 px-5 py-3 text-center text-base font-semibold text-neutral-950"
             >
-              Criar conta grátis
-            </Link>
+              Começar agora
+            </a>
           </div>
         </nav>
       </div>

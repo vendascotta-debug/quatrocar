@@ -3,11 +3,11 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { solicitarReembolso, encaminharSuporte } from "@/app/suporte-actions";
+import { KIWIFY_CHECKOUT_URL } from "@/lib/constants";
 
 type Tela =
   | { tipo: "menu" }
   | { tipo: "reembolso-email" }
-  | { tipo: "cancelar-email" }
   | { tipo: "upgrade" }
   | { tipo: "mensagem"; assunto: "problema" | "duvida" | "suporte"; titulo: string }
   | { tipo: "resultado"; texto: string };
@@ -55,13 +55,10 @@ export function SupportWidget() {
               <div className="space-y-2">
                 <p className="mb-1 text-sm text-neutral-300">Como posso te ajudar? 👋</p>
                 <button className={itemClass} onClick={() => setTela({ tipo: "reembolso-email" })}>
-                  💰 Solicitar reembolso (7 dias)
-                </button>
-                <button className={itemClass} onClick={() => setTela({ tipo: "cancelar-email" })}>
-                  🚫 Cancelar minha assinatura
+                  💰 Solicitar reembolso (garantia de 14 dias)
                 </button>
                 <button className={itemClass} onClick={() => setTela({ tipo: "upgrade" })}>
-                  ⬆️ Assinar ou trocar de plano
+                  🚗 Comprar o acesso ao QuatroCar
                 </button>
                 <button
                   className={itemClass}
@@ -99,44 +96,25 @@ export function SupportWidget() {
               />
             )}
 
-            {tela.tipo === "cancelar-email" && (
-              <div className="space-y-3">
-                <p className="text-sm text-neutral-300">
-                  Sentimos muito que queira cancelar 😢 Confirma seu e-mail que a gente processa o
-                  cancelamento pra você:
-                </p>
-                <EmailForm
-                  label="E-mail cadastrado"
-                  botao="Cancelar assinatura"
-                  pending={pending}
-                  onVoltar={reset}
-                  onEnviar={(email) =>
-                    startTransition(async () => {
-                      const r = await encaminharSuporte("cancelar", email, "Pedido de cancelamento de assinatura.");
-                      setTela({ tipo: "resultado", texto: r.mensagem });
-                    })
-                  }
-                />
-              </div>
-            )}
-
             {tela.tipo === "upgrade" && (
               <div className="space-y-3">
-                <p className="text-sm text-neutral-300">Assine o plano Premium:</p>
+                <p className="text-sm text-neutral-300">
+                  Acesso vitalício ao QuatroCar, pagamento único:
+                </p>
                 <a
-                  href="https://pay.kiwify.com.br/N7OnqGy"
+                  href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block rounded-lg bg-sky-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 hover:bg-sky-300"
                 >
-                  Premium — R$ 19,90/mês
+                  R$ 97 à vista ou 12x no cartão
                 </a>
                 <Link
                   href="/#planos"
                   onClick={fechar}
                   className="block text-center text-xs text-neutral-400 underline"
                 >
-                  Ver todos os planos e recursos
+                  Ver todos os recursos incluídos
                 </Link>
                 <button onClick={reset} className="text-xs text-neutral-400 underline">
                   ← Voltar

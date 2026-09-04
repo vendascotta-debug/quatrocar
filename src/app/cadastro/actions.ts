@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { aplicarUpgradePendente } from "@/lib/webhook-helpers";
 
 export type AuthState = { error?: string };
 
@@ -25,7 +26,7 @@ export async function signup(_prev: AuthState, formData: FormData): Promise<Auth
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: { data: { nome, whatsapp } },
@@ -33,6 +34,10 @@ export async function signup(_prev: AuthState, formData: FormData): Promise<Auth
 
   if (error) {
     return { error: error.message };
+  }
+
+  if (data.user) {
+    await aplicarUpgradePendente(email, data.user.id);
   }
 
   redirect("/dashboard");
