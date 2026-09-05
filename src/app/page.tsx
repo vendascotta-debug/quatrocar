@@ -493,7 +493,10 @@ export default function Home() {
               <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((s, i) => (
                   <Reveal key={s.n} delay={i * 100} className="text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-lg font-bold text-cyan-400">
+                    <div
+                      className="animate-ring-pulse mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-lg font-bold text-cyan-400"
+                      style={{ animationDelay: `${i * 350}ms` }}
+                    >
                       {s.n}
                     </div>
                     <h3 className="mt-4 font-semibold text-white">{s.title}</h3>
@@ -570,7 +573,10 @@ export default function Home() {
                 {beneficios.map((f, i) => (
                   <Reveal key={f.title} delay={i * 80}>
                     <div className="group h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_8px_30px_-8px_theme(colors.cyan.500/0.35)]">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/15 text-cyan-300 transition-colors duration-300 group-hover:bg-cyan-400/25">
+                      <span
+                        className="animate-ring-pulse flex h-11 w-11 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/15 text-cyan-300 transition-colors duration-300 group-hover:bg-cyan-400/25"
+                        style={{ animationDelay: `${i * 350}ms` }}
+                      >
                         <f.Icon className="h-5 w-5" />
                       </span>
                       <h3 className="mt-4 font-semibold text-white">{f.title}</h3>
