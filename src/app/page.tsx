@@ -134,6 +134,9 @@ const planos = [
     publico: "Proprietários de veículos",
     preco: "R$ 97",
     periodo: "pagamento único · ou 12x no cartão",
+    precoDe: "R$ 497",
+    precoParcela: "R$ 9,97",
+    precoAvista: "R$ 97,00",
     destaque: true,
     checkoutUrl: KIWIFY_CHECKOUT_URL,
     itens: [
@@ -722,30 +725,29 @@ export default function Home() {
           </section>
 
           {/* PRICING */}
-          <section id="planos" className="relative overflow-hidden bg-neutral-50 py-16 sm:py-24">
+          <section id="planos" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_top,theme(colors.sky.100),transparent_70%)]"
+              className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,theme(colors.sky.500/0.25),transparent_70%)]"
             />
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
             <Reveal className="text-center">
-              <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+              <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                 Acesso vitalício
               </span>
-              <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+              <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                 Você já viu o que o QuatroCar faz. Agora veja quanto custa.
               </h2>
-              <p className="mt-3 text-neutral-600">
+              <p className="mt-3 text-neutral-300">
                 Um pagamento único. Sem mensalidade, sem preocupação com cobrança recorrente.
               </p>
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4 text-center text-sm text-neutral-700">
+              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-sky-400/20 bg-sky-400/5 px-5 py-4 text-center text-sm text-neutral-200">
                 Uma troca de óleo esquecida pode custar centenas de reais. Por{" "}
-                <strong className="text-neutral-900">R$ 97 (ou 12x no cartão)</strong>, você
-                garante acesso vitalício ao QuatroCar pra nunca mais perder o controle do seu
-                carro.
+                <strong className="text-white">R$ 97 (ou 12x no cartão)</strong>, você garante
+                acesso vitalício ao QuatroCar pra nunca mais perder o controle do seu carro.
               </div>
             </Reveal>
 
@@ -754,14 +756,14 @@ export default function Home() {
             </div>
 
             <Reveal delay={150}>
-              <p className="mx-auto mt-6 max-w-xl text-center text-xs text-neutral-500">
+              <p className="mx-auto mt-6 max-w-xl text-center text-xs text-neutral-400">
                 Pagamento processado com segurança pela Kiwify, à vista ou parcelado em até 12x
                 no cartão. Acesso vitalício, sem mensalidade.
               </p>
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-neutral-900 bg-neutral-950 p-6 text-center text-white">
+              <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-sky-400 bg-sky-400/10 p-6 text-center">
                 <span className="rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
                   Garantia de 14 dias
                 </span>
