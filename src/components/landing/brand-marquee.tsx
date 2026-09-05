@@ -1,19 +1,21 @@
+import Image from "next/image";
+
 const marcas = [
-  "Volkswagen",
-  "Toyota",
-  "Ford",
-  "Chevrolet",
-  "Fiat",
-  "Honda",
-  "Hyundai",
-  "Renault",
-  "Nissan",
-  "Jeep",
-  "BMW",
-  "Kia",
-  "Peugeot",
-  "Citroën",
-  "Mitsubishi",
+  { nome: "Volkswagen", logo: "volkswagen" },
+  { nome: "Toyota", logo: "toyota" },
+  { nome: "Ford", logo: "ford" },
+  { nome: "Chevrolet", logo: "chevrolet" },
+  { nome: "Fiat", logo: "fiat" },
+  { nome: "Honda", logo: "honda" },
+  { nome: "Hyundai", logo: "hyundai" },
+  { nome: "Renault", logo: "renault" },
+  { nome: "Nissan", logo: "nissan" },
+  { nome: "Jeep", logo: "jeep" },
+  { nome: "BMW", logo: "bmw" },
+  { nome: "Kia", logo: "kia" },
+  { nome: "Peugeot", logo: "peugeot" },
+  { nome: "Citroën", logo: "citroen" },
+  { nome: "Mitsubishi", logo: "mitsubishi" },
 ];
 
 export function BrandMarquee() {
@@ -28,10 +30,16 @@ export function BrandMarquee() {
         <div className="flex w-max animate-marquee items-center gap-4 motion-reduce:animate-none">
           {items.map((marca, i) => (
             <span
-              key={`${marca}-${i}`}
-              className="flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-bold tracking-wide text-neutral-300"
+              key={`${marca.nome}-${i}`}
+              className="flex h-14 w-24 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white p-3 shadow-sm"
             >
-              {marca}
+              <Image
+                src={`/images/marcas/${marca.logo}.png`}
+                alt={marca.nome}
+                width={80}
+                height={40}
+                className="h-full w-full object-contain"
+              />
             </span>
           ))}
         </div>
