@@ -40,18 +40,21 @@ export default function TermosPage() {
           <section>
             <h2 className="text-base font-semibold text-neutral-900">3. Pagamento e acesso</h2>
             <p className="mt-2">
-              O acesso ao QuatroCar é vendido mediante um pagamento único (à vista ou parcelado
-              no cartão de crédito), com o valor exibido na página de planos no momento da
-              compra. Não há mensalidade nem cobrança recorrente. O pagamento é processado por
-              um parceiro de pagamentos terceiro (atualmente a Kiwify) — o QuatroCar não
-              armazena dados de cartão de crédito.
+              O acesso ao QuatroCar é vendido como uma assinatura anual (à vista ou parcelada no
+              cartão de crédito), com o valor exibido na página de planos no momento da compra.
+              A assinatura se renova automaticamente a cada 12 meses, com uma nova cobrança do
+              mesmo valor vigente, até que seja cancelada. O pagamento é processado por um
+              parceiro de pagamentos terceiro (atualmente a Kiwify) — o QuatroCar não armazena
+              dados de cartão de crédito.
             </p>
             <p className="mt-2">
-              Você tem <strong>14 dias corridos</strong> a partir da compra para solicitar
-              reembolso integral do valor pago, sem necessidade de justificativa — um prazo
-              maior que o mínimo de 7 dias já garantido pelo Art. 49 do Código de Defesa do
-              Consumidor para compras feitas fora do estabelecimento comercial. Após esse prazo,
-              o valor não é reembolsável, mas o acesso ao QuatroCar permanece vitalício.
+              Você tem <strong>14 dias corridos</strong> a partir da compra (ou de cada renovação)
+              para solicitar reembolso integral do valor pago, sem necessidade de justificativa —
+              um prazo maior que o mínimo de 7 dias já garantido pelo Art. 49 do Código de Defesa
+              do Consumidor para compras feitas fora do estabelecimento comercial. Após esse
+              prazo, o valor da cobrança vigente não é reembolsável, mas você pode cancelar a
+              renovação automática a qualquer momento pelo balão de suporte no site — o acesso
+              continua até o fim do período já pago, sem nova cobrança depois disso.
             </p>
           </section>
 

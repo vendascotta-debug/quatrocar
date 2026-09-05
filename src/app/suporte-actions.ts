@@ -60,6 +60,24 @@ export async function solicitarReembolso(email: string): Promise<SuporteResultad
   }
 }
 
+export async function solicitarCancelamento(email: string): Promise<SuporteResultado> {
+  const perfil = await buscarPerfilPorEmail(email);
+
+  if (!perfil || perfil.plano === "free") {
+    return { ok: false, mensagem: "Não encontramos uma assinatura ativa do QuatroCar pra esse e-mail." };
+  }
+
+  await enviarEmailSuporte(
+    "QuatroCar — Pedido de cancelamento de renovação",
+    `E-mail do cliente: ${email}\nPlano atual: ${perfil.plano}\nID da venda: ${perfil.kiwify_sale_id ?? "(não registrado)"}\n\nCliente pediu pra cancelar a renovação automática da assinatura anual. Cancele na Kiwify pra evitar a próxima cobrança.`
+  );
+
+  return {
+    ok: true,
+    mensagem: "Recebemos seu pedido! Vamos cancelar a renovação automática da sua assinatura — você continua com acesso até o fim do período já pago, e não haverá nova cobrança.",
+  };
+}
+
 const ASSUNTOS: Record<string, string> = {
   problema: "QuatroCar — Problema reportado",
   duvida: "QuatroCar — Dúvida do cliente",

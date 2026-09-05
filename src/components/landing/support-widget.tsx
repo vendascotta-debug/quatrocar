@@ -2,12 +2,13 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { solicitarReembolso, encaminharSuporte } from "@/app/suporte-actions";
+import { solicitarReembolso, solicitarCancelamento, encaminharSuporte } from "@/app/suporte-actions";
 import { KIWIFY_CHECKOUT_URL } from "@/lib/constants";
 
 type Tela =
   | { tipo: "menu" }
   | { tipo: "reembolso-email" }
+  | { tipo: "cancelar-email" }
   | { tipo: "upgrade" }
   | { tipo: "mensagem"; assunto: "problema" | "duvida" | "suporte"; titulo: string }
   | { tipo: "resultado"; texto: string };
@@ -58,7 +59,10 @@ export function SupportWidget() {
                   💰 Solicitar reembolso (garantia de 14 dias)
                 </button>
                 <button className={itemClass} onClick={() => setTela({ tipo: "upgrade" })}>
-                  🚗 Comprar o acesso ao QuatroCar
+                  🚗 Assinar o QuatroCar
+                </button>
+                <button className={itemClass} onClick={() => setTela({ tipo: "cancelar-email" })}>
+                  🚫 Cancelar renovação automática
                 </button>
                 <button
                   className={itemClass}
@@ -96,10 +100,25 @@ export function SupportWidget() {
               />
             )}
 
+            {tela.tipo === "cancelar-email" && (
+              <EmailForm
+                label="Qual o e-mail cadastrado na sua conta?"
+                botao="Cancelar renovação"
+                pending={pending}
+                onVoltar={reset}
+                onEnviar={(email) =>
+                  startTransition(async () => {
+                    const r = await solicitarCancelamento(email);
+                    setTela({ tipo: "resultado", texto: r.mensagem });
+                  })
+                }
+              />
+            )}
+
             {tela.tipo === "upgrade" && (
               <div className="space-y-3">
                 <p className="text-sm text-neutral-300">
-                  Acesso vitalício ao QuatroCar, pagamento único:
+                  Assinatura anual do QuatroCar:
                 </p>
                 <a
                   href={KIWIFY_CHECKOUT_URL}
@@ -107,7 +126,7 @@ export function SupportWidget() {
                   rel="noopener noreferrer"
                   className="block rounded-lg bg-sky-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 hover:bg-sky-300"
                 >
-                  R$ 97 à vista ou 12x no cartão
+                  R$ 97/ano à vista ou 12x no cartão
                 </a>
                 <Link
                   href="/#planos"

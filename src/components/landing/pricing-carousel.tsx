@@ -126,7 +126,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                     </span>
                   </div>
                   <p className="mt-3 text-base font-bold text-white">
-                    ou {p.precoAvista} à vista
+                    ou {p.precoAvista} à vista, por ano
                   </p>
                 </div>
               ) : (

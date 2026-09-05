@@ -133,14 +133,14 @@ const planos = [
     nome: "Premium",
     publico: "Proprietários de veículos",
     preco: "R$ 97",
-    periodo: "pagamento único · ou 12x no cartão",
+    periodo: "por ano · ou 12x no cartão",
     precoDe: "R$ 497",
     precoParcela: "R$ 10,03",
     precoAvista: "R$ 97,00",
     destaque: true,
     checkoutUrl: KIWIFY_CHECKOUT_URL,
     itens: [
-      "Acesso vitalício, sem mensalidade",
+      "Assinatura anual, sem taxas escondidas",
       "Veículos ilimitados",
       "Histórico completo",
       "Relatórios em PDF",
@@ -202,7 +202,7 @@ const faq = [
   },
   {
     q: "Preciso pagar para usar?",
-    a: "Sim. O acesso ao QuatroCar é um pagamento único de R$ 97 (à vista ou parcelado em até 12x no cartão), sem mensalidade. Se não gostar, você tem 14 dias de garantia com devolução integral do valor.",
+    a: "Sim. O QuatroCar é uma assinatura anual de R$ 97/ano (à vista ou parcelado em até 12x no cartão), sem mensalidade. Se não gostar, você tem 14 dias de garantia com devolução integral do valor.",
   },
   {
     q: "Posso cadastrar mais de um veículo?",
@@ -226,7 +226,7 @@ const faq = [
   },
   {
     q: "Como funciona o pagamento?",
-    a: "É um pagamento único de R$ 97, processado com segurança pela Kiwify — à vista ou parcelado em até 12x no cartão. Depois de pago, o acesso ao QuatroCar é vitalício, sem mensalidade.",
+    a: "É uma assinatura anual de R$ 97/ano, processada com segurança pela Kiwify — à vista ou parcelado em até 12x no cartão. A cobrança se renova a cada 12 meses enquanto você mantiver a assinatura ativa.",
   },
 ];
 
@@ -749,21 +749,21 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
             <Reveal className="text-center">
               <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
-                Acesso vitalício
+                Assinatura anual
               </span>
               <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                 Você já viu o que o QuatroCar faz. Agora veja quanto custa.
               </h2>
               <p className="mt-3 text-neutral-300">
-                Um pagamento único. Sem mensalidade, sem preocupação com cobrança recorrente.
+                Uma cobrança por ano. Sem mensalidade, sem letras miúdas.
               </p>
             </Reveal>
 
             <Reveal delay={80}>
               <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-sky-400/20 bg-sky-400/5 px-5 py-4 text-center text-sm text-neutral-200">
                 Uma troca de óleo esquecida pode custar centenas de reais. Por{" "}
-                <strong className="text-white">R$ 97 (ou 12x no cartão)</strong>, você garante
-                acesso vitalício ao QuatroCar pra nunca mais perder o controle do seu carro.
+                <strong className="text-white">R$ 97/ano (ou 12x no cartão)</strong>, você garante
+                um ano inteiro de acesso ao QuatroCar pra nunca mais perder o controle do seu carro.
               </div>
             </Reveal>
 
@@ -774,7 +774,7 @@ export default function Home() {
             <Reveal delay={150}>
               <p className="mx-auto mt-6 max-w-xl text-center text-xs text-neutral-400">
                 Pagamento processado com segurança pela Kiwify, à vista ou parcelado em até 12x
-                no cartão. Acesso vitalício, sem mensalidade.
+                no cartão. Cobrança anual, sem mensalidade.
               </p>
             </Reveal>
 
@@ -784,7 +784,7 @@ export default function Home() {
                   Garantia de 14 dias
                 </span>
                 <p className="mt-3 text-lg font-semibold">
-                  R$ 97 pagamento único · acesso vitalício ao QuatroCar
+                  R$ 97/ano · assinatura anual do QuatroCar
                 </p>
                 <p className="mt-2 text-sm text-neutral-300">
                   Não gostou nos primeiros 14 dias? Devolvemos 100% do valor, sem burocracia.

@@ -88,8 +88,8 @@ export function ExitIntentPopup() {
           Espera! Não perca essa condição
         </h2>
         <p className="mt-3 text-sm text-neutral-300">
-          Acesso vitalício ao QuatroCar por{" "}
-          <strong className="text-sky-400">R$ 97</strong> (à vista ou 12x no cartão). Não gostou
+          Assinatura anual do QuatroCar por{" "}
+          <strong className="text-sky-400">R$ 97/ano</strong> (à vista ou 12x no cartão). Não gostou
           nos primeiros <strong className="text-sky-400">14 dias</strong>? Devolvemos 100% do
           valor.
         </p>
