@@ -100,12 +100,12 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
               className={
                 "relative flex h-full flex-col rounded-2xl border p-6 shadow-2xl backdrop-blur-sm transition-transform duration-500 sm:p-8 " +
                 (p.destaque
-                  ? "border-sky-400 bg-sky-400/10 text-white shadow-sky-500/30"
+                  ? "border-cyan-400 bg-cyan-400/10 text-white shadow-cyan-500/30"
                   : "border-white/10 bg-white/5 text-white")
               }
             >
               {p.destaque && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
                   Mais popular
                 </span>
               )}
@@ -118,10 +118,10 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                     De: {p.precoDe}
                   </p>
                   <div className="mt-2 flex items-center justify-center gap-2">
-                    <span className="rounded-md bg-sky-500 px-2 py-1 text-sm font-black uppercase tracking-wide text-white">
+                    <span className="rounded-md bg-cyan-500 px-2 py-1 text-sm font-black uppercase tracking-wide text-white">
                       12x
                     </span>
-                    <span className="text-6xl font-black leading-none tracking-tighter text-sky-400 sm:text-7xl">
+                    <span className="text-6xl font-black leading-none tracking-tighter text-cyan-400 sm:text-7xl">
                       {p.precoParcela}
                     </span>
                   </div>
@@ -131,7 +131,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                 </div>
               ) : (
                 <>
-                  <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-sky-400" : "")}>
+                  <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-cyan-400" : "")}>
                     {p.preco}
                   </p>
                   {p.periodo && <p className="text-xs text-neutral-400">{p.periodo}</p>}
@@ -141,7 +141,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
               <ul className="mt-6 flex-1 space-y-2 text-sm text-neutral-200">
                 {p.itens.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span aria-hidden="true" className="text-sky-400">
+                    <span aria-hidden="true" className="text-cyan-400">
                       ✓
                     </span>
                     <span>{item}</span>
@@ -157,7 +157,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                   className={
                     "mt-6 block rounded-lg px-5 py-3.5 text-center text-base font-bold transition-transform active:scale-[0.98] " +
                     (p.destaque
-                      ? "bg-sky-500 text-white shadow-lg shadow-sky-500/40 hover:bg-sky-400"
+                      ? "bg-cyan-500 text-white shadow-lg shadow-cyan-500/40 hover:bg-cyan-400"
                       : "border border-white/20 text-white hover:bg-white/10")
                   }
                 >
@@ -169,7 +169,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                   className={
                     "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
                     (p.destaque
-                      ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
+                      ? "bg-cyan-400 text-neutral-950 hover:bg-cyan-300"
                       : "border border-white/20 text-white hover:bg-white/10")
                   }
                 >
@@ -202,7 +202,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
             }}
             className={
               "h-2 rounded-full transition-all " +
-              (i === active ? "w-6 bg-sky-500" : "w-2 bg-white/20")
+              (i === active ? "w-6 bg-cyan-500" : "w-2 bg-white/20")
             }
           />
         ))}

@@ -69,7 +69,7 @@ export function ExitIntentPopup() {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative w-full max-w-md rounded-2xl border border-sky-400/30 bg-neutral-950 p-6 text-center text-white shadow-2xl sm:p-8"
+        className="relative w-full max-w-md rounded-2xl border border-cyan-400/30 bg-slate-950 p-6 text-center text-white shadow-2xl sm:p-8"
       >
         <button
           type="button"
@@ -80,7 +80,7 @@ export function ExitIntentPopup() {
           ✕
         </button>
 
-        <span className="inline-block rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+        <span className="inline-block rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
           Garantia de 14 dias
         </span>
 
@@ -89,8 +89,8 @@ export function ExitIntentPopup() {
         </h2>
         <p className="mt-3 text-sm text-neutral-300">
           Assinatura anual do QuatroCar por{" "}
-          <strong className="text-sky-400">R$ 97/ano</strong> (à vista ou 12x no cartão). Não gostou
-          nos primeiros <strong className="text-sky-400">14 dias</strong>? Devolvemos 100% do
+          <strong className="text-cyan-400">R$ 97/ano</strong> (à vista ou 12x no cartão). Não gostou
+          nos primeiros <strong className="text-cyan-400">14 dias</strong>? Devolvemos 100% do
           valor.
         </p>
 
@@ -99,7 +99,7 @@ export function ExitIntentPopup() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setOpen(false)}
-          className="mt-6 block rounded-lg bg-sky-400 px-6 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+          className="mt-6 block rounded-lg bg-cyan-400 px-6 py-3 text-center text-sm font-semibold text-neutral-950 transition-colors hover:bg-cyan-300"
         >
           Garantir meu acesso agora
         </a>

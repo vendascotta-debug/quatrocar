@@ -20,7 +20,7 @@ export function BrandMarquee() {
   const items = [...marcas, ...marcas];
 
   return (
-    <section className="overflow-hidden border-y border-white/10 bg-neutral-950 py-8">
+    <section className="overflow-hidden border-y border-white/10 bg-slate-950 py-8">
       <p className="mb-5 text-center text-xs font-semibold uppercase tracking-wider text-neutral-400">
         Funciona com qualquer marca e modelo de veículo
       </p>

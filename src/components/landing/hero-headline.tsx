@@ -23,7 +23,7 @@ export function HeroHeadline() {
         <span
           className={
             "inline-block drop-shadow-[0_6px_28px_rgba(0,0,0,0.65)] transition-[transform,opacity,filter] duration-[950ms] " +
-            (colored ? "text-sky-400" : "text-white")
+            (colored ? "text-cyan-400" : "text-white")
           }
           style={{
             transform: mounted ? "translateY(0%)" : "translateY(120%)",

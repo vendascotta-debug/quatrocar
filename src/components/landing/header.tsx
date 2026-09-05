@@ -33,7 +33,7 @@ export function LandingHeader() {
   return (
     <header
       className={
-        "sticky top-0 z-50 w-full border-b border-neutral-900 bg-neutral-950/95 text-white backdrop-blur transition-shadow duration-300 " +
+        "sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/95 text-white backdrop-blur transition-shadow duration-300 " +
         (scrolled ? "shadow-lg shadow-black/20" : "")
       }
     >
@@ -68,7 +68,7 @@ export function LandingHeader() {
             href={KIWIFY_CHECKOUT_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-sky-400 px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+            className="rounded-lg bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-neutral-950 transition-colors hover:bg-cyan-300"
           >
             Começar agora
           </a>
@@ -108,7 +108,7 @@ export function LandingHeader() {
       <div
         id="mobile-menu"
         className={
-          "fixed inset-0 z-40 bg-neutral-950 transition-transform duration-300 ease-out md:hidden " +
+          "fixed inset-0 z-40 bg-slate-950 transition-transform duration-300 ease-out md:hidden " +
           (open ? "translate-x-0" : "translate-x-full")
         }
       >
@@ -131,7 +131,7 @@ export function LandingHeader() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="rounded-lg bg-sky-400 px-5 py-3 text-center text-base font-semibold text-neutral-950"
+              className="rounded-lg bg-cyan-400 px-5 py-3 text-center text-base font-semibold text-neutral-950"
             >
               Começar agora
             </a>

@@ -117,7 +117,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
       </div>
 
       <div className="text-center md:text-left">
-        <span className="text-4xl text-sky-500" aria-hidden="true">
+        <span className="text-4xl text-cyan-500" aria-hidden="true">
           &ldquo;
         </span>
         <p className="min-h-[6rem] text-xl font-medium leading-snug text-white sm:text-2xl">
@@ -135,7 +135,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
               onClick={() => goTo(i)}
               className={
                 "h-2 rounded-full transition-all " +
-                (i === active ? "w-6 bg-sky-500" : "w-2 bg-white/20")
+                (i === active ? "w-6 bg-cyan-500" : "w-2 bg-white/20")
               }
             />
           ))}

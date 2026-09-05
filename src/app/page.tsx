@@ -267,10 +267,10 @@ export default function Home() {
 
         <main id="conteudo">
           {/* HERO */}
-          <section className="relative overflow-hidden bg-neutral-950 text-white">
+          <section className="relative overflow-hidden bg-slate-950 text-white">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.sky.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.sky.400/0.14),transparent_45%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.cyan.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.cyan.400/0.14),transparent_45%)]"
             />
             <div
               aria-hidden="true"
@@ -285,8 +285,8 @@ export default function Home() {
             <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pb-24 pt-14 sm:px-6 sm:pb-32 sm:pt-20 md:grid-cols-2 md:gap-16 md:py-28">
               <div className="relative z-20 text-center md:text-left">
                 <Reveal>
-                  <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-300">
-                    <CarIcon className="h-4 w-6 text-sky-300" />
+                  <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-300">
+                    <CarIcon className="h-4 w-6 text-cyan-300" />
                     Seu carro também precisa de memória
                   </span>
                 </Reveal>
@@ -303,7 +303,7 @@ export default function Home() {
                       href={KIWIFY_CHECKOUT_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-lg bg-sky-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
+                      className="rounded-lg bg-cyan-400 px-8 py-3.5 text-center text-base font-semibold text-neutral-950 transition-transform hover:bg-cyan-300 active:scale-[0.98]"
                     >
                       Começar agora
                     </a>
@@ -324,7 +324,7 @@ export default function Home() {
                 <div className="relative mx-auto w-full max-w-[320px] md:max-w-none">
                   <div
                     aria-hidden="true"
-                    className="animate-glow-pulse absolute -inset-10 -z-10 rounded-full bg-sky-500/20 blur-3xl"
+                    className="animate-glow-pulse absolute -inset-10 -z-10 rounded-full bg-cyan-500/20 blur-3xl"
                   />
                   <Image
                     src="/images/hero-mao-celular.webp"
@@ -352,10 +352,10 @@ export default function Home() {
                 { n: "100%", l: "Histórico digital" },
                 { n: "1 min", l: "Para registrar manutenção" },
                 { n: "0", l: "Manutenções esquecidas" },
-                { n: "R$ 0", l: "Para começar a usar" },
+                { n: "14 dias", l: "De garantia total" },
               ].map((s, i) => (
                 <Reveal key={s.l} delay={i * 80}>
-                  <p className="text-2xl font-bold text-sky-400 sm:text-3xl">{s.n}</p>
+                  <p className="text-2xl font-bold text-cyan-400 sm:text-3xl">{s.n}</p>
                   <p className="mt-1 text-xs text-neutral-400 sm:text-sm">{s.l}</p>
                 </Reveal>
               ))}
@@ -365,14 +365,14 @@ export default function Home() {
           <BrandMarquee />
 
           {/* PROBLEMA */}
-          <section id="problema" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+          <section id="problema" className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,theme(colors.sky.500/0.18),transparent_50%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,theme(colors.cyan.500/0.18),transparent_50%)]"
             />
             <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   O problema
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -407,14 +407,14 @@ export default function Home() {
           </section>
 
           {/* SOLUÇÃO */}
-          <section id="solucao" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+          <section id="solucao" className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_80%,theme(colors.sky.500/0.16),transparent_50%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_80%,theme(colors.cyan.500/0.16),transparent_50%)]"
             />
             <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
               <Reveal>
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   A solução
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -429,7 +429,7 @@ export default function Home() {
                   href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-block rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+                  className="mt-6 inline-block rounded-lg bg-cyan-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-cyan-300"
                 >
                   Quero organizar meu carro
                 </a>
@@ -438,7 +438,7 @@ export default function Home() {
               <Reveal delay={150}>
                 <div className="mx-auto w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur-sm">
                   <div className="flex items-center gap-3 border-b border-white/10 pb-4">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500 text-white">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500 text-white">
                       🚗
                     </span>
                     <div>
@@ -479,10 +479,10 @@ export default function Home() {
           </section>
 
           {/* HOW IT WORKS */}
-          <section id="como-funciona" className="bg-neutral-950 py-16 text-white sm:py-24">
+          <section id="como-funciona" className="bg-slate-950 py-16 text-white sm:py-24">
             <div className="mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   Simples assim
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -493,7 +493,7 @@ export default function Home() {
               <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((s, i) => (
                   <Reveal key={s.n} delay={i * 100} className="text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/30 bg-sky-400/10 text-lg font-bold text-sky-400">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-lg font-bold text-cyan-400">
                       {s.n}
                     </div>
                     <h3 className="mt-4 font-semibold text-white">{s.title}</h3>
@@ -505,10 +505,10 @@ export default function Home() {
           </section>
 
           {/* AVISO POR WHATSAPP */}
-          <section className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+          <section className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,theme(colors.sky.500/0.16),transparent_50%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,theme(colors.cyan.500/0.16),transparent_50%)]"
             />
             <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
               <Reveal delay={150} className="order-first md:order-last">
@@ -522,7 +522,7 @@ export default function Home() {
               </Reveal>
 
               <Reveal>
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   Sem precisar abrir o app
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -537,7 +537,7 @@ export default function Home() {
                   href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-block rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+                  className="mt-6 inline-block rounded-lg bg-cyan-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-cyan-300"
                 >
                   Quero receber os avisos
                 </a>
@@ -548,14 +548,14 @@ export default function Home() {
           {/* VALOR DO HISTÓRICO */}
           <section
             id="recursos"
-            className="relative overflow-hidden bg-neutral-950 bg-cover bg-center py-16 text-white sm:py-24"
+            className="relative overflow-hidden bg-slate-950 bg-cover bg-center py-16 text-white sm:py-24"
             style={{ backgroundImage: "url(/images/oficina-equipe.webp)" }}
           >
-            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-neutral-950/90" />
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-slate-950/90" />
 
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   O valor do histórico
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -569,8 +569,8 @@ export default function Home() {
               <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {beneficios.map((f, i) => (
                   <Reveal key={f.title} delay={i * 80}>
-                    <div className="group h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/30 hover:bg-white/10 hover:shadow-[0_8px_30px_-8px_theme(colors.sky.500/0.35)]">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-400/15 text-sky-300 transition-colors duration-300 group-hover:bg-sky-400/25">
+                    <div className="group h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/10 hover:shadow-[0_8px_30px_-8px_theme(colors.cyan.500/0.35)]">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-400/15 text-cyan-300 transition-colors duration-300 group-hover:bg-cyan-400/25">
                         <f.Icon className="h-5 w-5" />
                       </span>
                       <h3 className="mt-4 font-semibold text-white">{f.title}</h3>
@@ -581,7 +581,7 @@ export default function Home() {
               </div>
 
               <Reveal delay={520}>
-                <div className="mx-auto mt-12 flex max-w-2xl flex-col items-center gap-4 rounded-2xl border border-sky-400/20 bg-sky-400/5 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
+                <div className="mx-auto mt-12 flex max-w-2xl flex-col items-center gap-4 rounded-2xl border border-cyan-400/20 bg-cyan-400/5 p-6 text-center sm:flex-row sm:justify-between sm:text-left">
                   <p className="text-sm text-neutral-200">
                     <strong className="text-white">Novidade:</strong> agora dá pra controlar IPVA,
                     licenciamento, multas e seguro do carro no mesmo lugar, com aviso antes do
@@ -591,7 +591,7 @@ export default function Home() {
                     href={KIWIFY_CHECKOUT_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+                    className="shrink-0 rounded-lg bg-cyan-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-cyan-300"
                   >
                     Quero organizar meus documentos
                   </a>
@@ -601,14 +601,14 @@ export default function Home() {
           </section>
 
           {/* MOSTRAR O PRODUTO */}
-          <section id="produto" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+          <section id="produto" className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,theme(colors.sky.500/0.18),transparent_50%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,theme(colors.cyan.500/0.18),transparent_50%)]"
             />
             <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   Veja na prática
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -622,7 +622,7 @@ export default function Home() {
                     <p className="text-xs font-medium text-neutral-400">Gasto do mês</p>
                     <p className="mt-1 text-2xl font-bold text-white">R$ 384,00</p>
                     <div className="mt-4 flex h-2 overflow-hidden rounded-full bg-white/10">
-                      <span className="h-full w-2/3 bg-sky-500" />
+                      <span className="h-full w-2/3 bg-cyan-500" />
                       <span className="h-full w-1/3 bg-amber-400" />
                     </div>
                     <div className="mt-3 flex justify-between text-xs text-neutral-400">
@@ -676,10 +676,10 @@ export default function Home() {
           </section>
 
           {/* POR QUE USAR */}
-          <section className="bg-neutral-950 py-16 text-white sm:py-24">
+          <section className="bg-slate-950 py-16 text-white sm:py-24">
             <div className="mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                   Por que usar
                 </span>
                 <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -705,12 +705,12 @@ export default function Home() {
                 </Reveal>
 
                 <Reveal delay={100}>
-                  <div className="h-full rounded-2xl border border-sky-400 bg-sky-400/10 p-6 text-white shadow-xl shadow-sky-500/20">
-                    <h3 className="font-semibold text-sky-400">Com QuatroCar</h3>
+                  <div className="h-full rounded-2xl border border-cyan-400 bg-cyan-400/10 p-6 text-white shadow-xl shadow-cyan-500/20">
+                    <h3 className="font-semibold text-cyan-400">Com QuatroCar</h3>
                     <ul className="mt-4 space-y-3">
                       {comQuatroCar.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-neutral-200">
-                          <span aria-hidden="true" className="mt-0.5 text-sky-400">
+                          <span aria-hidden="true" className="mt-0.5 text-cyan-400">
                             ✓
                           </span>
                           <span>{item}</span>
@@ -724,14 +724,14 @@ export default function Home() {
           </section>
 
           {/* TESTIMONIAL */}
-          <section className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+          <section className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl"
+              className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-cyan-500/15 blur-3xl"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl"
+              className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl"
             />
             <div className="relative px-4 sm:px-6">
               <Reveal>
@@ -741,14 +741,14 @@ export default function Home() {
           </section>
 
           {/* PRICING */}
-          <section id="planos" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+          <section id="planos" className="relative overflow-hidden bg-slate-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.sky.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.sky.400/0.14),transparent_45%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.cyan.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.cyan.400/0.14),transparent_45%)]"
             />
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
             <Reveal className="text-center">
-              <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
+              <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
                 Assinatura anual
               </span>
               <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
@@ -760,7 +760,7 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-sky-400/20 bg-sky-400/5 px-5 py-4 text-center text-sm text-neutral-200">
+              <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-cyan-400/20 bg-cyan-400/5 px-5 py-4 text-center text-sm text-neutral-200">
                 Uma troca de óleo esquecida pode custar centenas de reais. Por{" "}
                 <strong className="text-white">R$ 97/ano (ou 12x no cartão)</strong>, você garante
                 um ano inteiro de acesso ao QuatroCar pra nunca mais perder o controle do seu carro.
@@ -779,8 +779,8 @@ export default function Home() {
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-sky-400 bg-sky-400/10 p-6 text-center">
-                <span className="rounded-full bg-sky-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
+              <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-cyan-400 bg-cyan-400/10 p-6 text-center">
+                <span className="rounded-full bg-cyan-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-neutral-950">
                   Garantia de 14 dias
                 </span>
                 <p className="mt-3 text-lg font-semibold">
@@ -793,7 +793,7 @@ export default function Home() {
                   href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-block rounded-lg bg-sky-400 px-8 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
+                  className="mt-6 inline-block rounded-lg bg-cyan-400 px-8 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-cyan-300"
                 >
                   Assinar o QuatroCar
                 </a>
@@ -803,7 +803,7 @@ export default function Home() {
           </section>
 
           {/* FAQ */}
-          <section id="faq" className="bg-neutral-950 py-16 text-white sm:py-24">
+          <section id="faq" className="bg-slate-950 py-16 text-white sm:py-24">
             <div className="mx-auto max-w-3xl px-4 sm:px-6">
               <Reveal className="text-center">
                 <h2 className="text-2xl font-semibold sm:text-3xl">
@@ -814,7 +814,7 @@ export default function Home() {
               <div className="mt-10 divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
                 {faq.map((item) => (
                   <details key={item.q} className="group p-5">
-                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400">
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400">
                       {item.q}
                       <span className="ml-4 shrink-0 text-neutral-400 transition-transform group-open:rotate-45">
                         +
@@ -829,16 +829,16 @@ export default function Home() {
 
           {/* FINAL CTA */}
           <section
-            className="relative overflow-hidden bg-neutral-950 bg-cover bg-center py-16 text-center text-white sm:py-24"
+            className="relative overflow-hidden bg-slate-950 bg-cover bg-center py-16 text-center text-white sm:py-24"
             style={{ backgroundImage: "url(/images/hero-oficina.webp)" }}
           >
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-neutral-950/85"
+              className="pointer-events-none absolute inset-0 bg-slate-950/85"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.sky.500/0.2),transparent_60%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.cyan.500/0.2),transparent_60%)]"
             />
             <Reveal className="relative mx-auto max-w-3xl px-4 sm:px-6">
               <h2 className="text-2xl font-semibold sm:text-3xl">
@@ -852,7 +852,7 @@ export default function Home() {
                 href={KIWIFY_CHECKOUT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-8 inline-block rounded-lg bg-sky-400 px-8 py-3.5 text-base font-semibold text-neutral-950 transition-transform hover:bg-sky-300 active:scale-[0.98]"
+                className="mt-8 inline-block rounded-lg bg-cyan-400 px-8 py-3.5 text-base font-semibold text-neutral-950 transition-transform hover:bg-cyan-300 active:scale-[0.98]"
               >
                 Começar agora
               </a>
@@ -860,8 +860,8 @@ export default function Home() {
           </section>
         </main>
 
-        <footer className="border-t border-neutral-900 bg-neutral-950 py-8 text-center text-xs text-neutral-500">
-          <span className="text-neutral-300">Quatro<span className="text-sky-400">Car</span></span>{" "}
+        <footer className="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-neutral-500">
+          <span className="text-neutral-300">Quatro<span className="text-cyan-400">Car</span></span>{" "}
           · quatrocar.com.br
           <div className="mt-2 flex items-center justify-center gap-4">
             <Link href="/termos" className="hover:text-neutral-300">

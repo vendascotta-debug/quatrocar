@@ -14,7 +14,7 @@ type Tela =
   | { tipo: "resultado"; texto: string };
 
 const inputClass =
-  "w-full rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-sky-400";
+  "w-full rounded-lg border border-white/15 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-cyan-400";
 const itemClass =
   "w-full rounded-lg bg-white/5 px-4 py-3 text-left text-sm text-white transition-colors hover:bg-white/10";
 
@@ -35,7 +35,7 @@ export function SupportWidget() {
   return (
     <div className="fixed bottom-5 right-5 z-50">
       {aberto && (
-        <div className="mb-3 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-neutral-950 shadow-2xl sm:w-[360px]">
+        <div className="mb-3 w-[320px] overflow-hidden rounded-2xl border border-white/10 bg-slate-950 shadow-2xl sm:w-[360px]">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-white">Suporte QuatroCar</p>
@@ -124,7 +124,7 @@ export function SupportWidget() {
                   href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block rounded-lg bg-sky-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 hover:bg-sky-300"
+                  className="block rounded-lg bg-cyan-400 px-4 py-3 text-center text-sm font-semibold text-neutral-950 hover:bg-cyan-300"
                 >
                   R$ 97/ano à vista ou 12x no cartão
                 </a>
@@ -160,7 +160,7 @@ export function SupportWidget() {
                 <p className="text-sm text-neutral-200">{tela.texto}</p>
                 <button
                   onClick={reset}
-                  className="rounded-lg bg-sky-400 px-4 py-2 text-sm font-semibold text-neutral-950 hover:bg-sky-300"
+                  className="rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-neutral-950 hover:bg-cyan-300"
                 >
                   Voltar ao menu
                 </button>
@@ -174,7 +174,7 @@ export function SupportWidget() {
         type="button"
         onClick={() => setAberto((v) => !v)}
         aria-label="Abrir suporte"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-sky-400 text-2xl text-neutral-950 shadow-xl transition-transform hover:scale-105"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-cyan-400 text-2xl text-neutral-950 shadow-xl transition-transform hover:scale-105"
       >
         💬
       </button>
@@ -217,7 +217,7 @@ function EmailForm({
         <button
           type="submit"
           disabled={pending}
-          className="flex-1 rounded-lg bg-sky-400 px-4 py-2 text-sm font-semibold text-neutral-950 hover:bg-sky-300 disabled:opacity-50"
+          className="flex-1 rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-neutral-950 hover:bg-cyan-300 disabled:opacity-50"
         >
           {pending ? "Enviando..." : botao}
         </button>
@@ -270,7 +270,7 @@ function MensagemForm({
         <button
           type="submit"
           disabled={pending}
-          className="flex-1 rounded-lg bg-sky-400 px-4 py-2 text-sm font-semibold text-neutral-950 hover:bg-sky-300 disabled:opacity-50"
+          className="flex-1 rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-neutral-950 hover:bg-cyan-300 disabled:opacity-50"
         >
           {pending ? "Enviando..." : "Enviar"}
         </button>
