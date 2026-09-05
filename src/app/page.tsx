@@ -365,16 +365,20 @@ export default function Home() {
           <BrandMarquee />
 
           {/* PROBLEMA */}
-          <section id="problema" className="bg-white py-16 sm:py-24">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <section id="problema" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,theme(colors.sky.500/0.18),transparent_50%)]"
+            />
+            <div className="relative mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   O problema
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                   Isso te parece familiar?
                 </h2>
-                <p className="mx-auto mt-3 max-w-xl text-neutral-600">
+                <p className="mx-auto mt-3 max-w-xl text-neutral-300">
                   A manutenção do carro vive espalhada: na memória, num grupo de WhatsApp,
                   numa nota perdida no porta-luvas.
                 </p>
@@ -384,17 +388,17 @@ export default function Home() {
                 {problemas.map((p, i) => (
                   <Reveal key={p} delay={i * 70}>
                     <div
-                      className="h-full rounded-2xl border border-neutral-200 bg-neutral-50 p-6 shadow-sm transition-transform duration-300 hover:-translate-y-1"
+                      className="h-full rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1"
                       style={{ transform: `rotate(${i % 2 === 0 ? "-0.6deg" : "0.6deg"})` }}
                     >
-                      <p className="font-medium text-neutral-800">&ldquo;{p}&rdquo;</p>
+                      <p className="font-medium text-neutral-200">&ldquo;{p}&rdquo;</p>
                     </div>
                   </Reveal>
                 ))}
               </div>
 
               <Reveal delay={200}>
-                <p className="mx-auto mt-12 max-w-2xl text-center text-lg font-medium text-neutral-900">
+                <p className="mx-auto mt-12 max-w-2xl text-center text-lg font-medium text-white">
                   O QuatroCar existe para você nunca mais precisar responder essas perguntas
                   de memória.
                 </p>
@@ -403,16 +407,20 @@ export default function Home() {
           </section>
 
           {/* SOLUÇÃO */}
-          <section id="solucao" className="border-y border-neutral-200 bg-neutral-50 py-16 sm:py-24">
-            <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
+          <section id="solucao" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_80%,theme(colors.sky.500/0.16),transparent_50%)]"
+            />
+            <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
               <Reveal>
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   A solução
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                   O histórico do seu carro em um só lugar.
                 </h2>
-                <p className="mt-4 text-neutral-600">
+                <p className="mt-4 text-neutral-300">
                   Veículo, manutenções, quilometragem, datas e próximos cuidados —
                   organizados automaticamente conforme você registra. Sem planilha, sem
                   papel, sem depender da memória.
@@ -421,21 +429,21 @@ export default function Home() {
                   href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-block rounded-lg bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
+                  className="mt-6 inline-block rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
                 >
                   Quero organizar meu carro
                 </a>
               </Reveal>
 
               <Reveal delay={150}>
-                <div className="mx-auto w-full max-w-sm rounded-2xl border border-neutral-200 bg-white p-5 shadow-xl">
-                  <div className="flex items-center gap-3 border-b border-neutral-100 pb-4">
+                <div className="mx-auto w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur-sm">
+                  <div className="flex items-center gap-3 border-b border-white/10 pb-4">
                     <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500 text-white">
                       🚗
                     </span>
                     <div>
-                      <p className="font-semibold text-neutral-900">Onix 2021</p>
-                      <p className="text-xs text-neutral-500">ABC-1D23 · 48.200 km</p>
+                      <p className="font-semibold text-white">Onix 2021</p>
+                      <p className="text-xs text-neutral-400">ABC-1D23 · 48.200 km</p>
                     </div>
                   </div>
                   <div className="mt-4 space-y-3">
@@ -446,11 +454,11 @@ export default function Home() {
                     ].map((item) => (
                       <div
                         key={item.nome}
-                        className="flex items-center justify-between rounded-lg bg-neutral-50 px-3 py-2.5"
+                        className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2.5"
                       >
                         <div>
-                          <p className="text-sm font-medium text-neutral-800">{item.nome}</p>
-                          <p className="text-xs text-neutral-500">{item.data}</p>
+                          <p className="text-sm font-medium text-neutral-200">{item.nome}</p>
+                          <p className="text-xs text-neutral-400">{item.data}</p>
                         </div>
                         <span
                           className={
@@ -471,13 +479,13 @@ export default function Home() {
           </section>
 
           {/* HOW IT WORKS */}
-          <section id="como-funciona" className="bg-white py-16 sm:py-24">
+          <section id="como-funciona" className="bg-neutral-950 py-16 text-white sm:py-24">
             <div className="mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   Simples assim
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                   Como funciona
                 </h2>
               </Reveal>
@@ -485,11 +493,11 @@ export default function Home() {
               <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
                 {steps.map((s, i) => (
                   <Reveal key={s.n} delay={i * 100} className="text-center">
-                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-neutral-950 text-lg font-bold text-sky-400">
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-sky-400/30 bg-sky-400/10 text-lg font-bold text-sky-400">
                       {s.n}
                     </div>
-                    <h3 className="mt-4 font-semibold text-neutral-900">{s.title}</h3>
-                    <p className="mt-2 text-sm text-neutral-600">{s.desc}</p>
+                    <h3 className="mt-4 font-semibold text-white">{s.title}</h3>
+                    <p className="mt-2 text-sm text-neutral-300">{s.desc}</p>
                   </Reveal>
                 ))}
               </div>
@@ -497,8 +505,12 @@ export default function Home() {
           </section>
 
           {/* AVISO POR WHATSAPP */}
-          <section className="border-y border-neutral-200 bg-neutral-50 py-16 sm:py-24">
-            <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
+          <section className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_90%_20%,theme(colors.sky.500/0.16),transparent_50%)]"
+            />
+            <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-2 md:gap-16">
               <Reveal delay={150} className="order-first md:order-last">
                 <Image
                   src="/images/whatsapp-aviso.webp"
@@ -510,13 +522,13 @@ export default function Home() {
               </Reveal>
 
               <Reveal>
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   Sem precisar abrir o app
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                   O aviso chega direto no seu WhatsApp
                 </h2>
-                <p className="mt-4 text-neutral-600">
+                <p className="mt-4 text-neutral-300">
                   Quando uma manutenção, documento ou seguro estiver perto de vencer — ou já
                   tiver vencido — o QuatroCar manda uma mensagem no seu WhatsApp, com um link
                   direto para os detalhes. Sem precisar lembrar de abrir o app.
@@ -525,7 +537,7 @@ export default function Home() {
                   href={KIWIFY_CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-block rounded-lg bg-neutral-950 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
+                  className="mt-6 inline-block rounded-lg bg-sky-400 px-6 py-3 text-sm font-semibold text-neutral-950 transition-colors hover:bg-sky-300"
                 >
                   Quero receber os avisos
                 </a>
@@ -589,27 +601,31 @@ export default function Home() {
           </section>
 
           {/* MOSTRAR O PRODUTO */}
-          <section id="produto" className="relative overflow-hidden bg-white py-16 sm:py-24">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <section id="produto" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,theme(colors.sky.500/0.18),transparent_50%)]"
+            />
+            <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   Veja na prática
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                   O app por dentro
                 </h2>
               </Reveal>
 
               <div className="relative mt-16 grid gap-8 sm:grid-cols-3">
                 <Reveal delay={0} className="sm:translate-y-6">
-                  <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-xl">
-                    <p className="text-xs font-medium text-neutral-500">Gasto do mês</p>
-                    <p className="mt-1 text-2xl font-bold text-neutral-900">R$ 384,00</p>
-                    <div className="mt-4 flex h-2 overflow-hidden rounded-full bg-neutral-100">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur-sm">
+                    <p className="text-xs font-medium text-neutral-400">Gasto do mês</p>
+                    <p className="mt-1 text-2xl font-bold text-white">R$ 384,00</p>
+                    <div className="mt-4 flex h-2 overflow-hidden rounded-full bg-white/10">
                       <span className="h-full w-2/3 bg-sky-500" />
                       <span className="h-full w-1/3 bg-amber-400" />
                     </div>
-                    <div className="mt-3 flex justify-between text-xs text-neutral-500">
+                    <div className="mt-3 flex justify-between text-xs text-neutral-400">
                       <span>Manutenção</span>
                       <span>Combustível</span>
                     </div>
@@ -617,38 +633,38 @@ export default function Home() {
                 </Reveal>
 
                 <Reveal delay={120} className="sm:-translate-y-2">
-                  <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-xl">
-                    <p className="text-xs font-medium text-neutral-500">Histórico · Onix 2021</p>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur-sm">
+                    <p className="text-xs font-medium text-neutral-400">Histórico · Onix 2021</p>
                     <ul className="mt-3 space-y-2 text-sm">
-                      <li className="flex justify-between border-b border-neutral-100 pb-2">
-                        <span className="text-neutral-800">Troca de óleo</span>
-                        <span className="text-neutral-500">12/06</span>
+                      <li className="flex justify-between border-b border-white/10 pb-2">
+                        <span className="text-neutral-200">Troca de óleo</span>
+                        <span className="text-neutral-400">12/06</span>
                       </li>
-                      <li className="flex justify-between border-b border-neutral-100 pb-2">
-                        <span className="text-neutral-800">Alinhamento</span>
-                        <span className="text-neutral-500">03/05</span>
+                      <li className="flex justify-between border-b border-white/10 pb-2">
+                        <span className="text-neutral-200">Alinhamento</span>
+                        <span className="text-neutral-400">03/05</span>
                       </li>
                       <li className="flex justify-between">
-                        <span className="text-neutral-800">Filtro de ar</span>
-                        <span className="text-neutral-500">21/03</span>
+                        <span className="text-neutral-200">Filtro de ar</span>
+                        <span className="text-neutral-400">21/03</span>
                       </li>
                     </ul>
                   </div>
                 </Reveal>
 
                 <Reveal delay={240} className="sm:translate-y-6">
-                  <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-xl">
-                    <p className="text-xs font-medium text-neutral-500">Lembretes</p>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5 shadow-xl backdrop-blur-sm">
+                    <p className="text-xs font-medium text-neutral-400">Lembretes</p>
                     <div className="mt-3 space-y-2">
-                      <div className="flex items-center justify-between rounded-lg bg-red-50 px-3 py-2">
-                        <span className="text-sm font-medium text-red-700">Correia dentada</span>
-                        <span className="rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold text-red-700">
+                      <div className="flex items-center justify-between rounded-lg bg-red-500/10 px-3 py-2">
+                        <span className="text-sm font-medium text-red-400">Correia dentada</span>
+                        <span className="rounded-full bg-red-500/20 px-2 py-0.5 text-[10px] font-semibold text-red-300">
                           Atrasado
                         </span>
                       </div>
-                      <div className="flex items-center justify-between rounded-lg bg-amber-50 px-3 py-2">
-                        <span className="text-sm font-medium text-amber-700">Pastilha de freio</span>
-                        <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+                      <div className="flex items-center justify-between rounded-lg bg-amber-500/10 px-3 py-2">
+                        <span className="text-sm font-medium text-amber-400">Pastilha de freio</span>
+                        <span className="rounded-full bg-amber-500/20 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
                           Próximo
                         </span>
                       </div>
@@ -660,25 +676,25 @@ export default function Home() {
           </section>
 
           {/* POR QUE USAR */}
-          <section className="border-y border-neutral-200 bg-neutral-50 py-16 sm:py-24">
+          <section className="bg-neutral-950 py-16 text-white sm:py-24">
             <div className="mx-auto max-w-5xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <span className="text-xs font-semibold uppercase tracking-wider text-sky-600">
+                <span className="text-xs font-semibold uppercase tracking-wider text-sky-400">
                   Por que usar
                 </span>
-                <h2 className="mt-2 text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="mt-2 text-2xl font-semibold sm:text-3xl">
                   Com ou sem QuatroCar, a diferença é clara
                 </h2>
               </Reveal>
 
               <div className="mt-12 grid gap-6 sm:grid-cols-2">
                 <Reveal>
-                  <div className="h-full rounded-2xl border border-neutral-200 bg-white p-6">
-                    <h3 className="font-semibold text-neutral-500">Sem QuatroCar</h3>
+                  <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <h3 className="font-semibold text-neutral-400">Sem QuatroCar</h3>
                     <ul className="mt-4 space-y-3">
                       {semQuatroCar.map((item) => (
-                        <li key={item} className="flex items-start gap-2 text-sm text-neutral-500">
-                          <span aria-hidden="true" className="mt-0.5 text-neutral-400">
+                        <li key={item} className="flex items-start gap-2 text-sm text-neutral-400">
+                          <span aria-hidden="true" className="mt-0.5 text-neutral-500">
                             ✕
                           </span>
                           <span>{item}</span>
@@ -689,7 +705,7 @@ export default function Home() {
                 </Reveal>
 
                 <Reveal delay={100}>
-                  <div className="h-full rounded-2xl border border-sky-400 bg-neutral-950 p-6 text-white shadow-xl shadow-sky-500/10">
+                  <div className="h-full rounded-2xl border border-sky-400 bg-sky-400/10 p-6 text-white shadow-xl shadow-sky-500/20">
                     <h3 className="font-semibold text-sky-400">Com QuatroCar</h3>
                     <ul className="mt-4 space-y-3">
                       {comQuatroCar.map((item) => (
@@ -708,14 +724,14 @@ export default function Home() {
           </section>
 
           {/* TESTIMONIAL */}
-          <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white py-16 sm:py-24">
+          <section className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-sky-200/40 blur-3xl"
+              className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-sky-500/15 blur-3xl"
             />
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-sky-300/30 blur-3xl"
+              className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-sky-400/10 blur-3xl"
             />
             <div className="relative px-4 sm:px-6">
               <Reveal>
@@ -787,24 +803,24 @@ export default function Home() {
           </section>
 
           {/* FAQ */}
-          <section id="faq" className="border-t border-neutral-200 bg-white py-16 sm:py-24">
+          <section id="faq" className="bg-neutral-950 py-16 text-white sm:py-24">
             <div className="mx-auto max-w-3xl px-4 sm:px-6">
               <Reveal className="text-center">
-                <h2 className="text-2xl font-semibold text-neutral-900 sm:text-3xl">
+                <h2 className="text-2xl font-semibold sm:text-3xl">
                   Perguntas frequentes
                 </h2>
               </Reveal>
 
-              <div className="mt-10 divide-y divide-neutral-200 rounded-2xl border border-neutral-200">
+              <div className="mt-10 divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
                 {faq.map((item) => (
                   <details key={item.q} className="group p-5">
-                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-900">
+                    <summary className="flex cursor-pointer list-none items-center justify-between font-medium text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400">
                       {item.q}
                       <span className="ml-4 shrink-0 text-neutral-400 transition-transform group-open:rotate-45">
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 text-sm text-neutral-600">{item.a}</p>
+                    <p className="mt-3 text-sm text-neutral-300">{item.a}</p>
                   </details>
                 ))}
               </div>

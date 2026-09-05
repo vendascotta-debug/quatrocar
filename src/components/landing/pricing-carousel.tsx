@@ -98,10 +98,10 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
           <div key={p.nome} className="w-[90%] shrink-0 snap-center sm:w-auto">
             <div
               className={
-                "relative flex h-full flex-col rounded-2xl border p-6 shadow-2xl transition-transform duration-500 sm:p-8 " +
+                "relative flex h-full flex-col rounded-2xl border p-6 shadow-2xl backdrop-blur-sm transition-transform duration-500 sm:p-8 " +
                 (p.destaque
-                  ? "border-sky-400 bg-white text-neutral-900 shadow-sky-500/30"
-                  : "border-neutral-200 bg-white text-neutral-900")
+                  ? "border-sky-400 bg-sky-400/10 text-white shadow-sky-500/30"
+                  : "border-white/10 bg-white/5 text-white")
               }
             >
               {p.destaque && (
@@ -110,38 +110,38 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                 </span>
               )}
               <h3 className="text-lg font-semibold">{p.nome}</h3>
-              <p className="mt-1 text-xs text-neutral-500">{p.publico}</p>
+              <p className="mt-1 text-xs text-neutral-400">{p.publico}</p>
 
               {p.precoDe ? (
                 <div className="mt-5 text-center">
-                  <p className="text-base font-semibold text-red-500 line-through decoration-2">
+                  <p className="text-base font-semibold text-red-400 line-through decoration-2">
                     De: {p.precoDe}
                   </p>
                   <div className="mt-2 flex items-center justify-center gap-2">
                     <span className="rounded-md bg-sky-500 px-2 py-1 text-sm font-black uppercase tracking-wide text-white">
                       12x
                     </span>
-                    <span className="text-6xl font-black leading-none tracking-tighter text-sky-600 sm:text-7xl">
+                    <span className="text-6xl font-black leading-none tracking-tighter text-sky-400 sm:text-7xl">
                       {p.precoParcela}
                     </span>
                   </div>
-                  <p className="mt-3 text-base font-bold text-neutral-800">
+                  <p className="mt-3 text-base font-bold text-white">
                     ou {p.precoAvista} à vista
                   </p>
                 </div>
               ) : (
                 <>
-                  <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-sky-600" : "")}>
+                  <p className={"mt-3 text-2xl font-bold " + (p.destaque ? "text-sky-400" : "")}>
                     {p.preco}
                   </p>
-                  {p.periodo && <p className="text-xs text-neutral-500">{p.periodo}</p>}
+                  {p.periodo && <p className="text-xs text-neutral-400">{p.periodo}</p>}
                 </>
               )}
 
-              <ul className="mt-6 flex-1 space-y-2 text-sm">
+              <ul className="mt-6 flex-1 space-y-2 text-sm text-neutral-200">
                 {p.itens.map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span aria-hidden="true" className="text-sky-500">
+                    <span aria-hidden="true" className="text-sky-400">
                       ✓
                     </span>
                     <span>{item}</span>
@@ -158,7 +158,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                     "mt-6 block rounded-lg px-5 py-3.5 text-center text-base font-bold transition-transform active:scale-[0.98] " +
                     (p.destaque
                       ? "bg-sky-500 text-white shadow-lg shadow-sky-500/40 hover:bg-sky-400"
-                      : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
+                      : "border border-white/20 text-white hover:bg-white/10")
                   }
                 >
                   Quero esse plano
@@ -170,7 +170,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
                     "mt-6 block rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-colors " +
                     (p.destaque
                       ? "bg-sky-400 text-neutral-950 hover:bg-sky-300"
-                      : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100")
+                      : "border border-white/20 text-white hover:bg-white/10")
                   }
                 >
                   Criar conta grátis
@@ -178,7 +178,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
               )}
 
               {p.precoDe && (
-                <div className="mt-5 flex items-center justify-center gap-4 border-t border-neutral-100 pt-4 text-[11px] text-neutral-500">
+                <div className="mt-5 flex items-center justify-center gap-4 border-t border-white/10 pt-4 text-[11px] text-neutral-400">
                   <span className="flex items-center gap-1">🔒 Compra segura</span>
                   <span className="flex items-center gap-1">✅ Garantia 14 dias</span>
                   <span className="flex items-center gap-1">🔐 Dados protegidos</span>
@@ -202,7 +202,7 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
             }}
             className={
               "h-2 rounded-full transition-all " +
-              (i === active ? "w-6 bg-sky-500" : "w-2 bg-neutral-300")
+              (i === active ? "w-6 bg-sky-500" : "w-2 bg-white/20")
             }
           />
         ))}

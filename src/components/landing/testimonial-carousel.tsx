@@ -101,7 +101,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
           type="button"
           aria-label="Depoimento anterior"
           onClick={prev}
-          className="absolute left-1 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-lg transition-transform hover:scale-110 hover:bg-white"
+          className="absolute left-1 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white backdrop-blur-sm shadow-lg transition-transform hover:scale-110 hover:bg-white/20"
         >
           ‹
         </button>
@@ -109,7 +109,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
           type="button"
           aria-label="Próximo depoimento"
           onClick={next}
-          className="absolute right-1 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-lg transition-transform hover:scale-110 hover:bg-white"
+          className="absolute right-1 top-1/2 z-30 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white backdrop-blur-sm shadow-lg transition-transform hover:scale-110 hover:bg-white/20"
         >
           ›
         </button>
@@ -120,11 +120,11 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
         <span className="text-4xl text-sky-500" aria-hidden="true">
           &ldquo;
         </span>
-        <p className="min-h-[6rem] text-xl font-medium leading-snug text-neutral-900 sm:text-2xl">
+        <p className="min-h-[6rem] text-xl font-medium leading-snug text-white sm:text-2xl">
           {current.citacao}
         </p>
-        <p className="mt-5 font-semibold text-neutral-900">{current.nome}</p>
-        <p className="text-sm text-neutral-500">{current.papel}</p>
+        <p className="mt-5 font-semibold text-white">{current.nome}</p>
+        <p className="text-sm text-neutral-400">{current.papel}</p>
 
         <div className="mt-6 flex justify-center gap-2 md:justify-start">
           {items.map((item, i) => (
@@ -135,7 +135,7 @@ export function TestimonialCarousel({ items }: { items: Testimonial[] }) {
               onClick={() => goTo(i)}
               className={
                 "h-2 rounded-full transition-all " +
-                (i === active ? "w-6 bg-sky-500" : "w-2 bg-neutral-300")
+                (i === active ? "w-6 bg-sky-500" : "w-2 bg-white/20")
               }
             />
           ))}
