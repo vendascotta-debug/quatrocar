@@ -114,14 +114,18 @@ export function PricingCarousel({ planos }: { planos: Plano[] }) {
 
               {p.precoDe ? (
                 <div className="mt-5 text-center">
-                  <p className="text-sm text-neutral-400 line-through">De: {p.precoDe}</p>
-                  <p className="mt-1 text-xs font-bold uppercase tracking-wider text-sky-600">
-                    12x de
+                  <p className="text-base font-semibold text-red-500 line-through decoration-2">
+                    De: {p.precoDe}
                   </p>
-                  <p className="text-5xl font-black leading-none tracking-tight text-sky-600 sm:text-6xl">
-                    {p.precoParcela}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-neutral-600">
+                  <div className="mt-2 flex items-center justify-center gap-2">
+                    <span className="rounded-md bg-sky-500 px-2 py-1 text-sm font-black uppercase tracking-wide text-white">
+                      12x
+                    </span>
+                    <span className="text-6xl font-black leading-none tracking-tighter text-sky-600 sm:text-7xl">
+                      {p.precoParcela}
+                    </span>
+                  </div>
+                  <p className="mt-3 text-base font-bold text-neutral-800">
                     ou {p.precoAvista} à vista
                   </p>
                 </div>

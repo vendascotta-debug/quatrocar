@@ -135,7 +135,7 @@ const planos = [
     preco: "R$ 97",
     periodo: "pagamento único · ou 12x no cartão",
     precoDe: "R$ 497",
-    precoParcela: "R$ 9,97",
+    precoParcela: "R$ 10,03",
     precoAvista: "R$ 97,00",
     destaque: true,
     checkoutUrl: KIWIFY_CHECKOUT_URL,
@@ -728,7 +728,7 @@ export default function Home() {
           <section id="planos" className="relative overflow-hidden bg-neutral-950 py-16 text-white sm:py-24">
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(ellipse_at_top,theme(colors.sky.500/0.25),transparent_70%)]"
+              className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,theme(colors.sky.500/0.22),transparent_55%),radial-gradient(circle_at_90%_10%,theme(colors.sky.400/0.14),transparent_45%)]"
             />
             <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
             <Reveal className="text-center">
