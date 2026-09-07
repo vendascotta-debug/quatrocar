@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/dashboard", "/veiculos", "/perfil", "/admin", "/api/"],
       },
     ],
-    sitemap: "https://quatrocar.com.br/sitemap.xml",
+    sitemap: "https://www.quatrocar.com.br/sitemap.xml",
   };
 }

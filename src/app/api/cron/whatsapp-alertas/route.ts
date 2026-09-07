@@ -114,10 +114,10 @@ export async function GET(request: NextRequest) {
 
       const mensagem =
         alert.status === "atrasado"
-          ? `🔴 *${alert.nome}* do seu ${veiculoNome} já venceu! Regularize assim que possível.\n\nVeja os detalhes no QuatroCar: https://quatrocar.com.br/veiculos/${vehicle.id}/manutencao/${record.id}`
+          ? `🔴 *${alert.nome}* do seu ${veiculoNome} já venceu! Regularize assim que possível.\n\nVeja os detalhes no QuatroCar: https://www.quatrocar.com.br/veiculos/${vehicle.id}/manutencao/${record.id}`
           : `🟡 *${alert.nome}* do seu ${veiculoNome} está vencendo${
               alert.proximaData ? ` em ${new Date(alert.proximaData).toLocaleDateString("pt-BR")}` : ""
-            }${alert.proximoKm ? ` (aos ${alert.proximoKm.toLocaleString("pt-BR")} km)` : ""}. Já está quase na hora!\n\nVeja os detalhes no QuatroCar: https://quatrocar.com.br/veiculos/${vehicle.id}/manutencao/${record.id}`;
+            }${alert.proximoKm ? ` (aos ${alert.proximoKm.toLocaleString("pt-BR")} km)` : ""}. Já está quase na hora!\n\nVeja os detalhes no QuatroCar: https://www.quatrocar.com.br/veiculos/${vehicle.id}/manutencao/${record.id}`;
 
       try {
         await enviarWhatsapp(contato.whatsapp, mensagem);

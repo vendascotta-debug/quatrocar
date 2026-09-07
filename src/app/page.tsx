@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: "QuatroCar — A memória do seu carro, sempre organizada",
     description:
       "Histórico completo do veículo, lembretes de manutenção por peça e controle de gastos automotivos em um só lugar.",
-    url: "https://quatrocar.com.br",
+    url: "https://www.quatrocar.com.br",
     siteName: "QuatroCar",
     locale: "pt_BR",
     type: "website",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
       "Histórico completo do veículo, lembretes de manutenção por peça e controle de gastos automotivos em um só lugar.",
   },
   alternates: {
-    canonical: "https://quatrocar.com.br",
+    canonical: "https://www.quatrocar.com.br",
   },
 };
 

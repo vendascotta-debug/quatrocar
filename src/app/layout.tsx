@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://quatrocar.com.br"),
+  metadataBase: new URL("https://www.quatrocar.com.br"),
   title: {
     default: "QuatroCar — Prontuário digital do seu veículo",
     template: "%s · QuatroCar",
