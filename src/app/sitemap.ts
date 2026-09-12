@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
 
+// Evita que a Vercel sirva uma cópia antiga em cache na borda (edge) —
+// já aconteceu do sitemap ficar dias desatualizado mesmo após novos deploys.
+export const revalidate = 0;
+
 const BASE_URL = "https://www.quatrocar.com.br";
 
 /**
