@@ -21,6 +21,46 @@ export const metadata: Metadata = {
 
 const artigos = [
   {
+    slug: "/blog/checklist-manutencao-motorista-de-app",
+    categoria: "Motorista de aplicativo",
+    titulo:
+      "Checklist de manutenção para motorista de aplicativo: o que checar toda semana",
+    descricao:
+      "Rodar muito muda tudo na manutenção do carro. Veja o checklist semanal, mensal e por quilometragem pra quem vive de aplicativo.",
+    data: "10 de outubro de 2026",
+    imagem: "/images/blog/checklist-motorista-app-hero.jpg",
+  },
+  {
+    slug: "/blog/historico-de-manutencao-carro-usado",
+    categoria: "Comprar e vender",
+    titulo:
+      "Histórico de manutenção: por que ele vale mais do que o preço no anúncio",
+    descricao:
+      "Veja por que o histórico de manutenção pesa tanto na negociação de um carro usado, e como provar que você cuidou do carro.",
+    data: "3 de outubro de 2026",
+    imagem: "/images/blog/historico-manutencao-carro-usado-hero.jpg",
+  },
+  {
+    slug: "/blog/quando-trocar-o-oleo-do-carro",
+    categoria: "Manutenção",
+    titulo:
+      "Quando trocar o óleo do carro: a resposta completa (não é só 10 mil km)",
+    descricao:
+      "Mineral, semissintético ou sintético — cada um tem um intervalo diferente. Veja os sinais de óleo vencido e os mitos mais comuns.",
+    data: "26 de setembro de 2026",
+    imagem: "/images/blog/quando-trocar-oleo-hero.jpg",
+  },
+  {
+    slug: "/blog/quanto-custa-manter-um-carro-por-mes",
+    categoria: "Controle de gastos",
+    titulo:
+      "Quanto custa manter um carro por mês? A conta que quase ninguém faz certo",
+    descricao:
+      "Combustível é só uma parte. Veja todos os custos fixos e variáveis de manter um carro por mês.",
+    data: "19 de setembro de 2026",
+    imagem: "/images/blog/quanto-custa-manter-carro-hero.jpg",
+  },
+  {
     slug: "/blog/tabela-de-revisao-por-quilometragem",
     categoria: "Manutenção",
     titulo:

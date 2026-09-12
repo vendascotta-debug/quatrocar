@@ -17,10 +17,10 @@ const BASE_URL = "https://www.quatrocar.com.br";
 
 const artigos = [
   "/blog/tabela-de-revisao-por-quilometragem",
-  // "/blog/quanto-custa-manter-um-carro-por-mes",
-  // "/blog/quando-trocar-o-oleo-do-carro",
-  // "/blog/historico-de-manutencao-carro-usado",
-  // "/blog/checklist-manutencao-motorista-de-app",
+  "/blog/quanto-custa-manter-um-carro-por-mes",
+  "/blog/quando-trocar-o-oleo-do-carro",
+  "/blog/historico-de-manutencao-carro-usado",
+  "/blog/checklist-manutencao-motorista-de-app",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
