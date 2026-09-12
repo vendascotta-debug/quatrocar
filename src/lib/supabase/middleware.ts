@@ -39,6 +39,7 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname === "/privacidade" ||
     request.nextUrl.pathname === "/esqueci-senha" ||
     request.nextUrl.pathname === "/redefinir-senha" ||
+    request.nextUrl.pathname.startsWith("/blog") ||
     isAuthRoute ||
     request.nextUrl.pathname.startsWith("/auth/") ||
     request.nextUrl.pathname.startsWith("/api/");
