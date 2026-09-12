@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { BlogHeader } from "@/components/blog/blog-header";
 
 const BASE_URL = "https://www.quatrocar.com.br";
 
@@ -20,49 +22,94 @@ export const metadata: Metadata = {
 const artigos = [
   {
     slug: "/blog/tabela-de-revisao-por-quilometragem",
+    categoria: "Manutenção",
     titulo:
       "Tabela de revisão por quilometragem: o que trocar a cada 10, 20, 40 e 60 mil km",
     descricao:
       "Tabela completa de revisão do carro por quilometragem. Veja o que trocar em cada etapa, quais itens vencem por tempo e como não perder nenhuma manutenção.",
     data: "12 de setembro de 2026",
+    imagem: "/images/blog/tabela-revisao-km-hero.jpg",
   },
 ];
 
 export default function BlogIndexPage() {
+  const [destaque, ...resto] = artigos;
+
   return (
-    <div className="min-h-screen bg-slate-950">
-      <main className="mx-auto max-w-3xl px-5 py-16">
-        <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400">
-          Blog
-        </span>
-        <h1 className="mt-2 text-3xl font-bold text-white sm:text-4xl">
-          Manutenção e gestão do seu veículo
+    <div className="min-h-screen bg-neutral-50">
+      <BlogHeader />
+
+      <main className="mx-auto max-w-5xl px-5 py-10">
+        <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
+          Blog do QuatroCar
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-neutral-300">
-          Artigos práticos sobre revisão, manutenção preventiva e controle de
-          gastos do seu carro.
+        <p className="mt-2 max-w-2xl text-slate-600">
+          Manutenção, revisão e controle de gastos do seu carro — direto ao ponto.
         </p>
 
-        <div className="mt-12 space-y-6">
-          {artigos.map((artigo) => (
-            <Link
-              key={artigo.slug}
-              href={artigo.slug}
-              className="block rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-colors hover:border-cyan-400/30 hover:bg-white/10"
-            >
-              <p className="text-xs text-neutral-400">{artigo.data}</p>
-              <h2 className="mt-2 text-xl font-semibold text-white">
-                {artigo.titulo}
-              </h2>
-              <p className="mt-2 leading-relaxed text-neutral-300">
-                {artigo.descricao}
-              </p>
-              <span className="mt-4 inline-block text-sm font-semibold text-cyan-400">
-                Ler artigo →
+        {destaque && (
+          <Link
+            href={destaque.slug}
+            className="mt-8 flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md md:flex-row"
+          >
+            <div className="relative h-56 w-full shrink-0 md:h-auto md:w-2/5">
+              <Image
+                src={destaque.imagem}
+                alt={destaque.titulo}
+                fill
+                sizes="(min-width: 768px) 40vw, 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <div className="flex flex-1 flex-col justify-center p-6 sm:p-8">
+              <span className="w-fit rounded-full bg-cyan-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-cyan-700">
+                {destaque.categoria}
               </span>
-            </Link>
-          ))}
-        </div>
+              <h2 className="mt-3 text-xl font-bold leading-snug text-slate-900 sm:text-2xl">
+                {destaque.titulo}
+              </h2>
+              <p className="mt-3 leading-relaxed text-slate-600">
+                {destaque.descricao}
+              </p>
+              <p className="mt-4 text-xs text-slate-400">{destaque.data}</p>
+            </div>
+          </Link>
+        )}
+
+        {resto.length > 0 && (
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {resto.map((artigo) => (
+              <Link
+                key={artigo.slug}
+                href={artigo.slug}
+                className="flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="relative h-40 w-full">
+                  <Image
+                    src={artigo.imagem}
+                    alt={artigo.titulo}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <span className="w-fit rounded-full bg-cyan-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-cyan-700">
+                    {artigo.categoria}
+                  </span>
+                  <h2 className="mt-3 text-lg font-bold leading-snug text-slate-900">
+                    {artigo.titulo}
+                  </h2>
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                    {artigo.descricao}
+                  </p>
+                  <p className="mt-3 text-xs text-slate-400">{artigo.data}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );
