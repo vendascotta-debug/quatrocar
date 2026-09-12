@@ -55,6 +55,9 @@ export function LandingHeader() {
               {l.label}
             </a>
           ))}
+          <Link href="/blog" className="transition-colors hover:text-white">
+            Blog
+          </Link>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -118,6 +121,9 @@ export function LandingHeader() {
               {l.label}
             </a>
           ))}
+          <Link href="/blog" onClick={() => setOpen(false)}>
+            Blog
+          </Link>
           <div className="mt-6 flex w-full max-w-xs flex-col gap-3 px-6">
             <Link
               href="/login"
