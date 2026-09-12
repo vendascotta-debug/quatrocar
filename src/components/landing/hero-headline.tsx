@@ -41,9 +41,14 @@ export function HeroHeadline() {
 
   return (
     <h1 className="text-3xl font-bold leading-[1.08] tracking-tight sm:text-4xl md:text-5xl lg:text-[3.4rem]">
-      <span className="block">{lineA.map((w, i) => renderWord(w, i, false))}</span>
-      <span className="block">
-        {lineB.map((w, i) => renderWord(w, lineA.length + i, true))}
+      <span className="sr-only">
+        Seu carro tem uma história. O QuatroCar guarda cada capítulo.
+      </span>
+      <span aria-hidden="true">
+        <span className="block">{lineA.map((w, i) => renderWord(w, i, false))}</span>
+        <span className="block">
+          {lineB.map((w, i) => renderWord(w, lineA.length + i, true))}
+        </span>
       </span>
     </h1>
   );

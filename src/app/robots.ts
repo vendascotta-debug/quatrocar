@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/dashboard", "/veiculos", "/perfil", "/admin", "/api/"],
+        disallow: ["/dashboard", "/veiculos", "/perfil", "/admin", "/api/", "/login", "/cadastro"],
       },
     ],
     sitemap: "https://www.quatrocar.com.br/sitemap.xml",

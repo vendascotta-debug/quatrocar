@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogHeader } from "@/components/blog/blog-header";
+import { notFound } from "next/navigation";
+import { isPublished } from "@/lib/blog-posts";
+
+// Revalida periodicamente pra respeitar a data de publicação agendada
+// sem depender de um novo deploy quando a data chegar.
+export const revalidate = 3600;
 
 const BASE_URL = "https://www.quatrocar.com.br";
 const SLUG = "/blog/historico-de-manutencao-carro-usado";
 const HERO_IMAGE = "/images/blog/historico-manutencao-carro-usado-hero.jpg";
+const PUBLISHED_AT = "2026-10-03";
 
 export const metadata: Metadata = {
   title: "Histórico de manutenção: por que ele vale mais do que o preço no anúncio",
@@ -84,6 +91,8 @@ const jsonLd = {
 };
 
 export default function Page() {
+  if (!isPublished(PUBLISHED_AT)) notFound();
+
   return (
     <>
       <script

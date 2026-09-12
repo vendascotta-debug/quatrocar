@@ -2,10 +2,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { BlogHeader } from "@/components/blog/blog-header";
+import { notFound } from "next/navigation";
+import { isPublished } from "@/lib/blog-posts";
+
+// Revalida periodicamente pra respeitar a data de publicação agendada
+// sem depender de um novo deploy quando a data chegar.
+export const revalidate = 3600;
 
 const BASE_URL = "https://www.quatrocar.com.br";
 const SLUG = "/blog/quando-trocar-o-oleo-do-carro";
 const HERO_IMAGE = "/images/blog/quando-trocar-oleo-hero.jpg";
+const PUBLISHED_AT = "2026-09-26";
 
 export const metadata: Metadata = {
   title: "Quando trocar o óleo do carro: a resposta completa (não é só 10 mil km)",
@@ -98,6 +105,8 @@ const jsonLd = {
 };
 
 export default function Page() {
+  if (!isPublished(PUBLISHED_AT)) notFound();
+
   return (
     <>
       <script

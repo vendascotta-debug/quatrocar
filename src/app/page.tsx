@@ -12,6 +12,7 @@ import { SupportWidget } from "@/components/landing/support-widget";
 import { PricingCarousel } from "@/components/landing/pricing-carousel";
 import { TestimonialCarousel } from "@/components/landing/testimonial-carousel";
 import { BrandMarquee } from "@/components/landing/brand-marquee";
+import { StructuredData } from "@/components/seo/StructuredData";
 import { KIWIFY_CHECKOUT_URL } from "@/lib/constants";
 import {
   IconHistorico,
@@ -233,25 +234,7 @@ const faq = [
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: "QuatroCar",
-            applicationCategory: "LifestyleApplication",
-            operatingSystem: "Web",
-            description:
-              "A memória do seu carro: histórico de manutenção, abastecimento, documentos e lembretes de manutenção por peça.",
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "BRL",
-            },
-          }),
-        }}
-      />
+      <StructuredData faq={faq} />
 
       <div className="flex flex-1 flex-col overflow-x-hidden">
         <a
