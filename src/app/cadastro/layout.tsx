@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Criar conta | QuatroCar",
+  title: "Criar conta",
   robots: { index: false, follow: false },
 };
 
