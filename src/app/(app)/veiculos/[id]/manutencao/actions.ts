@@ -111,11 +111,43 @@ export async function deleteMaintenanceRecord(vehicleId: string, recordId: strin
 export async function marcarComoPago(vehicleId: string, recordId: string, formData: FormData) {
   const supabase = await createClient();
   const dataPagamento = String(formData.get("data_pagamento") || new Date().toISOString().slice(0, 10));
+  const kmInformado = formData.get("km_atual") ? Number(formData.get("km_atual")) : null;
+
+  const { data: original } = await supabase
+    .from("maintenance_records")
+    .select("*")
+    .eq("id", recordId)
+    .single();
 
   await supabase
     .from("maintenance_records")
     .update({ pago: true, data_pagamento: dataPagamento })
     .eq("id", recordId);
+
+  // Itens recorrentes (troca de óleo, pastilha etc.) continuam sendo cobrados —
+  // pagar essa ocorrência significa "foi feito de novo", então criamos o próximo
+  // registro já aberto, pra gerar sozinho o próximo vencimento (+ intervalo).
+  if (original && (original.intervalo_km || original.intervalo_meses)) {
+    const km = kmInformado ?? original.km;
+
+    await supabase.from("maintenance_records").insert({
+      vehicle_id: vehicleId,
+      data: dataPagamento,
+      km,
+      categoria_id: original.categoria_id,
+      subtipo: original.subtipo,
+      intervalo_km: original.intervalo_km,
+      intervalo_meses: original.intervalo_meses,
+      valor_mao_obra: 0,
+      valor_pecas: 0,
+    });
+
+    await supabase
+      .from("vehicles")
+      .update({ km_atual: km })
+      .eq("id", vehicleId)
+      .lt("km_atual", km);
+  }
 
   revalidatePath(`/veiculos/${vehicleId}`);
 }

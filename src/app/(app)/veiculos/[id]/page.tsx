@@ -301,7 +301,7 @@ export default async function VeiculoDetalhePage({
                   ) : (
                     <form
                       action={marcarComoPago.bind(null, id, a.recordId)}
-                      className="flex items-center gap-1"
+                      className="flex flex-wrap items-center gap-1"
                     >
                       <input
                         type="date"
@@ -309,6 +309,15 @@ export default async function VeiculoDetalhePage({
                         defaultValue={new Date().toISOString().slice(0, 10)}
                         className="rounded-lg border border-neutral-300 px-2 py-1 text-xs text-neutral-700"
                       />
+                      {a.proximoKm !== null && (
+                        <input
+                          type="number"
+                          name="km_atual"
+                          defaultValue={vehicle.km_atual}
+                          placeholder="Km atual"
+                          className="w-24 rounded-lg border border-neutral-300 px-2 py-1 text-xs text-neutral-700"
+                        />
+                      )}
                       <button
                         type="submit"
                         className="rounded-lg border border-neutral-300 px-2 py-1 text-xs font-medium text-neutral-700 hover:bg-neutral-50"
