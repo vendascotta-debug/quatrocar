@@ -7,6 +7,7 @@ import { groupByMonth } from "@/lib/group-by-month";
 import { ExportPdfButton } from "./export-pdf-button";
 import { FipeCard } from "./fipe-card";
 import { CategoryPie } from "@/components/category-pie";
+import { marcarComoPago, desmarcarComoPago } from "./manutencao/actions";
 
 function currency(n: number) {
   return n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
@@ -242,37 +243,82 @@ export default async function VeiculoDetalhePage({
           <h2 className="text-lg font-semibold text-neutral-900">Próximos vencimentos</h2>
           <div className="divide-y divide-neutral-200 rounded-xl border border-neutral-200 bg-white">
             {alerts.map((a) => (
-              <Link
+              <div
                 key={a.nome}
-                href={`/veiculos/${id}/manutencao/${a.recordId}`}
-                className="flex items-center justify-between px-4 py-3 hover:bg-neutral-50"
+                className="flex flex-wrap items-center justify-between gap-2 px-4 py-3"
               >
-                <div>
+                <Link
+                  href={`/veiculos/${id}/manutencao/${a.recordId}`}
+                  className="min-w-0 flex-1 hover:opacity-80"
+                >
                   <p className="font-medium text-neutral-900">{a.nome}</p>
                   <p className="text-sm text-neutral-500">
                     Registrado em: {new Date(a.ultimaData).toLocaleDateString("pt-BR")}
                     {a.proximoKm !== null && ` · ${a.ultimoKm.toLocaleString("pt-BR")} km`}
                   </p>
                   <p className="text-sm text-neutral-500">
-                    {a.proximoKm !== null && `Próxima aos ${a.proximoKm.toLocaleString("pt-BR")} km`}
-                    {a.proximoKm !== null && a.proximaData !== null && " · "}
-                    {a.proximaData !== null &&
-                      `vence em ${new Date(a.proximaData).toLocaleDateString("pt-BR")}`}
+                    {a.status === "pago" && a.dataPagamento
+                      ? `Pago em ${new Date(a.dataPagamento).toLocaleDateString("pt-BR")}`
+                      : (
+                        <>
+                          {a.proximoKm !== null && `Próxima aos ${a.proximoKm.toLocaleString("pt-BR")} km`}
+                          {a.proximoKm !== null && a.proximaData !== null && " · "}
+                          {a.proximaData !== null &&
+                            `vence em ${new Date(a.proximaData).toLocaleDateString("pt-BR")}`}
+                        </>
+                      )}
                   </p>
-                </div>
-                <span
-                  className={
-                    "rounded-full px-3 py-1 text-xs font-medium " +
-                    (a.status === "atrasado"
-                      ? "bg-red-100 text-red-700"
+                </Link>
+
+                <div className="flex shrink-0 items-center gap-2">
+                  <span
+                    className={
+                      "rounded-full px-3 py-1 text-xs font-medium " +
+                      (a.status === "atrasado"
+                        ? "bg-red-100 text-red-700"
+                        : a.status === "proximo"
+                          ? "bg-amber-100 text-amber-700"
+                          : a.status === "pago"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-green-100 text-green-700")
+                    }
+                  >
+                    {a.status === "atrasado"
+                      ? "Atrasado"
                       : a.status === "proximo"
-                        ? "bg-amber-100 text-amber-700"
-                        : "bg-green-100 text-green-700")
-                  }
-                >
-                  {a.status === "atrasado" ? "Atrasado" : a.status === "proximo" ? "Próximo" : "Em dia"}
-                </span>
-              </Link>
+                        ? "Próximo"
+                        : a.status === "pago"
+                          ? "Pago"
+                          : "Em dia"}
+                  </span>
+
+                  {a.status === "pago" ? (
+                    <form action={desmarcarComoPago.bind(null, id, a.recordId)}>
+                      <button type="submit" className="text-xs text-neutral-400 underline">
+                        Desfazer
+                      </button>
+                    </form>
+                  ) : (
+                    <form
+                      action={marcarComoPago.bind(null, id, a.recordId)}
+                      className="flex items-center gap-1"
+                    >
+                      <input
+                        type="date"
+                        name="data_pagamento"
+                        defaultValue={new Date().toISOString().slice(0, 10)}
+                        className="rounded-lg border border-neutral-300 px-2 py-1 text-xs text-neutral-700"
+                      />
+                      <button
+                        type="submit"
+                        className="rounded-lg border border-neutral-300 px-2 py-1 text-xs font-medium text-neutral-700 hover:bg-neutral-50"
+                      >
+                        Marcar como pago
+                      </button>
+                    </form>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </section>

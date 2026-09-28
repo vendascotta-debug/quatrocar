@@ -107,3 +107,26 @@ export async function deleteMaintenanceRecord(vehicleId: string, recordId: strin
   revalidatePath(`/veiculos/${vehicleId}`);
   redirect(`/veiculos/${vehicleId}`);
 }
+
+export async function marcarComoPago(vehicleId: string, recordId: string, formData: FormData) {
+  const supabase = await createClient();
+  const dataPagamento = String(formData.get("data_pagamento") || new Date().toISOString().slice(0, 10));
+
+  await supabase
+    .from("maintenance_records")
+    .update({ pago: true, data_pagamento: dataPagamento })
+    .eq("id", recordId);
+
+  revalidatePath(`/veiculos/${vehicleId}`);
+}
+
+export async function desmarcarComoPago(vehicleId: string, recordId: string) {
+  const supabase = await createClient();
+
+  await supabase
+    .from("maintenance_records")
+    .update({ pago: false, data_pagamento: null })
+    .eq("id", recordId);
+
+  revalidatePath(`/veiculos/${vehicleId}`);
+}

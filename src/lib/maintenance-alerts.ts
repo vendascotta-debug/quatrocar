@@ -8,9 +8,10 @@ export type MaintenanceAlert = {
   ultimoKm: number;
   proximoKm: number | null;
   proximaData: string | null;
-  status: "atrasado" | "proximo" | "ok";
+  status: "atrasado" | "proximo" | "ok" | "pago";
   kmRestante: number | null;
   diasRestantes: number | null;
+  dataPagamento: string | null;
 };
 
 const KM_AVISO_ANTECIPADO = 1000;
@@ -57,13 +58,17 @@ export function computeMaintenanceAlerts(
         : null;
 
     let status: MaintenanceAlert["status"] = "ok";
-    const atrasadoPorKm = kmRestante !== null && kmRestante <= 0;
-    const atrasadoPorData = diasRestantes !== null && diasRestantes <= 0;
-    const proximoPorKm = kmRestante !== null && kmRestante <= KM_AVISO_ANTECIPADO;
-    const proximoPorData = diasRestantes !== null && diasRestantes <= DIAS_AVISO_ANTECIPADO;
+    if (r.pago) {
+      status = "pago";
+    } else {
+      const atrasadoPorKm = kmRestante !== null && kmRestante <= 0;
+      const atrasadoPorData = diasRestantes !== null && diasRestantes <= 0;
+      const proximoPorKm = kmRestante !== null && kmRestante <= KM_AVISO_ANTECIPADO;
+      const proximoPorData = diasRestantes !== null && diasRestantes <= DIAS_AVISO_ANTECIPADO;
 
-    if (atrasadoPorKm || atrasadoPorData) status = "atrasado";
-    else if (proximoPorKm || proximoPorData) status = "proximo";
+      if (atrasadoPorKm || atrasadoPorData) status = "atrasado";
+      else if (proximoPorKm || proximoPorData) status = "proximo";
+    }
 
     alerts.push({
       recordId: r.id,
@@ -75,9 +80,10 @@ export function computeMaintenanceAlerts(
       status,
       kmRestante,
       diasRestantes,
+      dataPagamento: r.data_pagamento,
     });
   }
 
-  const ordem = { atrasado: 0, proximo: 1, ok: 2 };
+  const ordem = { atrasado: 0, proximo: 1, ok: 2, pago: 3 };
   return alerts.sort((a, b) => ordem[a.status] - ordem[b.status]);
 }
