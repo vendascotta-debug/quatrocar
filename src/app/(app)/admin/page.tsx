@@ -11,6 +11,14 @@ type Row = {
   whatsapp: string | null;
   criado_em: string;
   totalVeiculos: number;
+  kiwifySaleId: string | null;
+};
+
+const VALOR_POR_PLANO: Record<string, string> = {
+  premium: "R$ 97/ano",
+  empresas: "Sob consulta",
+  cortesia: "Cortesia (grátis)",
+  free: "—",
 };
 
 export default async function AdminPage() {
@@ -27,7 +35,7 @@ export default async function AdminPage() {
 
   const [{ data: authUsers }, { data: profiles }, { data: vehicles }] = await Promise.all([
     admin.auth.admin.listUsers({ perPage: 1000 }),
-    admin.from("profiles").select("id, nome, plano, whatsapp, criado_em"),
+    admin.from("profiles").select("id, nome, plano, whatsapp, criado_em, kiwify_sale_id"),
     admin.from("vehicles").select("id, user_id"),
   ]);
 
@@ -48,13 +56,17 @@ export default async function AdminPage() {
       whatsapp: profile?.whatsapp ?? null,
       criado_em: u.created_at,
       totalVeiculos: vehicleCountByUser.get(u.id) ?? 0,
+      kiwifySaleId: profile?.kiwify_sale_id ?? null,
     };
   });
 
   rows.sort((a, b) => new Date(b.criado_em).getTime() - new Date(a.criado_em).getTime());
 
   const totalUsuarios = rows.length;
-  const totalPagantes = rows.filter((r) => r.plano !== "free").length;
+  // "Pagante" de verdade = plano premium/empresas. Cortesia é acesso liberado
+  // manualmente (sem cobrança), por isso não entra nessa contagem.
+  const totalPagantes = rows.filter((r) => r.plano === "premium" || r.plano === "empresas").length;
+  const totalCortesia = rows.filter((r) => r.plano === "cortesia").length;
 
   return (
     <div className="space-y-6">
@@ -63,7 +75,7 @@ export default async function AdminPage() {
         <p className="text-neutral-600">Usuários cadastrados no QuatroCar.</p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-4">
         <div className="rounded-xl border border-neutral-200 bg-white p-4">
           <p className="text-sm text-neutral-500">Total de usuários</p>
           <p className="text-2xl font-semibold text-neutral-900">{totalUsuarios}</p>
@@ -73,8 +85,14 @@ export default async function AdminPage() {
           <p className="text-2xl font-semibold text-neutral-900">{totalPagantes}</p>
         </div>
         <div className="rounded-xl border border-neutral-200 bg-white p-4">
+          <p className="text-sm text-neutral-500">Cortesia</p>
+          <p className="text-2xl font-semibold text-neutral-900">{totalCortesia}</p>
+        </div>
+        <div className="rounded-xl border border-neutral-200 bg-white p-4">
           <p className="text-sm text-neutral-500">Gratuitos</p>
-          <p className="text-2xl font-semibold text-neutral-900">{totalUsuarios - totalPagantes}</p>
+          <p className="text-2xl font-semibold text-neutral-900">
+            {totalUsuarios - totalPagantes - totalCortesia}
+          </p>
         </div>
       </div>
 
@@ -88,6 +106,7 @@ export default async function AdminPage() {
               <th className="px-4 py-3 font-medium">Veículos</th>
               <th className="px-4 py-3 font-medium">Cadastro</th>
               <th className="px-4 py-3 font-medium">Plano</th>
+              <th className="px-4 py-3 font-medium">Valor</th>
               <th className="px-4 py-3 font-medium">Ações</th>
             </tr>
           </thead>
@@ -102,6 +121,8 @@ export default async function AdminPage() {
                 plano={r.plano}
                 totalVeiculos={r.totalVeiculos}
                 criadoEm={r.criado_em}
+                valor={VALOR_POR_PLANO[r.plano] ?? "—"}
+                kiwifySaleId={r.kiwifySaleId}
                 isSelf={r.email.toLowerCase() === user?.email?.toLowerCase()}
               />
             ))}

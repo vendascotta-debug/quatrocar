@@ -12,6 +12,8 @@ export function UserRow({
   plano,
   totalVeiculos,
   criadoEm,
+  valor,
+  kiwifySaleId,
   isSelf,
 }: {
   userId: string;
@@ -21,9 +23,12 @@ export function UserRow({
   plano: string;
   totalVeiculos: number;
   criadoEm: string;
+  valor: string;
+  kiwifySaleId: string | null;
   isSelf: boolean;
 }) {
   const [editing, setEditing] = useState(false);
+  const [detalhes, setDetalhes] = useState(false);
   const [nomeValue, setNomeValue] = useState(nome ?? "");
   const [whatsappValue, setWhatsappValue] = useState(whatsapp ?? "");
   const [pending, startTransition] = useTransition();
@@ -45,6 +50,7 @@ export function UserRow({
   };
 
   return (
+    <>
     <tr>
       <td className="px-4 py-3 text-neutral-900">
         {editing ? (
@@ -76,6 +82,7 @@ export function UserRow({
       <td className="px-4 py-3">
         <PlanoSelect userId={userId} plano={plano} />
       </td>
+      <td className="px-4 py-3 text-neutral-600">{valor}</td>
       <td className="px-4 py-3">
         <div className="flex items-center gap-2">
           {editing ? (
@@ -100,6 +107,13 @@ export function UserRow({
             <>
               <button
                 type="button"
+                onClick={() => setDetalhes((v) => !v)}
+                className="rounded border border-neutral-300 px-2 py-1 text-xs font-medium text-neutral-900 hover:bg-neutral-100"
+              >
+                {detalhes ? "Ocultar" : "Detalhes"}
+              </button>
+              <button
+                type="button"
                 onClick={() => setEditing(true)}
                 className="rounded border border-neutral-300 px-2 py-1 text-xs font-medium text-neutral-900 hover:bg-neutral-100"
               >
@@ -120,5 +134,24 @@ export function UserRow({
         </div>
       </td>
     </tr>
+    {detalhes && (
+      <tr className="bg-neutral-50">
+        <td colSpan={8} className="px-4 py-3 text-sm text-neutral-600">
+          <div className="grid gap-2 sm:grid-cols-3">
+            <p>
+              <span className="font-medium text-neutral-900">ID da venda (Kiwify):</span>{" "}
+              {kiwifySaleId || "— (nenhuma compra registrada por webhook)"}
+            </p>
+            <p>
+              <span className="font-medium text-neutral-900">ID do usuário:</span> {userId}
+            </p>
+            <p>
+              <span className="font-medium text-neutral-900">E-mail completo:</span> {email}
+            </p>
+          </div>
+        </td>
+      </tr>
+    )}
+    </>
   );
 }
